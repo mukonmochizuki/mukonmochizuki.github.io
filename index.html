@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>望月武懇 Mukon Mochizuki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --deep-black: #0a0806;
+      --warm-dark: #110e0a;
+      --orange-rope: #c85a0a;
+      --orange-glow: rgba(200, 90, 10, 0.18);
+      --off-white: #e8e0d4;
+      --muted: rgba(232, 224, 212, 0.5);
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background-color: var(--deep-black);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--off-white);
+    }
+
+    /* Full viewport scene */
+    .scene {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+
+    /* Photo: fills right 60%, darkened dramatically */
+    .photo {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 62%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: brightness(0.38) contrast(1.1) saturate(0.85);
+      mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 12%, black 35%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 12%, black 35%);
+    }
+
+    /* Subtle warm vignette over the whole scene */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 72% 40%, var(--orange-glow) 0%, transparent 55%),
+        linear-gradient(to bottom, rgba(10,8,6,0.55) 0%, transparent 30%, rgba(10,8,6,0.7) 100%),
+        linear-gradient(to right, var(--deep-black) 0%, rgba(10,8,6,0.6) 28%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Calligraphy: tall, left side, partially behind text */
+    .calligraphy {
+      position: absolute;
+      left: 3vw;
+      top: -2vh;
+      height: 96vh;
+      width: auto;
+      opacity: 0.92;
+      pointer-events: none;
+      animation: fadeIn 2s ease both;
+    }
+
+    /* Content block: lower left */
+    .content {
+      position: relative;
+      z-index: 10;
+      padding: 0 0 5vh 5vw;
+      max-width: 520px;
+      animation: riseIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    }
+
+    .japanese-title {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 300;
+      font-size: clamp(0.8rem, 1.4vw, 1.05rem);
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--off-white);
+      margin-bottom: 0.6rem;
+    }
+
+    .role-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .role-jp {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 300;
+      font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+      letter-spacing: 0.2em;
+      color: rgba(232, 224, 212, 0.38);
+      margin-bottom: 2.2rem;
+    }
+
+    /* Divider: thin orange line, signature element */
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--orange-rope);
+      margin-bottom: 1.8rem;
+      opacity: 0.8;
+    }
+
+    .coming-soon {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(0.72rem, 1.1vw, 0.88rem);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--orange-rope);
+      margin-bottom: 0.5rem;
+    }
+
+    .coming-soon-jp {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 300;
+      font-size: clamp(0.65rem, 0.9vw, 0.78rem);
+      letter-spacing: 0.25em;
+      color: rgba(200, 90, 10, 0.6);
+      margin-bottom: 2.8rem;
+    }
+
+    /* Contact links */
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .contact a {
+      color: var(--muted);
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.7rem, 1vw, 0.82rem);
+      letter-spacing: 0.15em;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .contact a:hover {
+      color: var(--off-white);
+    }
+
+    .contact-dot {
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: var(--muted);
+      opacity: 0.4;
+    }
+
+    /* Instagram icon SVG */
+    .ig-icon {
+      width: 13px;
+      height: 13px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* Mail icon */
+    .mail-icon {
+      width: 13px;
+      height: 10px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 0.92; }
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .calligraphy, .content { animation: none; }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 640px) {
+      .photo {
+        width: 100%;
+        mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 20%, black 50%);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 20%, black 50%);
+      }
+
+      .vignette {
+        background:
+          linear-gradient(to bottom, rgba(10,8,6,0.3) 0%, transparent 40%, rgba(10,8,6,0.85) 65%, var(--deep-black) 100%);
+      }
+
+      .calligraphy {
+        height: 60vh;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 2vh;
+        opacity: 0.25;
+      }
+
+      .scene {
+        align-items: flex-end;
+      }
+
+      .content {
+        padding: 0 6vw 7vh 6vw;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <img class="photo" src="photo.jpg" alt="Mukon Mochizuki holding a kotsuzumi drum" />
+    <img class="calligraphy" src="calligraphy.png" alt="望月武懇" />
+    <div class="vignette"></div>
+
+    <div class="content">
+      <p class="japanese-title">望月武懇</p>
+      <h1 class="name">Mukon Mochizuki</h1>
+      <p class="role-en">Kabuki Bayashi Performer &amp; Educator</p>
+      <p class="role-jp">歌舞伎囃子演奏家・教育者</p>
+      <div class="divider"></div>
+      <p class="coming-soon">Site Coming Soon</p>
+      <p class="coming-soon-jp">近日公開</p>
+      <div class="contact">
+        <a href="mailto:mukon.mochizuki@gmail.com">
+          <svg class="mail-icon" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="14" height="10" rx="1.5"/>
+            <polyline points="1,1 8,7 15,1"/>
+          </svg>
+          mukon.mochizuki@gmail.com
+        </a>
+        <span class="contact-dot"></span>
+        <a href="https://instagram.com/jd_mukon" target="_blank" rel="noopener">
+          <svg class="ig-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+          </svg>
+          @jd_mukon
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
