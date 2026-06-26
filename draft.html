@@ -110,7 +110,6 @@
       color: var(--orange-rope);
     }
 
-    /* Mobile Nav Checkbox Hack */
     #mobile-menu-toggle { display: none; }
     .mobile-header { display: none; }
 
@@ -153,11 +152,12 @@
       z-index: 2;
     }
 
-    /* --- PROFILE SECTION (SHORTENED) --- */
-    .profile-section {
+    /* --- PAGE SECTIONS --- */
+    .content-section {
       padding: 6rem 5%;
-      background-color: var(--deep-black);
       max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .section-title {
@@ -170,10 +170,12 @@
       padding-bottom: 1rem;
     }
 
+    /* PROFILE OVERVIEW */
     .profile-grid {
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 4rem;
+      margin-bottom: 4rem;
     }
 
     .profile-photo {
@@ -201,6 +203,7 @@
       text-transform: uppercase;
       transition: all 0.3s;
       margin-top: 1rem;
+      cursor: pointer;
     }
 
     .card-btn:hover {
@@ -208,18 +211,153 @@
       color: var(--deep-black);
     }
 
+    /* --- EDUCATION / EXPLANATION SECTION --- */
+    .edu-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 5rem;
+    }
+
+    .edu-block.reverse {
+      grid-template-columns: 1fr 1fr;
+      direction: rtl; /* Reverses column order for desktop */
+    }
+
+    .edu-block.reverse > * {
+      direction: ltr; /* Resets text direction */
+    }
+
+    .edu-text p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .edu-text em {
+      color: var(--off-white);
+      font-style: italic;
+    }
+
+    .edu-list {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .edu-list li {
+      position: relative;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    .edu-list li::before {
+      content: "•";
+      color: var(--orange-rope);
+      position: absolute;
+      left: 0;
+      font-size: 1.2rem;
+    }
+
+    .edu-list strong {
+      color: var(--off-white);
+      font-weight: 600;
+    }
+
+    .edu-images {
+      display: grid;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .edu-images.double {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .edu-img {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+      border: 1px solid rgba(232, 224, 212, 0.1);
+    }
+
+    /* INSTRUMENTS GRID */
+    .instrument-section {
+      margin-top: 4rem;
+    }
+
+    .instrument-intro {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .instrument-intro em {
+      color: var(--off-white);
+      font-style: italic;
+    }
+
+    .category-title {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--off-white);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .instrument-grid {
+      display: grid;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 800px; margin-left: auto; margin-right: auto; }
+
+    .instrument-card {
+      text-align: center;
+    }
+
+    .instrument-card img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border: 1px solid rgba(232, 224, 212, 0.1);
+      margin-bottom: 1rem;
+      background-color: var(--warm-dark);
+    }
+
+    .instrument-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .instrument-card span.jp {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+      color: rgba(232, 224, 212, 0.4);
+    }
+
     /* --- MOBILE RESPONSIVENESS --- */
     @media (max-width: 900px) {
-      .profile-grid {
+      .profile-grid, .edu-block, .edu-block.reverse {
         grid-template-columns: 1fr;
       }
-      
-      .profile-photo { 
-        position: static; 
-        max-width: 400px; 
-        margin: 0 auto; 
-        display: block; 
-      }
+      .profile-photo { max-width: 400px; margin: 0 auto; display: block; }
+      .edu-images.double { grid-template-columns: 1fr; }
+      .grid-3, .grid-2 { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
     }
 
     @media (max-width: 768px) {
@@ -227,40 +365,17 @@
         transform: translateX(-100%);
         transition: transform 0.4s ease;
       }
-
-      #mobile-menu-toggle:checked ~ .sidebar {
-        transform: translateX(0);
-      }
-
+      #mobile-menu-toggle:checked ~ .sidebar { transform: translateX(0); }
       .mobile-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: var(--header-height);
-        background-color: var(--warm-dark);
-        padding: 0 1.5rem;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 90;
+        display: flex; justify-content: space-between; align-items: center;
+        height: var(--header-height); background-color: var(--warm-dark);
+        padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90;
         border-bottom: 1px solid rgba(232, 224, 212, 0.05);
       }
-
-      .hamburger-icon {
-        color: var(--off-white);
-        font-size: 1.5rem;
-        cursor: pointer;
-      }
-
-      .main-content {
-        margin-left: 0;
-        width: 100%;
-        margin-top: var(--header-height);
-      }
-
-      .hero {
-        height: calc(100dvh - var(--header-height));
-      }
+      .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; }
+      .main-content { margin-left: 0; width: 100%; margin-top: var(--header-height); }
+      .hero { height: calc(100dvh - var(--header-height)); }
+      .content-section { padding: 4rem 5%; }
     }
   </style>
 </head>
@@ -285,7 +400,7 @@
       </div>
 
       <ul class="nav-links">
-        <li><a href="draft.html">Home</a></li>
+        <li><a href="draft.html" class="active">Home</a></li>
         <li><a href="profile.html">Profile</a></li>
         <li><a href="events.html">Events</a></li>
         <li><a href="projects.html">Projects</a></li>
@@ -302,7 +417,7 @@
         <img class="hero-calligraphy" src="calligraphy.png" alt="Calligraphy" />
       </section>
 
-      <section id="profile" class="profile-section">
+      <section class="content-section">
         <h2 class="section-title">Profile</h2>
         
         <div class="profile-grid">
@@ -313,11 +428,94 @@
           <div class="bio-text">
             <p><strong>Mukon Mochizuki・J.D. Andrade</strong></p>
             <p>A native of Illinois, J.D. began his musical journey in classical violin before discovering wadaiko at Brown University. Upon moving to Japan in 2014, he began his deep dive into the traditional performing arts, eventually studying matsuri-bayashi under Kyosuke Suzuki and kabuki-bayashi under Saburo Mochizuki.</p>
-            
             <p>In 2019, J.D. became the second non-Japanese national to be awarded a stage name, or natori, in kabuki-bayashi: <strong>Mukon Mochizuki (望月武懇)</strong>.</p>
-            
             <a href="profile.html" class="card-btn">Read Full Bio</a>
           </div>
+        </div>
+      </section>
+
+      <section class="content-section" style="background-color: var(--warm-dark); max-width: 100%; border-top: 1px solid rgba(232,224,212,0.05); border-bottom: 1px solid rgba(232,224,212,0.05);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h2 class="section-title">What is taiko and ohayashi?</h2>
+
+          <div class="edu-block">
+            <div class="edu-text">
+              <p>Wadaiko, commonly known around the world simply as <em>taiko</em>, refers to Japanese drumming, an art form consisting of drums, percussion, and movement. When most people think of <em>wadaiko</em>, they envision three main types of drums, <em>nagadō daiko</em>, <em>okedō daiko</em>, and <em>shime daiko</em>, each of which comes in a variety of sizes.</p>
+            </div>
+            <div class="edu-images double">
+              <img src="Wadaiko-odaiko.JPG" alt="Odaiko Performance" class="edu-img" />
+              <img src="Wadaiko-nanameindra.JPG" alt="Naname Indra Style Drumming" class="edu-img" />
+            </div>
+          </div>
+
+          <div class="edu-block reverse">
+            <div class="edu-text">
+              <p><em>Ohayashi</em> generally refers to musical accompaniment in Japanese performing arts associated with festival traditions, <em>matsuri bayashi</em>, and classical or traditional arts, <em>hōgaku bayashi</em>. These instruments, mainly specialized drums, percussion, and various flutes support the main performers of different genres including, but not limited to, the following:</p>
+              
+              <ul class="edu-list">
+                <li><strong>Noh Theatre:</strong> actors wearing intricate masks perform <strong>mai</strong> in very reserved, precise movements.</li>
+                <li><strong>Nagauta:</strong> <strong>shamisen</strong> players and singers tell stories rooted in Japanese mythology and history.</li>
+                <li><strong>Nihon Buyo:</strong> dancers dressed in simple kimonos or elaborate costumes perform against a backdrop of melodic instruments and <strong>ohayashi</strong>.</li>
+                <li><strong>Kabuki Theatre:</strong> a “new” art form that fuses music, acting, and dance from all of the above genres.</li>
+              </ul>
+            </div>
+            <div class="edu-images">
+              <img src="Fukei-Matsuribayashi.JPG" alt="Matsuri Bayashi Festival Music" class="edu-img" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="instrument-section">
+          <p class="instrument-intro">There are a plethora of instruments that are a part of <em>hōgaku bayashi</em> including the following:</p>
+
+          <h3 class="category-title">“The main three”</h3>
+          <div class="instrument-grid grid-3">
+            <div class="instrument-card">
+              <img src="instrument-kotsuzumi.JPG" alt="Kotsuzumi" />
+              <span>kotsuzumi</span>
+              <span class="jp">小鼓</span>
+            </div>
+            <div class="instrument-card">
+              <img src="instrument-otsuzumi.JPG" alt="Ōtsuzumi" />
+              <span>ōtsuzumi</span>
+              <span class="jp">大鼓</span>
+            </div>
+            <div class="instrument-card">
+              <img src="instrument-taiko.JPG" alt="Taiko" />
+              <span>taiko</span>
+              <span class="jp">太鼓</span>
+            </div>
+          </div>
+
+          <h3 class="category-title">“The flutes”</h3>
+          <div class="instrument-grid grid-2">
+            <div class="instrument-card">
+              <img src="instrument-nohkan.JPG" alt="Noh-kan" />
+              <span>noh-kan</span>
+              <span class="jp">能管</span>
+            </div>
+            <div class="instrument-card">
+              <img src="instrument-takebue.jpg" alt="Take-bue" /> <span>take-bue</span>
+              <span class="jp">竹笛</span>
+            </div>
+          </div>
+
+          <h3 class="category-title">陰囃子 (Kagebayashi)</h3>
+          <div class="instrument-grid grid-2">
+            <div class="instrument-card">
+              <img src="Kagebayashi-odaiko.JPG" alt="Ōdaiko" />
+              <span>ōdaiko</span>
+              <span class="jp">大太鼓</span>
+            </div>
+            <div class="instrument-card">
+              <img src="Kagebayashi-gong.JPG" alt="Gong" />
+              <span>gong</span>
+              <span class="jp">当たり鉦</span>
+            </div>
+          </div>
+
         </div>
       </section>
 
