@@ -25,7 +25,7 @@
       --header-height: 70px;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
 
     body {
       background-color: var(--deep-black);
@@ -38,9 +38,7 @@
     a { text-decoration: none; color: inherit; }
 
     /* --- LAYOUT ARCHITECTURE --- */
-    .layout-wrapper {
-      width: 100%; position: relative; display: block; overflow-x: hidden;
-    }
+    .layout-wrapper { width: 100%; position: relative; display: block; overflow-x: hidden; }
 
     /* --- DESKTOP SIDEBAR --- */
     .sidebar {
@@ -59,6 +57,24 @@
     .nav-links { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; flex-grow: 1; }
     .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
     .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
+
+    /* SUBMENU STYLING */
+    .submenu {
+      list-style: none;
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+      border-left: 1px solid rgba(232, 224, 212, 0.1);
+    }
+    .submenu a {
+      font-size: 0.9rem;
+      text-transform: none;
+      letter-spacing: 0.05em;
+      color: rgba(232, 224, 212, 0.4);
+    }
+    .submenu a:hover { color: var(--orange-rope); }
 
     #mobile-menu-toggle { display: none; }
     .mobile-header { display: none; }
@@ -87,7 +103,6 @@
     .profile-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 1px solid rgba(232, 224, 212, 0.1); }
     .bio-text p { font-size: 1.15rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.5rem; }
 
-    /* BUTTONS */
     .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
     .card-btn {
       display: inline-block; padding: 0.5rem 1.2rem; background: transparent;
@@ -140,7 +155,7 @@
 
     /* --- SITE FOOTER --- */
     .site-footer {
-      background-color: var(--deep-black); padding: 3rem 5%; text-align: center;
+      background-color: var(--warm-dark); padding: 3rem 5%; text-align: center;
       border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8;
     }
     .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
@@ -175,6 +190,7 @@
   </div>
 
   <div class="layout-wrapper">
+    
     <nav class="sidebar">
       <div class="lang-toggle">
         <span class="active">EN</span> / <span>JP</span>
@@ -187,7 +203,16 @@
         <li><a href="draft.html" class="active">Home</a></li>
         <li><a href="profile.html">Profile</a></li>
         <li><a href="events.html">Events</a></li>
-        <li><a href="projects.html">Projects</a></li>
+        <li>
+          <a href="projects.html">Projects</a>
+          <ul class="submenu">
+            <li><a href="projects.html#hogaku-horizons">Hōgaku Horizons</a></li>
+            <li><a href="projects.html#tsuzumiboshi">Tsuzumiboshi</a></li>
+            <li><a href="projects.html#airbnb">Airbnb Experience</a></li>
+            <li><a href="projects.html#kon-chan">Kabuki Kon-chan</a></li>
+            <li><a href="projects.html#research">Kō Muneyoshi</a></li>
+          </ul>
+        </li>
         <li><a href="lessons.html">Lessons & Workshops</a></li>
         <li><a href="media.html">Media</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -224,7 +249,6 @@
             <div class="event-details">
               <span class="event-date">August 3, 2026</span>
               <p class="event-info"><strong>Sounds of Kabuki</strong><br>3:30pm (doors open 3:00)<br>Asakusa Tourist Info Center</p>
-              
               <div class="button-group">
                 <a href="https://soundsofkabuki1.peatix.com/" target="_blank" rel="noopener" class="card-btn">Get Tickets</a>
                 <a href="events.html" class="card-btn secondary">See All Events</a>
@@ -287,10 +311,4 @@
 
       <footer class="site-footer">
         <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
-        <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">Katsuhiro Miike</a></p>
-      </footer>
-
-    </main>
-  </div>
-</body>
-</html>
+        <p>Calligraphy by <a href="https://www.instagram.com/k
