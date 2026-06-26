@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" /> <title>望月武懇 Mukon Mochizuki</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <title>望月武懇 Mukon Mochizuki</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,14 +29,19 @@
       --header-height: 70px;
     }
 
-    html, body {
+    /* SAFARI BUG FIX: Absolutely no heights or flex on the html/body */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
       background-color: var(--deep-black);
       font-family: 'Cormorant Garamond', serif;
       color: var(--off-white);
-      /* Safe height fallback */
-      min-height: 100vh;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; 
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
@@ -45,9 +51,9 @@
 
     /* --- LAYOUT ARCHITECTURE --- */
     .layout-wrapper {
-      display: flex;
-      min-height: 100vh;
-      min-height: 100dvh;
+      width: 100%;
+      position: relative;
+      display: block; /* Removed flex to stop Safari collapse */
     }
 
     /* --- DESKTOP SIDEBAR --- */
@@ -120,19 +126,17 @@
     .main-content {
       margin-left: var(--sidebar-width);
       width: calc(100% - var(--sidebar-width));
-      display: flex;
-      flex-direction: column;
+      display: block; /* Removed flex */
+      position: relative;
     }
 
     /* --- HOMEPAGE HERO --- */
     .hero {
       position: relative;
-      height: 100vh; /* Fallback */
+      height: 100vh; 
       height: 100dvh;
       width: 100%;
       overflow: hidden;
-      display: flex;
-      align-items: flex-end;
     }
 
     .hero-photo {
@@ -150,7 +154,7 @@
     .hero-calligraphy {
       position: absolute;
       left: 5%;
-      top: 5%;
+      bottom: 5%;
       height: 90%;
       opacity: 0.8;
       z-index: 2;
@@ -162,6 +166,7 @@
       max-width: 1200px;
       margin: 0 auto;
       width: 100%;
+      display: block;
     }
 
     .section-title {
@@ -260,6 +265,7 @@
       border-bottom: 1px solid rgba(232,224,212,0.05);
       max-width: 100%;
       padding: 6rem 5%;
+      display: block;
     }
 
     .integrated-wrapper {
@@ -338,14 +344,13 @@
       height: 100%;
       min-height: 300px;
       object-fit: cover;
-      /* Shifts the photo focus toward the top (to save heads) */
       object-position: center 15%; 
       border: 1px solid rgba(232, 224, 212, 0.1);
+      display: block;
     }
 
     /* --- Wadaiko Photo Fixes --- */
     .naname-img {
-      /* 75% focus right prevents face from cutting off in landscape */
       object-position: 75% 15%; 
     }
     
@@ -358,10 +363,251 @@
     }
 
     .odaiko-zoom-fix {
-      transform: scale(1.35); /* Zoom in by 35% */
-      transform-origin: center 20%; /* Prioritize upper body in frame */
+      transform: scale(1.35); 
+      transform-origin: center 20%; 
       border: none;
     }
 
     /* Integrated Instrument Gallery */
     .instrument-intro {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 3rem; 
+      text-align: center;
+    }
+
+    .instrument-intro em {
+      color: var(--off-white);
+      font-style: italic;
+    }
+
+    .instrument-grid {
+      display: grid;
+      gap: 2rem;
+      margin-bottom: 2rem; 
+    }
+
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 800px; margin-left: auto; margin-right: auto; }
+
+    .instrument-card {
+      text-align: center;
+    }
+
+    .instrument-card img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      object-position: center 2%; 
+      border: 1px solid rgba(232, 224, 212, 0.1);
+      margin-bottom: 1rem;
+      background-color: var(--warm-dark);
+      display: block;
+    }
+
+    .instrument-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .instrument-card span.jp {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+      color: rgba(232, 224, 212, 0.4);
+    }
+
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (max-width: 900px) {
+      .profile-grid, .featured-event-grid, .edu-block, .edu-block.reverse {
+        grid-template-columns: 1fr;
+      }
+      .profile-photo, .event-chirashi { max-width: 400px; margin: 0 auto; display: block; }
+      .edu-images.double { grid-template-columns: 1fr; }
+      .grid-3, .grid-2 { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
+      }
+      #mobile-menu-toggle:checked ~ .sidebar { transform: translateX(0); }
+      .mobile-header {
+        display: flex; justify-content: space-between; align-items: center;
+        height: var(--header-height); background-color: var(--warm-dark);
+        padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90;
+        border-bottom: 1px solid rgba(232, 224, 212, 0.05);
+      }
+      .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; }
+      .main-content { 
+        margin-left: 0; 
+        width: 100%; 
+        padding-top: var(--header-height); /* Switched to padding for mobile flow */
+      }
+      .hero { height: calc(100dvh - var(--header-height)); }
+      .content-section { padding: 4rem 5%; }
+      .dark-integrated-section { padding: 4rem 5%; }
+    }
+  </style>
+</head>
+<body>
+
+  <input type="checkbox" id="mobile-menu-toggle">
+  <div class="mobile-header">
+    <div class="brand-jp" style="margin: 0;">望月武懇</div>
+    <label for="mobile-menu-toggle" class="hamburger-icon">☰</label>
+  </div>
+
+  <div class="layout-wrapper">
+    
+    <nav class="sidebar">
+      <div class="lang-toggle">
+        <span class="active">EN</span> / <span>JP</span>
+      </div>
+      
+      <div class="brand">
+        <h2 class="brand-jp">望月武懇</h2>
+        <h1 class="brand-en">Mukon Mochizuki</h1>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="draft.html" class="active">Home</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="lessons.html">Lessons & Workshops</a></li>
+        <li><a href="media.html">Media</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      
+      <section class="hero">
+        <img class="hero-photo" src="photo.jpeg" alt="Mukon Mochizuki" />
+        <img class="hero-calligraphy" src="calligraphy.png" alt="Calligraphy" />
+      </section>
+
+      <section class="content-section">
+        <h2 class="section-title">Profile</h2>
+        
+        <div class="profile-grid">
+          <div class="profile-image-container">
+            <img class="profile-photo" src="profile-kuromontsuki.JPG" alt="Mukon Mochizuki in Kuro Montsuki" />
+          </div>
+
+          <div class="bio-text">
+            <p><strong>Mukon Mochizuki・J.D. Andrade</strong></p>
+            <p>A native of Illinois, J.D. began his musical journey in classical violin before discovering wadaiko at Brown University. Upon moving to Japan in 2014, he began his deep dive into the traditional performing arts, eventually studying matsuri-bayashi under Kyosuke Suzuki and kabuki-bayashi under Saburo Mochizuki.</p>
+            <p>In 2019, J.D. became the second non-Japanese national to be awarded a stage name, or natori, in kabuki-bayashi: <strong>Mukon Mochizuki (望月武懇)</strong>.</p>
+            <a href="profile.html" class="card-btn">Read Full Bio</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" style="background-color: var(--deep-black); max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h2 class="section-title">Upcoming Event</h2>
+          
+          <div class="featured-event-grid">
+            <img class="event-chirashi" src="chirashi-20260803soundsofkabuki.png" alt="Sounds of Kabuki, 8/3/2026" />
+            
+            <div class="event-details">
+              <span class="event-date">August 3, 2026</span>
+              <p class="event-info">Sounds of Kabuki<br>Doors open 3:00pm, start 3:30pm<br>Asakusa Tourist Info Center</p>
+              <a href="events.html" class="card-btn">See More Events</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dark-integrated-section">
+        <div class="integrated-wrapper">
+          <h2 class="section-title">What is taiko and ohayashi?</h2>
+
+          <div class="edu-block">
+            <div class="edu-text">
+              <p>Wadaiko, commonly known around the world simply as <em>taiko</em>, refers to Japanese drumming, an art form consisting of drums, percussion, and movement. When most people think of <em>wadaiko</em>, they envision three main types of drums, <em>nagadō daiko</em>, <em>okedō daiko</em>, and <em>shime daiko</em>, each of which comes in a variety of sizes.</p>
+            </div>
+            <div class="edu-images double">
+              <div class="odaiko-img-container">
+                <img src="Wadaiko-odaiko.JPG" alt="Odaiko Performance" class="edu-img odaiko-zoom-fix" />
+              </div>
+              <img src="Wadaiko-nanameindra.JPG" alt="Naname Style Drumming" class="edu-img naname-img" />
+            </div>
+          </div>
+
+          <div class="edu-block reverse" style="margin-bottom: 2rem;">
+            <div class="edu-text">
+              <p><em>Ohayashi</em> generally refers to musical accompaniment in Japanese performing arts associated with festival traditions, <em>matsuri bayashi</em>, and classical or traditional arts, <em>hōgaku bayashi</em>. These instruments, mainly specialized drums, percussion, and various flutes support the main performers of different genres including, but not limited to, the following:</p>
+              
+              <ul class="edu-list">
+                <li><strong>Noh Theatre:</strong> actors wearing intricate masks perform <em>mai</em> in very reserved, precise movements.</li>
+                <li><strong>Nagauta:</strong> shamisen players and singers tell stories rooted in Japanese mythology and history.</li>
+                <li><strong>Nihon Buyo:</strong> dancers dressed in simple kimonos or elaborate costumes perform against a backdrop of melodic instruments and <em>ohayashi</em>.</li>
+                <li><strong>Kabuki Theatre:</strong> a “new” art form that fuses music, acting, and dance from all of the above genres.</li>
+              </ul>
+            </div>
+            <div class="edu-images">
+              <img src="Fukei-Matsuribayashi.JPG" alt="Matsuri Bayashi Festival Music" class="edu-img" />
+            </div>
+          </div>
+
+          <p class="instrument-intro">There are a plethora of instruments that are a part of <em>hōgaku bayashi</em> including the following:</p>
+
+          <div class="instrument-grid grid-3">
+            <div class="instrument-card">
+              <img src="instrument-kotsuzumi.JPG" alt="Kotsuzumi" />
+              <span>kotsuzumi</span>
+              <span class="jp">小鼓</span>
+            </div>
+            <div class="instrument-card">
+              <img src="instrument-otsuzumi.JPG" alt="Ōtsuzumi" />
+              <span>ōtsuzumi</span>
+              <span class="jp">大鼓</span>
+            </div>
+            <div class="instrument-card">
+              <img src="instrument-taiko.JPG" alt="Taiko" />
+              <span>taiko</span>
+              <span class="jp">太鼓</span>
+            </div>
+          </div>
+
+          <div class="instrument-grid grid-2">
+            <div class="instrument-card">
+              <img src="instrument-nohkan.JPG" alt="Noh-kan" />
+              <span>noh-kan</span>
+              <span class="jp">能管</span>
+            </div>
+            <div class="instrument-card">
+              <img src="instrument-takebue.jpg" alt="Takebue" /> 
+              <span>takebue</span>
+              <span class="jp">竹笛</span>
+            </div>
+          </div>
+
+          <div class="instrument-grid grid-2">
+            <div class="instrument-card">
+              <img src="Kagebayashi-odaiko.JPG" alt="Ōdaiko" />
+              <span>ōdaiko</span>
+              <span class="jp">大太鼓</span>
+            </div>
+            <div class="instrument-card">
+              <img src="Kagebayashi-gong.JPG" alt="Gong" />
+              <span>gong</span>
+              <span class="jp">ドラ</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>
