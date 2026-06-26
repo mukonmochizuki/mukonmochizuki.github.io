@@ -99,13 +99,19 @@
     .bio-text p { font-size: 1.15rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.8rem; }
     .bio-text h3 { font-size: 1.5rem; font-weight: 400; color: var(--off-white); margin-bottom: 1rem; }
 
-    /* --- HOVER CARDS --- */
+    /* --- HOVER CARDS (WITH iOS FIX) --- */
     .hover-trigger {
       position: relative; display: inline-block;
       color: var(--off-white); border-bottom: 1px dotted var(--orange-rope);
       cursor: help; transition: color 0.3s;
+      /* Removes the blue tap highlight on iOS */
+      -webkit-tap-highlight-color: transparent; 
     }
-    .hover-trigger:hover { color: var(--orange-rope); }
+    .hover-trigger:hover, 
+    .hover-trigger:focus, 
+    .hover-trigger:focus-within { 
+      color: var(--orange-rope); outline: none; 
+    }
 
     .hover-card {
       visibility: hidden; opacity: 0; position: absolute;
@@ -117,7 +123,10 @@
       cursor: default; pointer-events: none; text-align: left;
     }
 
-    .hover-trigger:hover .hover-card {
+    /* iOS Fix: Trigger card on hover, focus, and focus-within */
+    .hover-trigger:hover .hover-card,
+    .hover-trigger:focus .hover-card,
+    .hover-trigger:focus-within .hover-card {
       visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto;
     }
 
@@ -129,9 +138,9 @@
       display: inline-block; padding: 0.5rem 1.2rem; background: transparent;
       color: var(--off-white); border: 1px solid var(--orange-rope);
       font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
-      transition: all 0.3s; text-align: center;
+      transition: all 0.3s; text-align: center; cursor: pointer;
     }
-    .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
+    .card-btn:hover, .card-btn:focus { background: var(--orange-rope); color: var(--deep-black); }
 
     /* --- MOBILE RESPONSIVENESS --- */
     @media (max-width: 900px) {
@@ -176,7 +185,7 @@
       </div>
 
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="draft.html">Home</a></li>
         <li><a href="profile.html" class="active">Profile</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="lessons.html">Lessons & Workshops</a></li>
@@ -199,7 +208,7 @@
             <h3>Mukon Mochizuki・J.D. Andrade</h3>
             
             <p>A native of Illinois, J.D. began his musical journey in classical violin at the age of 9, eventually focusing on chamber music through high school and university. He first started taiko as a member of 
-              <span class="hover-trigger">Gendo Taiko
+              <span class="hover-trigger" tabindex="0">Gendo Taiko
                 <span class="hover-card">
                   <span class="card-title">Gendo Taiko</span>
                   <span class="card-subtitle">Brown University | Providence, RI (U.S.A.)</span>
@@ -208,7 +217,7 @@
                 </span>
               </span> 
               at Brown University in 2006, and in 2012, he moved to Honolulu to study with 
-              <span class="hover-trigger">Kenny Endo
+              <span class="hover-trigger" tabindex="0">Kenny Endo
                 <span class="hover-card">
                   <span class="card-title">Kenny Endo</span>
                   <span class="card-subtitle">Taiko Center of the Pacific | Honolulu, HI (U.S.A.)</span>
@@ -217,7 +226,7 @@
                 </span>
               </span> 
               after being awarded the 
-              <span class="hover-trigger">Taiko Center of the Pacific
+              <span class="hover-trigger" tabindex="0">Taiko Center of the Pacific
                 <span class="hover-card">
                   <span class="card-title">Taiko Center of the Pacific</span>
                   <span class="card-subtitle">Honolulu, HI (U.S.A.)</span>
@@ -228,7 +237,7 @@
               (TCP) Fellowship.</p>
 
             <p>Upon moving to Japan in 2014, J.D. began playing taiko professionally with Taiko Project Indra, where he began his journey into the traditional performing arts. In addition to taiko, J.D. studies matsuri-bayashi (festival music) under 
-              <span class="hover-trigger">Kyosuke Suzuki
+              <span class="hover-trigger" tabindex="0">Kyosuke Suzuki
                 <span class="hover-card">
                   <span class="card-title">Kyosuke Suzuki</span>
                   <span class="card-subtitle">Wakayama Shachū | Tokyo, Japan</span>
@@ -237,7 +246,7 @@
                 </span>
               </span> 
               and kabuki-bayashi (traditional Japanese drumming) under 
-              <span class="hover-trigger">Saburo Mochizuki
+              <span class="hover-trigger" tabindex="0">Saburo Mochizuki
                 <span class="hover-card">
                   <span class="card-title">Saburo Mochizuki</span>
                   <span class="card-subtitle">Tokyo, Japan</span>
@@ -252,7 +261,7 @@
             <p>In 2024, J.D. founded Taiko Unit Tsuzumiboshi, a Tokyo-based ensemble fusing taiko, hōgaku-bayashi, and matsuri-bayashi.</p>
 
             <p>In August 2025, he participated in “Ma vs. Groove,” Kenny Endo’s 50th Anniversary Celebration in Honolulu, Hawai’i as a performer, workshop leader, interpreter, and organizer, collaborating with artists such as 
-              <span class="hover-trigger">Sho’on Shibata
+              <span class="hover-trigger" tabindex="0">Sho’on Shibata
                 <span class="hover-card">
                   <span class="card-title">Sho’on Shibata</span>
                   <span class="card-subtitle">Honolulu, HI (U.S.A.)</span>
@@ -261,7 +270,7 @@
                 </span>
               </span> 
               (taiko), 
-              <span class="hover-trigger">Fujima Saeka
+              <span class="hover-trigger" tabindex="0">Fujima Saeka
                 <span class="hover-card">
                   <span class="card-title">Fujima Saeka</span>
                   <span class="card-subtitle">Honolulu, HI (U.S.A.)</span>
@@ -269,7 +278,7 @@
                 </span>
               </span> 
               (Classical Japanese dance), and 
-              <span class="hover-trigger">Sakio Kineya
+              <span class="hover-trigger" tabindex="0">Sakio Kineya
                 <span class="hover-card">
                   <span class="card-title">Sakio Kineya</span>
                   <span class="card-subtitle">Tokyo, Japan & Honolulu, HI (U.S.A.)</span>
@@ -280,7 +289,7 @@
               (shamisen).</p>
 
             <p>During his time in Japan, J.D. has had the pleasure of performing in a variety of notable venues such as the National Theatre of Japan and Suntory Hall, as well as touring internationally, including a 2017 performance in Turkey with the Kenny Endo Taiko Ensemble for a hospital opening ceremony alongside collaborators 
-              <span class="hover-trigger">Abe Lagrimas, Jr.
+              <span class="hover-trigger" tabindex="0">Abe Lagrimas, Jr.
                 <span class="hover-card">
                   <span class="card-title">Abe Lagrimas, Jr.</span>
                   <span class="card-subtitle">Los Angeles, CA (U.S.A.)</span>
@@ -289,7 +298,7 @@
                 </span>
               </span> 
               and 
-              <span class="hover-trigger">Kaoru Watanabe
+              <span class="hover-trigger" tabindex="0">Kaoru Watanabe
                 <span class="hover-card">
                   <span class="card-title">Kaoru Watanabe</span>
                   <span class="card-subtitle">New York, NY (U.S.A.)</span>
