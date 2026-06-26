@@ -284,9 +284,28 @@
       height: 100%;
       min-height: 300px;
       object-fit: cover;
-      /* Shifts the photo down to prevent the head from being cut off */
       object-position: center 15%; 
       border: 1px solid rgba(232, 224, 212, 0.1);
+    }
+
+    /* --- CUSTOM IMAGE ADJUSTMENTS --- */
+    .odaiko-zoom-wrapper {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      border: 1px solid rgba(232, 224, 212, 0.1);
+    }
+    
+    .odaiko-img {
+      border: none;
+      transform: scale(1.35); /* Zooms the image in by 35% */
+      transform-origin: center 20%; /* Keeps the upper body in frame while zoomed */
+    }
+
+    .naname-img {
+      /* 75% on X-axis shifts focus right. Change to 25% if you need it to shift left! */
+      object-position: 75% 15%; 
     }
 
     /* INSTRUMENTS GRID */
@@ -310,7 +329,7 @@
     .instrument-grid {
       display: grid;
       gap: 2rem;
-      margin-bottom: 2rem; /* Tightened so the 3-2-2 rows look like one block */
+      margin-bottom: 2rem;
     }
 
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
@@ -324,8 +343,7 @@
       width: 100%;
       aspect-ratio: 1/1;
       object-fit: cover;
-      /* Shifts the photo down to prevent the head from being cut off */
-      object-position: center 15%; 
+      object-position: center 2%; /* Nudged even closer to the top to save heads */
       border: 1px solid rgba(232, 224, 212, 0.1);
       margin-bottom: 1rem;
       background-color: var(--warm-dark);
@@ -438,8 +456,10 @@
               <p><em>Wadaiko</em>, commonly known around the world simply as <em>taiko</em>, refers to Japanese drumming, an art form consisting of drums, percussion, and movement. When most people think of <em>wadaiko</em>, they envision three main types of drums, <em>nagadō daiko</em>, <em>okedō daiko</em>, and <em>shime daiko</em>, each of which comes in a variety of sizes.</p>
             </div>
             <div class="edu-images double">
-              <img src="Wadaiko-odaiko.JPG" alt="Odaiko Performance" class="edu-img" />
-              <img src="Wadaiko-nanameindra.JPG" alt="Naname Style Drumming" class="edu-img" />
+              <div class="odaiko-zoom-wrapper">
+                <img src="Wadaiko-odaiko.JPG" alt="Odaiko Performance" class="edu-img odaiko-img" />
+              </div>
+              <img src="Wadaiko-nanameindra.JPG" alt="Naname Style Drumming" class="edu-img naname-img" />
             </div>
           </div>
 
