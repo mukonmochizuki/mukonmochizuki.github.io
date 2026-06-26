@@ -25,6 +25,7 @@
 
     html, body {
       height: 100%;
+      height: -webkit-fill-available; /* Fix for iOS body height */
       width: 100%;
       overflow: hidden;
     }
@@ -39,7 +40,8 @@
     .scene {
       position: relative;
       width: 100vw;
-      height: 100vh;
+      height: 100vh; /* Fallback for older browsers */
+      height: 100dvh; /* Modern fix that accounts for mobile browser UI */
       overflow: hidden;
       display: flex;
       align-items: flex-end;
