@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
-  <title>望月武懇 Mukon Mochizuki</title>
+  <meta name="robots" content="noindex, nofollow" /> <title>望月武懇 Mukon Mochizuki</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
   
   <style>
-   /* --- GLOBAL VARIABLES & RESET --- */
+    /* --- GLOBAL VARIABLES & RESET --- */
     *, *::before, *::after {
       margin: 0;
       padding: 0;
@@ -33,10 +32,10 @@
       background-color: var(--deep-black);
       font-family: 'Cormorant Garamond', serif;
       color: var(--off-white);
+      /* Safe height fallback */
+      min-height: 100vh;
       overflow-x: hidden;
       scroll-behavior: smooth;
-      margin: 0;
-      padding: 0;
     }
 
     a {
@@ -244,4 +243,125 @@
       color: var(--orange-rope);
       font-weight: 600;
       font-size: 1.1rem;
-      text-transform: uppercase
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .event-info {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* --- INTEGRATED EDUCATIONAL & GALLERY SECTION --- */
+    .dark-integrated-section {
+      background-color: var(--warm-dark);
+      border-top: 1px solid rgba(232,224,212,0.05);
+      border-bottom: 1px solid rgba(232,224,212,0.05);
+      max-width: 100%;
+      padding: 6rem 5%;
+    }
+
+    .integrated-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Wadaiko/Ohayashi Text Blocks */
+    .edu-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem; 
+    }
+
+    .edu-block.reverse {
+      direction: rtl; 
+    }
+
+    .edu-block.reverse > * {
+      direction: ltr; 
+    }
+
+    .edu-text p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .edu-text em {
+      color: var(--off-white);
+      font-style: italic;
+    }
+
+    .edu-list {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .edu-list li {
+      position: relative;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    .edu-list li::before {
+      content: "•";
+      color: var(--orange-rope);
+      position: absolute;
+      left: 0;
+      font-size: 1.2rem;
+    }
+
+    .edu-list strong {
+      color: var(--off-white);
+      font-weight: 600;
+    }
+
+    .edu-images {
+      display: grid;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .edu-images.double {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .edu-img {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+      /* Shifts the photo focus toward the top (to save heads) */
+      object-position: center 15%; 
+      border: 1px solid rgba(232, 224, 212, 0.1);
+    }
+
+    /* --- Wadaiko Photo Fixes --- */
+    .naname-img {
+      /* 75% focus right prevents face from cutting off in landscape */
+      object-position: 75% 15%; 
+    }
+    
+    .odaiko-img-container {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      border: 1px solid rgba(232, 224, 212, 0.1);
+    }
+
+    .odaiko-zoom-fix {
+      transform: scale(1.35); /* Zoom in by 35% */
+      transform-origin: center 20%; /* Prioritize upper body in frame */
+      border: none;
+    }
+
+    /* Integrated Instrument Gallery */
+    .instrument-intro {
