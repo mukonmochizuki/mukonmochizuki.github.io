@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Events | Mukon Mochizuki</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* --- GLOBAL VARIABLES & RESET --- */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --deep-black: #0a0806;
+      --warm-dark: #110e0a;
+      --panel-bg: #1a1510;
+      --orange-rope: #c85a0a;
+      --off-white: #e8e0d4;
+      --muted: rgba(232, 224, 212, 0.6);
+      --sidebar-width: 280px;
+      --header-height: 70px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--deep-black);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--off-white);
+      margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* --- LAYOUT ARCHITECTURE --- */
+    .layout-wrapper { width: 100%; position: relative; display: block; overflow-x: hidden; }
+
+    /* --- DESKTOP SIDEBAR --- */
+    .sidebar {
+      width: var(--sidebar-width); background-color: var(--warm-dark);
+      position: fixed; top: 0; left: 0; height: 100%;
+      padding: 3rem 2rem; display: flex; flex-direction: column;
+      border-right: 1px solid rgba(232, 224, 212, 0.05); z-index: 100;
+    }
+
+    .lang-toggle { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 3rem; cursor: pointer; }
+    .lang-toggle span.active { color: var(--orange-rope); font-weight: 600; }
+
+    .brand-jp { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 1.2rem; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 0.2rem; }
+    .brand-en { font-size: 2rem; font-weight: 400; line-height: 1.1; margin-bottom: 3rem; }
+
+    .nav-links { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; flex-grow: 1; }
+    .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
+
+    #mobile-menu-toggle { display: none; }
+    .mobile-header { display: none; }
+
+    /* --- MAIN CONTENT AREA --- */
+    .main-content {
+      margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width));
+      display: block; position: relative; min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+
+    /* --- PAGE SECTIONS --- */
+    .page-container {
+      padding: 6rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1;
+    }
+
+    .page-title {
+      font-size: 3rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 4rem; color: var(--off-white);
+    }
+
+    .section-title { 
+      font-size: 2rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 3rem; color: var(--orange-rope); 
+      border-bottom: 1px solid rgba(232, 224, 212, 0.1); padding-bottom: 1rem; 
+    }
+
+    /* --- EVENTS STYLING --- */
+    .event-list { display: flex; flex-direction: column; gap: 5rem; margin-bottom: 6rem; }
+
+    .event-card {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: flex-start;
+    }
+
+    .event-chirashi { 
+      width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top center; 
+      border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
+    }
+
+    .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
+    
+    .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.15em; }
+    
+    .event-title { font-size: 2rem; color: var(--off-white); font-weight: 400; line-height: 1.2; }
+    
+    .event-info { font-size: 1.1rem; line-height: 1.8; color: var(--muted); }
+
+    /* BUTTONS */
+    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .card-btn {
+      display: inline-block; padding: 0.6rem 1.5rem; background: transparent;
+      color: var(--off-white); border: 1px solid var(--orange-rope);
+      font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
+      transition: all 0.3s; cursor: pointer; text-align: center;
+    }
+    .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
+
+    /* PAST EVENTS PLACEHOLDER */
+    .archive-placeholder {
+      border: 1px dashed rgba(232, 224, 212, 0.2);
+      padding: 5rem 2rem;
+      text-align: center;
+      border-radius: 4px;
+      background-color: rgba(17, 14, 10, 0.3);
+    }
+
+    .archive-placeholder p {
+      color: var(--muted);
+      font-size: 1.2rem;
+      font-style: italic;
+      letter-spacing: 0.05em;
+    }
+
+    /* --- SITE FOOTER --- */
+    .site-footer {
+      background-color: var(--warm-dark); padding: 3rem 5%; text-align: center;
+      border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8;
+      margin-top: auto; /* Pushes footer to bottom even if content is short */
+    }
+    .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
+    .site-footer a:hover { color: var(--off-white); }
+
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (max-width: 900px) {
+      .event-card { grid-template-columns: 1fr; }
+      .event-chirashi { max-width: 400px; margin: 0 auto; display: block; }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
+      #mobile-menu-toggle:checked ~ .sidebar { transform: translateX(0); }
+      .mobile-header { display: flex; justify-content: space-between; align-items: center; height: var(--header-height); background-color: var(--warm-dark); padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90; border-bottom: 1px solid rgba(232, 224, 212, 0.05); }
+      .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; }
+      .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); }
+      .page-container { padding: 4rem 5%; }
+      .page-title { font-size: 2.5rem; margin-bottom: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <input type="checkbox" id="mobile-menu-toggle">
+  <div class="mobile-header">
+    <div class="brand-jp" style="margin: 0;">望月武懇</div>
+    <label for="mobile-menu-toggle" class="hamburger-icon">☰</label>
+  </div>
+
+  <div class="layout-wrapper">
+    
+    <nav class="sidebar">
+      <div class="lang-toggle">
+        <span class="active">EN</span> / <span>JP</span>
+      </div>
+      <div class="brand">
+        <h2 class="brand-jp">望月武懇</h2>
+        <h1 class="brand-en">Mukon Mochizuki</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="draft.html">Home</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="lessons.html">Lessons & Workshops</a></li>
+        <li><a href="media.html">Media</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      
+      <div class="page-container">
+        <h1 class="page-title">Events</h1>
+
+        <h2 class="section-title">Upcoming</h2>
+        
+        <div class="event-list">
+          
+          <article class="event-card">
+            <div class="event-image-wrapper">
+              <img class="event-chirashi" src="Chirashi-20260803soundsofkabuki.jpg" alt="Sounds of Kabuki, August 3, 2026" />
+            </div>
+            
+            <div class="event-details">
+              <span class="event-date">August 3, 2026</span>
+              <h3 class="event-title">Sounds of Kabuki</h3>
+              
+              <div class="event-info">
+                <p><strong>Time:</strong> 3:30 PM (Doors open at 3:00 PM)</p>
+                <p><strong>Location:</strong> Asakusa Tourist Info Center</p>
+                <br>
+                <p>Join Mukon Mochizuki for an afternoon diving into the traditional rhythms and accompaniment of Kabuki theatre.</p>
+              </div>
+
+              <div class="button-group">
+                <a href="https://soundsofkabuki1.peatix.com/" target="_blank" rel="noopener" class="card-btn">Get Tickets</a>
+              </div>
+            </div>
+          </article>
+          
+          </div>
+
+        <h2 class="section-title">Past Performances</h2>
+        
+        <div class="archive-placeholder">
+          <p>Visual performance archive coming soon...</p>
+        </div>
+
+      </div>
+
+      <footer class="site-footer">
+        <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
+        <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">Katsuhiro Miike</a></p>
+      </footer>
+
+    </main>
+  </div>
+
+</body>
+</html>
