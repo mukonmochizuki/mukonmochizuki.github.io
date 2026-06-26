@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" /> <title>望月武懇 Mukon Mochizuki</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* --- GLOBAL VARIABLES & RESET --- */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --deep-black: #0a0806;
+      --warm-dark: #110e0a;
+      --panel-bg: #1a1510;
+      --orange-rope: #c85a0a;
+      --off-white: #e8e0d4;
+      --muted: rgba(232, 224, 212, 0.6);
+      --sidebar-width: 280px;
+      --header-height: 70px;
+    }
+
+    html, body {
+      background-color: var(--deep-black);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--off-white);
+      height: 100%;
+      height: -webkit-fill-available;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* --- LAYOUT ARCHITECTURE --- */
+    .layout-wrapper {
+      display: flex;
+      min-height: 100dvh;
+    }
+
+    /* --- DESKTOP SIDEBAR --- */
+    .sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--warm-dark);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100dvh;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid rgba(232, 224, 212, 0.05);
+      z-index: 100;
+    }
+
+    .lang-toggle {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      cursor: pointer;
+    }
+
+    .lang-toggle span.active { color: var(--orange-rope); font-weight: 600; }
+
+    .brand-jp {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 300;
+      font-size: 1.2rem;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .brand-en {
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      flex-grow: 1;
+    }
+
+    .nav-links a {
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      transition: color 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--orange-rope);
+    }
+
+    /* Mobile Nav Checkbox Hack (No JavaScript required) */
+    #mobile-menu-toggle { display: none; }
+    .mobile-header { display: none; }
+
+    /* --- MAIN CONTENT AREA --- */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      width: calc(100% - var(--sidebar-width));
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- HOMEPAGE HERO --- */
+    .hero {
+      position: relative;
+      height: 100dvh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-photo {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: brightness(0.4) contrast(1.1);
+      z-index: 1;
+    }
+
+    .hero-calligraphy {
+      position: absolute;
+      left: 5%;
+      top: 5%;
+      height: 90%;
+      opacity: 0.8;
+      z-index: 2;
+    }
+
+    /* --- PROFILE SECTION --- */
+    .profile-section {
+      padding: 6rem 5%;
+      background-color: var(--deep-black);
+      max-width: 1200px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      margin-bottom: 3rem;
+      color: var(--orange-rope);
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 1rem;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+    }
+
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border: 1px solid rgba(232, 224, 212, 0.1);
+    }
+
+    .bio-text p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* --- HOVER CARDS --- */
+    .hover-trigger {
+      position: relative;
+      display: inline-block;
+      color: var(--off-white);
+      border-bottom: 1px dotted var(--orange-rope);
+      cursor: help;
+      transition: color 0.3s;
+    }
+
+    .hover-trigger:hover {
+      color: var(--orange-rope);
+    }
+
+    .hover-card {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: 320px;
+      background-color: var(--panel-bg);
+      border: 1px solid rgba(200, 90, 10, 0.3);
+      padding: 1.5rem;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      z-index: 1000;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
+      pointer-events: none; /* Prevents card from flickering */
+    }
+
+    .hover-trigger:hover .hover-card {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      color: var(--off-white);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      display: block;
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: var(--orange-rope);
+      font-style: italic;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    /* Modern Button Styling (No old blue links!) */
+    .card-btn {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      background: transparent;
+      color: var(--off-white);
+      border: 1px solid var(--orange-rope);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+
+    .card-btn:hover {
+      background: var(--orange-rope);
+      color: var(--deep-black);
+    }
+
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (max-width: 900px) {
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
+      }
+
+      #mobile-menu-toggle:checked ~ .sidebar {
+        transform: translateX(0);
+      }
+
+      .mobile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: var(--header-height);
+        background-color: var(--warm-dark);
+        padding: 0 1.5rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 90;
+        border-bottom: 1px solid rgba(232, 224, 212, 0.05);
+      }
+
+      .hamburger-icon {
+        color: var(--off-white);
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+        margin-top: var(--header-height);
+      }
+
+      .hero {
+        height: calc(100dvh - var(--header-height));
+      }
+
+      .hover-card {
+        width: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <input type="checkbox" id="mobile-menu-toggle">
+  <div class="mobile-header">
+    <div class="brand-jp" style="margin: 0;">望月武懇</div>
+    <label for="mobile-menu-toggle" class="hamburger-icon">☰</label>
+  </div>
+
+  <div class="layout-wrapper">
+    
+    <nav class="sidebar">
+      <div class="lang-toggle">
+        <span class="active">EN</span> / <span>JP</span>
+      </div>
+      
+      <div class="brand">
+        <h2 class="brand-jp">望月武懇</h2>
+        <h1 class="brand-en">Mukon Mochizuki</h1>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home & Profile</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="lessons.html">Lessons & Workshops</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      
+      <section class="hero">
+        <img class="hero-photo" src="photo.jpeg" alt="Mukon Mochizuki" />
+        <img class="hero-calligraphy" src="calligraphy.png" alt="Calligraphy" />
+      </section>
+
+      <section id="profile" class="profile-section">
+        <h2 class="section-title">Profile</h2>
+        
+        <div class="profile-grid">
+          <div class="profile-image-container">
+            <img class="profile-photo" src="profile-kuromontsuki.JPG" alt="Mukon Mochizuki in Kuro Montsuki" />
+          </div>
+
+          <div class="bio-text">
+            <p><strong>Mukon Mochizuki・J.D. Andrade</strong></p>
+            <p>A native of Illinois, J.D. began his musical journey in classical violin at the age of 9, eventually focusing on chamber music through high school and university. He first started taiko as a member of 
+              <span class="hover-trigger">Gendo Taiko
+                <span class="hover-card">
+                  <span class="card-title">Gendo Taiko</span>
+                  <span class="card-subtitle">Brown University | Providence, RI (U.S.A.)</span>
+                  <span class="card-desc">Collegiate taiko group founded in 2005 by Raiki Machida and Joshua Goldner with roots in Miyagi prefecture’s Wadaiko Gensō.</span>
+                  <a href="https://www.gendotaiko.com" target="_blank" rel="noopener" class="card-btn">Visit Website</a>
+                </span>
+              </span> 
+              at Brown University in 2006, and in 2012, he moved to Honolulu to study with 
+              <span class="hover-trigger">Kenny Endo
+                <span class="hover-card">
+                  <span class="card-title">Kenny Endo</span>
+                  <span class="card-subtitle">Taiko Center of the Pacific | Honolulu, HI (U.S.A.)</span>
+                  <span class="card-desc">Esteemed taiko artist and the first non-Japanese national to get a stage name in hōgaku bayashi.</span>
+                  <a href="https://www.kennyendo.com" target="_blank" rel="noopener" class="card-btn">Visit Website</a>
+                </span>
+              </span> 
+              after being awarded the Taiko Center of the Pacific (TCP) Fellowship.</p>
+
+            <p>Upon moving to Japan in 2014, J.D. began playing taiko professionally with Taiko Project Indra, where he began his journey into the traditional performing arts. In addition to taiko, J.D. studies matsuri-bayashi (festival music) under Kyosuke Suzuki and kabuki-bayashi (traditional Japanese drumming) under Saburo Mochizuki.</p>
+
+            <p>In 2019, J.D. became the second foreigner, after Kenny Endo, to be awarded a stage name, or natori, in kabuki-bayashi, granted by Sakichi Mochizuki IV, headmaster of the Mochizuki School’s Morishita division. His stage name is Mukon Mochizuki (望月武懇).</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>
