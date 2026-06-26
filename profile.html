@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" /> <title>Profile | Mukon Mochizuki</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Profile | Mukon Mochizuki</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
   
   <style>
-    /* --- GLOBAL VARIABLES & RESET --- */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
@@ -24,125 +24,86 @@
       --header-height: 70px;
     }
 
-    html, body {
+    html { scroll-behavior: smooth; }
+
+    body {
       background-color: var(--deep-black);
       font-family: 'Cormorant Garamond', serif;
       color: var(--off-white);
-      height: 100%;
-      height: -webkit-fill-available;
-      overflow-x: hidden;
+      margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased;
     }
 
     a { text-decoration: none; color: inherit; }
 
-    /* --- LAYOUT ARCHITECTURE --- */
-    .layout-wrapper { display: flex; min-height: 100dvh; }
+    .layout-wrapper { width: 100%; position: relative; display: block; overflow-x: hidden; }
 
-    /* --- DESKTOP SIDEBAR --- */
     .sidebar {
-      width: var(--sidebar-width);
-      background-color: var(--warm-dark);
-      position: fixed;
-      top: 0; left: 0; height: 100dvh;
-      padding: 3rem 2rem;
-      display: flex; flex-direction: column;
-      border-right: 1px solid rgba(232, 224, 212, 0.05);
-      z-index: 100;
+      width: var(--sidebar-width); background-color: var(--warm-dark);
+      position: fixed; top: 0; left: 0; height: 100%;
+      padding: 3rem 2rem; display: flex; flex-direction: column;
+      border-right: 1px solid rgba(232, 224, 212, 0.05); z-index: 100;
     }
 
-    .lang-toggle {
-      font-size: 0.8rem; letter-spacing: 0.2em;
-      color: var(--muted); margin-bottom: 3rem; cursor: pointer;
-    }
+    .lang-toggle { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 3rem; cursor: pointer; }
     .lang-toggle span.active { color: var(--orange-rope); font-weight: 600; }
 
-    .brand-jp {
-      font-family: 'Noto Serif JP', serif; font-weight: 300;
-      font-size: 1.2rem; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 0.2rem;
-    }
-
+    .brand-jp { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 1.2rem; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 0.2rem; }
     .brand-en { font-size: 2rem; font-weight: 400; line-height: 1.1; margin-bottom: 3rem; }
 
     .nav-links { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; flex-grow: 1; }
-    .nav-links a {
-      font-size: 1.1rem; letter-spacing: 0.1em;
-      color: var(--muted); transition: color 0.3s ease; text-transform: uppercase;
-    }
+    .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
     .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
 
-    /* Mobile Nav Checkbox Hack */
     #mobile-menu-toggle { display: none; }
     .mobile-header { display: none; }
 
-    /* --- MAIN CONTENT AREA --- */
     .main-content {
-      margin-left: var(--sidebar-width);
-      width: calc(100% - var(--sidebar-width));
-      display: flex; flex-direction: column;
+      margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width));
+      display: block; position: relative;
     }
 
-    /* --- PROFILE SECTION --- */
-    .profile-section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
-    
-    .section-title {
-      font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em;
-      margin-bottom: 3rem; color: var(--orange-rope);
-      border-bottom: 1px solid var(--muted); padding-bottom: 1rem;
-    }
+    .profile-section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; display: block; min-height: 100vh; }
+    .section-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 3rem; color: var(--orange-rope); border-bottom: 1px solid var(--muted); padding-bottom: 1rem; }
 
     .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
-    .profile-photo {
-      width: 100%; aspect-ratio: 3/4; object-fit: cover;
-      border: 1px solid rgba(232, 224, 212, 0.1); position: sticky; top: 6rem;
-    }
-
+    .profile-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 1px solid rgba(232, 224, 212, 0.1); position: sticky; top: 6rem; }
     .bio-text p { font-size: 1.15rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.8rem; }
     .bio-text h3 { font-size: 1.5rem; font-weight: 400; color: var(--off-white); margin-bottom: 1rem; }
 
-    /* --- HOVER CARDS (WITH iOS FIX) --- */
-    .hover-trigger {
-      position: relative; display: inline-block;
-      color: var(--off-white); border-bottom: 1px dotted var(--orange-rope);
-      cursor: help; transition: color 0.3s;
-      /* Removes the blue tap highlight on iOS */
-      -webkit-tap-highlight-color: transparent; 
-    }
-    .hover-trigger:hover, 
-    .hover-trigger:focus, 
-    .hover-trigger:focus-within { 
-      color: var(--orange-rope); outline: none; 
-    }
-
+    /* HOVER CARDS */
+    .hover-trigger { position: relative; display: inline-block; color: var(--off-white); border-bottom: 1px dotted var(--orange-rope); cursor: help; transition: color 0.3s; -webkit-tap-highlight-color: transparent; }
+    .hover-trigger:hover, .hover-trigger:focus, .hover-trigger:focus-within { color: var(--orange-rope); outline: none; }
+    
     .hover-card {
-      visibility: hidden; opacity: 0; position: absolute;
-      bottom: 130%; left: 50%; transform: translateX(-50%) translateY(10px);
-      width: 320px; background-color: var(--panel-bg);
-      border: 1px solid rgba(200, 90, 10, 0.3); padding: 1.5rem; border-radius: 4px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8); z-index: 1000;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      visibility: hidden; opacity: 0; position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%) translateY(10px);
+      width: 320px; background-color: var(--panel-bg); border: 1px solid rgba(200, 90, 10, 0.3); padding: 1.5rem; border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8); z-index: 1000; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: default; pointer-events: none; text-align: left;
     }
-
-    /* iOS Fix: Trigger card on hover, focus, and focus-within */
-    .hover-trigger:hover .hover-card,
-    .hover-trigger:focus .hover-card,
-    .hover-trigger:focus-within .hover-card {
+    
+    .hover-trigger:hover .hover-card, .hover-trigger:focus .hover-card, .hover-trigger:focus-within .hover-card {
       visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto;
     }
-
+    
     .card-title { font-size: 1.2rem; color: var(--off-white); font-weight: 600; margin-bottom: 0.2rem; display: block; line-height: 1.2; }
     .card-subtitle { font-size: 0.9rem; color: var(--orange-rope); font-style: italic; margin-bottom: 0.8rem; display: block; line-height: 1.3; }
     .card-desc { font-size: 0.95rem; line-height: 1.5; color: var(--muted); margin-bottom: 1.2rem; display: block; font-family: sans-serif; font-weight: 300; }
     
     .card-btn {
-      display: inline-block; padding: 0.5rem 1.2rem; background: transparent;
-      color: var(--off-white); border: 1px solid var(--orange-rope);
-      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
-      transition: all 0.3s; text-align: center; cursor: pointer;
+      display: inline-block; padding: 0.5rem 1.2rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope);
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; text-align: center; cursor: pointer;
     }
     .card-btn:hover, .card-btn:focus { background: var(--orange-rope); color: var(--deep-black); }
 
-    /* --- MOBILE RESPONSIVENESS --- */
+    /* SITE FOOTER */
+    .site-footer {
+      background-color: var(--warm-dark); padding: 3rem 5%; text-align: center;
+      border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8;
+    }
+    .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
+    .site-footer a:hover { color: var(--off-white); }
+
     @media (max-width: 900px) {
       .profile-grid { grid-template-columns: 1fr; }
       .profile-photo { position: static; max-width: 400px; margin: 0 auto; display: block; }
@@ -151,14 +112,9 @@
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
       #mobile-menu-toggle:checked ~ .sidebar { transform: translateX(0); }
-      .mobile-header {
-        display: flex; justify-content: space-between; align-items: center;
-        height: var(--header-height); background-color: var(--warm-dark);
-        padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90;
-        border-bottom: 1px solid rgba(232, 224, 212, 0.05);
-      }
+      .mobile-header { display: flex; justify-content: space-between; align-items: center; height: var(--header-height); background-color: var(--warm-dark); padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90; border-bottom: 1px solid rgba(232, 224, 212, 0.05); }
       .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; }
-      .main-content { margin-left: 0; width: 100%; margin-top: var(--header-height); }
+      .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); }
       .profile-section { padding: 3rem 5%; }
       .hover-card { width: 260px; }
     }
@@ -173,20 +129,17 @@
   </div>
 
   <div class="layout-wrapper">
-    
     <nav class="sidebar">
       <div class="lang-toggle">
         <span class="active">EN</span> / <span>JP</span>
       </div>
-      
       <div class="brand">
         <h2 class="brand-jp">望月武懇</h2>
         <h1 class="brand-en">Mukon Mochizuki</h1>
       </div>
-
       <ul class="nav-links">
         <li><a href="draft.html">Home</a></li>
-        <li><a href="profile.html">Profile</a></li>
+        <li><a href="profile.html" class="active">Profile</a></li>
         <li><a href="events.html">Events</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="lessons.html">Lessons & Workshops</a></li>
@@ -201,7 +154,6 @@
         <h2 class="section-title">Profile</h2>
         
         <div class="profile-grid">
-          
           <div class="profile-image-container">
             <img class="profile-photo" src="profile-kuromontsuki.JPG" alt="Mukon Mochizuki in Kuro Montsuki" />
           </div>
@@ -309,9 +261,13 @@
                 </span>
               </span>.</p>
           </div>
-
         </div>
       </section>
+
+      <footer class="site-footer">
+        <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
+        <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">Katsuhiro Miike</a></p>
+      </footer>
 
     </main>
   </div>
