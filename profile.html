@@ -55,6 +55,24 @@
     .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
     .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
 
+    /* SUBMENU STYLING */
+    .submenu {
+      list-style: none;
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+      border-left: 1px solid rgba(232, 224, 212, 0.1);
+    }
+    .submenu a {
+      font-size: 0.9rem;
+      text-transform: none;
+      letter-spacing: 0.05em;
+      color: rgba(232, 224, 212, 0.4);
+    }
+    .submenu a:hover { color: var(--orange-rope); }
+
     #mobile-menu-toggle { display: none; }
     .mobile-header { display: none; }
 
