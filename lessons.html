@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Lessons & Workshops | Mukon Mochizuki</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* --- GLOBAL VARIABLES & RESET --- */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --deep-black: #0a0806;
+      --warm-dark: #110e0a;
+      --panel-bg: #1a1510;
+      --orange-rope: #c85a0a;
+      --off-white: #e8e0d4;
+      --muted: rgba(232, 224, 212, 0.6);
+      --sidebar-width: 280px;
+      --header-height: 70px;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+
+    body {
+      background-color: var(--deep-black);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--off-white);
+      margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* --- LAYOUT ARCHITECTURE --- */
+    .layout-wrapper { width: 100%; position: relative; display: block; overflow-x: hidden; }
+
+    /* --- DESKTOP SIDEBAR --- */
+    .sidebar {
+      width: var(--sidebar-width); background-color: var(--warm-dark);
+      position: fixed; top: 0; left: 0; height: 100%;
+      padding: 3rem 2rem; display: flex; flex-direction: column;
+      border-right: 1px solid rgba(232, 224, 212, 0.05); z-index: 100;
+    }
+
+    .lang-toggle { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 3rem; cursor: pointer; }
+    .lang-toggle span.active { color: var(--orange-rope); font-weight: 600; }
+
+    .brand-jp { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 1.2rem; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 0.2rem; }
+    .brand-en { font-size: 2rem; font-weight: 400; line-height: 1.1; margin-bottom: 3rem; }
+
+    .nav-links { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; flex-grow: 1; }
+    .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
+
+    .submenu { list-style: none; padding-left: 1rem; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.8rem; border-left: 1px solid rgba(232, 224, 212, 0.1); }
+    .submenu a { font-size: 0.9rem; text-transform: none; letter-spacing: 0.05em; color: rgba(232, 224, 212, 0.4); }
+    .submenu a:hover { color: var(--orange-rope); }
+
+    #mobile-menu-toggle { display: none; }
+    .mobile-header { display: none; }
+
+    /* --- MAIN CONTENT AREA --- */
+    .main-content {
+      margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width));
+      display: block; position: relative; min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+
+    /* --- PAGE SECTIONS --- */
+    .page-container {
+      padding: 6rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1;
+    }
+
+    .page-title {
+      font-size: 3rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 5rem; color: var(--off-white); line-height: 1.2;
+    }
+
+    /* --- CONTENT BLOCKS --- */
+    .content-block {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      margin-bottom: 7rem;
+    }
+    
+    .content-block.reverse { direction: rtl; }
+    .content-block.reverse > * { direction: ltr; }
+
+    .block-info h2 { font-size: 2rem; font-weight: 300; letter-spacing: 0.1em; color: var(--orange-rope); margin-bottom: 1.5rem; }
+    .block-info p { font-size: 1.15rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.5rem; }
+    
+    .block-list { list-style: none; padding-left: 1rem; margin-bottom: 1.5rem; }
+    .block-list li { position: relative; font-size: 1.15rem; line-height: 1.7; color: var(--muted); margin-bottom: 1rem; padding-left: 1.5rem; }
+    .block-list li::before { content: "•"; color: var(--orange-rope); position: absolute; left: 0; font-size: 1.2rem; }
+    .block-list strong { color: var(--off-white); font-weight: 600; }
+
+    .block-images { display: grid; gap: 1rem; width: 100%; }
+    .block-images.double { grid-template-columns: 1fr 1fr; }
+    
+    .block-img { 
+      width: 100%; height: 100%; min-height: 350px; object-fit: cover; object-position: center; 
+      border: 1px solid rgba(232, 224, 212, 0.1); background-color: var(--warm-dark); 
+    }
+
+    /* BUTTONS */
+    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .card-btn {
+      display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.5rem; 
+      background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope);
+      font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer;
+    }
+    .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
+
+    /* --- CV ACCORDION --- */
+    .cv-accordion {
+      margin-top: 2rem;
+      margin-bottom: 5rem;
+      border-top: 1px solid rgba(232, 224, 212, 0.1);
+      border-bottom: 1px solid rgba(232, 224, 212, 0.1);
+    }
+    
+    .cv-accordion details { padding: 2rem 0; }
+    
+    .cv-accordion summary {
+      font-size: 2rem; font-weight: 300; letter-spacing: 0.1em; color: var(--orange-rope);
+      cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;
+    }
+    
+    .cv-accordion summary::-webkit-details-marker { display: none; }
+    
+    .cv-accordion summary::after {
+      content: '+'; font-size: 2.5rem; font-weight: 300; transition: transform 0.3s ease; color: var(--muted);
+    }
+    
+    .cv-accordion details[open] summary::after { transform: rotate(45deg); color: var(--orange-rope); }
+    
+    .cv-content {
+      margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px dashed rgba(232, 224, 212, 0.1);
+    }
+
+    .cv-item { margin-bottom: 2.5rem; }
+    .cv-item:last-child { margin-bottom: 0; }
+    
+    .cv-title { font-size: 1.4rem; color: var(--off-white); font-weight: 400; margin-bottom: 0.3rem; }
+    .cv-meta { font-size: 1rem; color: var(--orange-rope); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .cv-desc { font-size: 1.1rem; color: var(--muted); font-style: italic; line-height: 1.6; }
+
+    /* --- SITE FOOTER --- */
+    .site-footer {
+      background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center;
+      border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8;
+      margin-top: auto;
+    }
+    .footer-calligraphy {
+      height: 80px; width: auto; margin: 0 auto 1.5rem auto; display: block;
+      opacity: 0.6; transition: opacity 0.3s;
+    }
+    .footer-calligraphy:hover { opacity: 0.9; }
+    .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
+    .site-footer a:hover { color: var(--off-white); }
+
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (max-width: 900px) {
+      .content-block, .content-block.reverse { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 5rem; }
+      .block-img { min-height: 250px; }
+      .block-images.double { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
+      #mobile-menu-toggle:checked ~ .sidebar { transform: translateX(0); }
+      .mobile-header { display: flex; justify-content: space-between; align-items: center; height: var(--header-height); background-color: var(--warm-dark); padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90; border-bottom: 1px solid rgba(232, 224, 212, 0.05); }
+      .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; }
+      .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); }
+      .page-container { padding: 4rem 5%; }
+      .page-title { font-size: 2.5rem; margin-bottom: 3rem; }
+      .cv-accordion summary { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <input type="checkbox" id="mobile-menu-toggle">
+  <div class="mobile-header">
+    <div class="brand-jp" style="margin: 0;">望月武懇</div>
+    <label for="mobile-menu-toggle" class="hamburger-icon">☰</label>
+  </div>
+
+  <div class="layout-wrapper">
+    
+    <nav class="sidebar">
+      <div class="lang-toggle">
+        <span class="active">EN</span> / <span>JP</span>
+      </div>
+      <div class="brand">
+        <h2 class="brand-jp">望月武懇</h2>
+        <h1 class="brand-en">Mukon Mochizuki</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="draft.html">Home</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li>
+          <a href="projects.html">Projects</a>
+          <ul class="submenu">
+            <li><a href="projects.html#hogaku-horizons">Hōgaku Horizons</a></li>
+            <li><a href="projects.html#tsuzumiboshi">Tsuzumiboshi</a></li>
+            <li><a href="projects.html#airbnb">Airbnb Experience</a></li>
+            <li><a href="projects.html#kon-chan">Kabuki Kon-chan</a></li>
+            <li><a href="projects.html#research">Kō Muneyoshi</a></li>
+          </ul>
+        </li>
+        <li><a href="lessons.html" class="active">Lessons & Workshops</a></li>
+        <li><a href="media.html">Media</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      
+      <div class="page-container">
+        <h1 class="page-title">Lessons, Workshops, &amp; Collaborations</h1>
+
+        <article class="content-block">
+          <div class="block-info">
+            <p>Mukon Mochizuki’s mission is to expand awareness of the traditional Japanese performing arts through a variety of experiences. Whether you are seeking long-term tutelage or a short intensive during your travels, Mukon offers specialized instruction tailored to your background.</p>
+            <div class="button-group">
+              <a href="mailto:mukon.mochizuki@gmail.com" class="card-btn">Inquire About Lessons</a>
+            </div>
+          </div>
+          <div class="block-images">
+            <img src="workshop-TCP.jpg" alt="TCP Workshop 2025" class="block-img" />
+          </div>
+        </article>
+
+        <article class="content-block reverse">
+          <div class="block-info">
+            <h2>Private Lessons</h2>
+            <p>Mukon offers opportunities for private lessons, tailored to the unique needs and experience levels of his students. These sessions are highly ideal for:</p>
+            <ul class="block-list">
+              <li><strong>Expats</strong> living in Japan long-term who desire in-depth and hands-on experiences in the <em>hōgaku bayashi</em>.</li>
+              <li><strong>Exchange students</strong> or those studying abroad looking for authentic cultural music experiences.</li>
+            </ul>
+          </div>
+          <div class="block-images">
+            <img src="privatelesson.jpg" alt="Private taiko and ohayashi lesson" class="block-img" />
+          </div>
+        </article>
+
+        <article class="content-block">
+          <div class="block-info">
+            <h2>Group Intensives</h2>
+            <p>Visiting taiko groups and taiko ensembles abroad looking for intensive sessions and residencies tailored to their specific needs are especially encouraged to reach out!</p>
+            <p>Themes can include first-time workshops in <em>hōgaku bayashi</em> using actual traditional instruments, or exploring how to learn <em>hōgaku bayashi</em> and fuse it effectively with naname or <em>kumi daiko</em> performance.</p>
+          </div>
+          <div class="block-images double">
+            <img src="Workshop-Gendo.jpg" alt="Gendo Taiko Workshop 2018" class="block-img" />
+            <img src="flyer-kenny-endo.jpg" alt="Kenny Endo 50th Anniversary Workshop Flyer" class="block-img" />
+          </div>
+        </article>
+
+        <div class="cv-accordion">
+          <details>
+            <summary>Workshop History</summary>
+            <div class="cv-content">
+              
+              <div class="cv-item">
+                <div class="cv-title">Hōgaku on Naname I & II</div>
+                <div class="cv-meta">Taiko Center of the Pacific Summer Intensive | Honolulu, HI, U.S.A. | 2025</div>
+                <div class="cv-desc">A workshop for the North American taiko community focusing on traditional Noh rhythms for taiko.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Hōgaku on Naname I & II</div>
+                <div class="cv-meta">American School in Japan | Tokyo, Japan | 2025</div>
+                <div class="cv-desc">A workshop series for High School Band students introducing traditional Noh rhythms on taiko.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Bon Daiko</div>
+                <div class="cv-meta">American School in Japan | Tokyo, Japan | 2025</div>
+                <div class="cv-desc">A workshop designed for Middle School Band students.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Naname-Uchi Basics</div>
+                <div class="cv-meta">Ho Etsu Taiko | Chicago, IL, U.S.A. | 2023</div>
+                <div class="cv-desc">A workshop focusing on the basics of hitting and arm movements in the naname-uchi style.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Kabuki Sounds: Ōdaiko and Kakegoe</div>
+                <div class="cv-meta">Tokyo, Japan | 2023</div>
+                <div class="cv-desc">A workshop on sound effects and vocal patterns used in Kabuki theater.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Hōgaku Bayashi</div>
+                <div class="cv-meta">Miyamoto Unosuke Shoten, kaDON | 2022</div>
+                <div class="cv-desc">Assisted Saburo Mochizuki for an online lecture series on the history and various instruments of Kabuki.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Ryu-kyu bushi</div>
+                <div class="cv-meta">American School in Japan | Tokyo, Japan | 2021</div>
+                <div class="cv-desc">A collaboration with the Middle School Band of ASIJ and professional hōgaku bayashi musicians.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Kabuki Bayashi</div>
+                <div class="cv-meta">TV Tokyo | Tokyo, Japan | 2021</div>
+                <div class="cv-desc">A lecture-demonstration and workshop on Kabuki music for students at Tokyo Academics.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Kotobuki Ren-jishi</div>
+                <div class="cv-meta">American School in Japan | Tokyo, Japan | 2019</div>
+                <div class="cv-desc">A lecture-demonstration on various musical genres pertaining to the shishi, or lion spirit.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Bon Daiko Basics</div>
+                <div class="cv-meta">Genki Spark | Brookline, MA, U.S.A. | 2018</div>
+                <div class="cv-desc">A workshop on the taiko rhythms in traditional Tokyo obon festival music.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Beta for Beginners</div>
+                <div class="cv-meta">Genki Spark | Brookline, MA, U.S.A. | 2018</div>
+                <div class="cv-desc">A workshop on the indra piece “Hyō”.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Edo-Bayashi: Tokyo Festival Music</div>
+                <div class="cv-meta">Genki Spark | Brookline, MA, U.S.A. | 2018</div>
+                <div class="cv-desc">An introductory workshop on the festival drumming of old Tokyo.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Ranjō & Kakegoe</div>
+                <div class="cv-meta">Gendo Taiko | Brown University, Providence, RI, U.S.A. | 2018</div>
+                <div class="cv-desc">A workshop on the famous interlude of the Kabuki play Ren-jishi.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Introduction to Hōgaku Bayashi</div>
+                <div class="cv-meta">American School in Japan | Tokyo, Japan | 2015</div>
+                <div class="cv-desc">A lecture-demonstration on the traditional instruments of Kabuki.</div>
+              </div>
+
+            </div>
+          </details>
+        </div>
+
+      </div>
+
+      <footer class="site-footer">
+        <img src="calligraphy.png" alt="Mukon Mochizuki Calligraphy" class="footer-calligraphy" />
+        <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
+        <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">Katsuhiro Miike</a></p>
+      </footer>
+
+    </main>
+  </div>
+
+</body>
+</html>
