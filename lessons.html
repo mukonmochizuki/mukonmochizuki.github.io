@@ -116,22 +116,39 @@
     }
     .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
 
-    /* --- MEDIA PLACEHOLDER --- */
-    .media-placeholder {
-      border: 1px dashed rgba(232, 224, 212, 0.2);
-      padding: 6rem 2rem;
-      text-align: center;
-      border-radius: 4px;
-      background-color: rgba(17, 14, 10, 0.3);
-      margin-bottom: 4rem;
+    /* --- CV ACCORDION --- */
+    .cv-accordion {
+      margin-top: 2rem;
+      margin-bottom: 5rem;
+      border-top: 1px solid rgba(232, 224, 212, 0.1);
+      border-bottom: 1px solid rgba(232, 224, 212, 0.1);
+    }
+    
+    .cv-accordion details { padding: 2rem 0; }
+    
+    .cv-accordion summary {
+      font-size: 2rem; font-weight: 300; letter-spacing: 0.1em; color: var(--orange-rope);
+      cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;
+    }
+    
+    .cv-accordion summary::-webkit-details-marker { display: none; }
+    
+    .cv-accordion summary::after {
+      content: '+'; font-size: 2.5rem; font-weight: 300; transition: transform 0.3s ease; color: var(--muted);
+    }
+    
+    .cv-accordion details[open] summary::after { transform: rotate(45deg); color: var(--orange-rope); }
+    
+    .cv-content {
+      margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px dashed rgba(232, 224, 212, 0.1);
     }
 
-    .media-placeholder p {
-      color: var(--muted);
-      font-size: 1.2rem;
-      font-style: italic;
-      letter-spacing: 0.05em;
-    }
+    .cv-item { margin-bottom: 2.5rem; }
+    .cv-item:last-child { margin-bottom: 0; }
+    
+    .cv-title { font-size: 1.4rem; color: var(--off-white); font-weight: 400; margin-bottom: 0.3rem; }
+    .cv-meta { font-size: 1rem; color: var(--orange-rope); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .cv-desc { font-size: 1.1rem; color: var(--muted); font-style: italic; line-height: 1.6; }
 
     /* --- SITE FOOTER --- */
     .site-footer {
@@ -162,6 +179,7 @@
       .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); }
       .page-container { padding: 4rem 5%; }
       .page-title { font-size: 2.5rem; margin-bottom: 3rem; }
+      .cv-accordion summary { font-size: 1.6rem; }
     }
   </style>
 </head>
@@ -206,17 +224,13 @@
     <main class="main-content">
       
       <div class="page-container">
-        <h1 class="page-title">Media</h1>
-
-        <div class="media-placeholder">
-          <p>Photo and video galleries coming soon...</p>
-        </div>
+        <h1 class="page-title">Lessons, Workshops, &amp; Collaborations</h1>
 
         <article class="content-block">
           <div class="block-info">
             <p>Mukon Mochizuki’s mission is to expand awareness of the traditional Japanese performing arts through a variety of experiences. Whether you are seeking long-term tutelage or a short intensive during your travels, Mukon offers specialized instruction tailored to your background.</p>
             <div class="button-group">
-              <a href="mailto:mukon.mochizuki@gmail.com" class="card-btn">Inquire About Lessons</a>
+              <a href="contact.html" class="card-btn">Inquire About Lessons</a>
             </div>
           </div>
           <div class="block-images">
@@ -248,6 +262,99 @@
             <img src="Workshop-Gendo.jpg" alt="Gendo Taiko Workshop 2018" class="block-img square-img" />
           </div>
         </article>
+
+        <div class="cv-accordion">
+          <details>
+            <summary>Workshop History</summary>
+            <div class="cv-content">
+              
+              <div class="cv-item">
+                <div class="cv-title">Hōgaku on Naname I & II</div>
+                <div class="cv-meta">Taiko Center of the Pacific Summer Intensive | Honolulu, HI, U.S.A. | 2025</div>
+                <div class="cv-desc">A workshop for the North American taiko community focusing on traditional Noh rhythms for taiko.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Hōgaku on Naname I & II</div>
+                <div class="cv-meta">American School in Japan | Tokyo, Japan | 2025</div>
+                <div class="cv-desc">A workshop series for High School Band students introducing traditional Noh rhythms on taiko.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Bon Daiko</div>
+                <div class="cv-meta">American School in Japan | Tokyo, Japan | 2025</div>
+                <div class="cv-desc">A workshop designed for Middle School Band students.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Naname-Uchi Basics</div>
+                <div class="cv-meta">Ho Etsu Taiko | Chicago, IL, U.S.A. | 2023</div>
+                <div class="cv-desc">A workshop focusing on the basics of hitting and arm movements in the naname-uchi style.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Kabuki Sounds: Ōdaiko and Kakegoe</div>
+                <div class="cv-meta">Tokyo, Japan | 2023</div>
+                <div class="cv-desc">A workshop on sound effects and vocal patterns used in Kabuki theater.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Hōgaku Bayashi</div>
+                <div class="cv-meta">Miyamoto Unosuke Shoten, kaDON | 2022</div>
+                <div class="cv-desc">Assisted Saburo Mochizuki for an online lecture series on the history and various instruments of Kabuki.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Ryu-kyu bushi</div>
+                <div class="cv-meta">American School in Japan | Tokyo, Japan | 2021</div>
+                <div class="cv-desc">A collaboration with the Middle School Band of ASIJ and professional hōgaku bayashi musicians.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Kabuki Bayashi</div>
+                <div class="cv-meta">TV Tokyo | Tokyo, Japan | 2021</div>
+                <div class="cv-desc">A lecture-demonstration and workshop on Kabuki music for students at Tokyo Academics.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Kotobuki Ren-jishi</div>
+                <div class="cv-meta">American School in Japan | Tokyo, Japan | 2019</div>
+                <div class="cv-desc">A lecture-demonstration on various musical genres pertaining to the shishi, or lion spirit.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Bon Daiko Basics</div>
+                <div class="cv-meta">Genki Spark | Brookline, MA, U.S.A. | 2018</div>
+                <div class="cv-desc">A workshop on the taiko rhythms in traditional Tokyo obon festival music.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Beta for Beginners</div>
+                <div class="cv-meta">Genki Spark | Brookline, MA, U.S.A. | 2018</div>
+                <div class="cv-desc">A workshop on the indra piece “Hyō”.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Edo-Bayashi: Tokyo Festival Music</div>
+                <div class="cv-meta">Genki Spark | Brookline, MA, U.S.A. | 2018</div>
+                <div class="cv-desc">An introductory workshop on the festival drumming of old Tokyo.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Ranjō & Kakegoe</div>
+                <div class="cv-meta">Gendo Taiko | Brown University, Providence, RI, U.S.A. | 2018</div>
+                <div class="cv-desc">A workshop on the famous interlude of the Kabuki play Ren-jishi.</div>
+              </div>
+
+              <div class="cv-item">
+                <div class="cv-title">Introduction to Hōgaku Bayashi</div>
+                <div class="cv-meta">American School in Japan | Tokyo, Japan | 2015</div>
+                <div class="cv-desc">A lecture-demonstration on the traditional instruments of Kabuki.</div>
+              </div>
+
+            </div>
+          </details>
+        </div>
 
       </div>
 
