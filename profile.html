@@ -114,10 +114,22 @@
     }
     .card-btn:hover, .card-btn:focus { background: var(--orange-rope); color: var(--deep-black); }
 
-    /* SITE FOOTER */
+/* --- SITE FOOTER --- */
     .site-footer {
-      background-color: var(--warm-dark); padding: 3rem 5%; text-align: center;
+      background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center;
       border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8;
+      margin-top: auto;
+    }
+    .footer-calligraphy {
+      height: 80px; /* Keeps it tasteful and small */
+      width: auto;
+      margin: 0 auto 1.5rem auto;
+      display: block;
+      opacity: 0.6; /* Gives it a beautiful watermark effect */
+      transition: opacity 0.3s;
+    }
+    .footer-calligraphy:hover {
+      opacity: 0.9;
     }
     .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
     .site-footer a:hover { color: var(--off-white); }
@@ -291,7 +303,8 @@
         </div>
       </section>
 
-      <footer class="site-footer">
+<footer class="site-footer">
+        <img src="calligraphy.png" alt="Mukon Mochizuki Calligraphy" class="footer-calligraphy" />
         <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
         <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">Katsuhiro Miike</a></p>
       </footer>
