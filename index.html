@@ -120,7 +120,13 @@
 
     /* --- UPCOMING EVENTS SECTION --- */
     .featured-event-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: flex-start; margin-bottom: 4rem; }
-    .event-chirashi { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top center; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    .event-chirashi { 
+      width: 100%; 
+      height: auto; /* Allows the image to dictate its own A4 height */
+      display: block;
+      border: 1px solid rgba(232, 224, 212, 0.1); 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
+    }
     .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
     .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
     .event-info { font-size: 1.1rem; line-height: 1.6; color: var(--muted); }
