@@ -110,8 +110,11 @@
     }
 
     .event-chirashi { 
-      width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top center; 
-      border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
+      width: 100%; 
+      height: auto; /* Allows the image to dictate its own A4 height */
+      display: block;
+      border: 1px solid rgba(232, 224, 212, 0.1); 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
     }
 
     .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
