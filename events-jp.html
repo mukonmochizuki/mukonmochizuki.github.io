@@ -43,7 +43,6 @@
     .section-label { font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid rgba(232, 224, 212, 0.1); padding-bottom: 1rem; margin-bottom: 3rem; }
     .event-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: flex-start; margin-bottom: 5rem; }
     .event-chirashi { width: 100%; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
-    .event-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border: 1px solid rgba(232, 224, 212, 0.1); }
     .event-details { display: flex; flex-direction: column; gap: 1rem; }
     .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
     .event-title { font-size: 2rem; font-weight: 300; color: var(--off-white); line-height: 1.2; font-family: 'Cormorant Garamond', serif; }
@@ -52,6 +51,10 @@
     .card-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.5rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; }
     .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
     
+    /* MEDIA PLACEHOLDER CSS FOR EVENTS PAGE */
+    .media-placeholder { border: 1px dashed rgba(232, 224, 212, 0.2); padding: 6rem 2rem; text-align: center; border-radius: 4px; background-color: rgba(17, 14, 10, 0.3); margin-bottom: 4rem; }
+    .media-placeholder p { color: var(--muted); font-size: 1.2rem; font-style: italic; letter-spacing: 0.05em; }
+
     .site-footer { background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center; border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-top: auto; }
     .footer-calligraphy { height: 80px; width: auto; margin: 0 auto 1.5rem auto; display: block; opacity: 0.6; transition: opacity 0.3s; }
     .footer-calligraphy:hover { opacity: 0.9; }
@@ -124,37 +127,16 @@
         <div class="event-section">
           <h2 class="section-label">過去の公演・メディア出演</h2>
 
-          <div class="event-grid">
-            <img class="event-img" src="kenny-endo-50.jpg" alt="Ma vs Groove Hawaii" />
-            <div class="event-details">
-              <span class="event-date">2025年8月</span>
-              <h3 class="event-title">Ma vs. Groove</h3>
-              <div class="event-info">
-                <p><strong>場所:</strong> ハワイ・シアター（米国ハワイ州ホノルル）</p>
-                <br>
-                <p>和太鼓アーティスト、遠藤ケニー活動50周年記念公演。ホノルルで開催された和太鼓と伝統芸能の祭典にて、出演およびワークショップを担当。</p>
-              </div>
-            </div>
+          <div class="media-placeholder">
+            <p>過去の公演・出演履歴のアーカイブは現在準備中です…</p>
           </div>
-
-          <div class="event-grid">
-            <img class="event-img" src="tv-tokyo.jpg" alt="TV Tokyo Broadcast" />
-            <div class="event-details">
-              <span class="event-date">2022年</span>
-              <h3 class="event-title">Kabuki Bayashi - TV Tokyo</h3>
-              <div class="event-info">
-                <p><strong>場所:</strong> 東京</p>
-                <br>
-                <p>テレビ東京「世界！ニッポンに行きたい人応援団」に出演。日本の誇る伝統楽器に命を吹き込む邦楽囃子方として全国放送で紹介されました。</p>
-              </div>
-            </div>
-          </div>
+          
         </div>
 
       </div>
       <footer class="site-footer">
         <img src="calligraphy.png" alt="望月武懇 書" class="footer-calligraphy" />
-        <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
+        <p>© 2026 Mukon Mochizuki. All Rights Reserved.</p>
         <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">三池克祐</a></p>
       </footer>
     </main>
