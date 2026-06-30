@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>稽古・ワークショップ | 望月武懇 Mukon Mochizuki</title>
+  
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+  <link rel="apple-touch-icon" href="favicon.jpg" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --deep-black: #0a0806; --warm-dark: #110e0a; --panel-bg: #1a1510; --orange-rope: #c85a0a; --off-white: #e8e0d4; --muted: rgba(232, 224, 212, 0.6); --sidebar-width: 280px; --header-height: 70px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+    body { background-color: var(--deep-black); font-family: 'Noto Serif JP', 'Cormorant Garamond', serif; color: var(--off-white); margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    .layout-wrapper { width: 100%; position: relative; display: block; overflow-x: hidden; }
+    .sidebar { width: var(--sidebar-width); background-color: var(--warm-dark); position: fixed; top: 0; left: 0; height: 100%; padding: 3rem 2rem; display: flex; flex-direction: column; border-right: 1px solid rgba(232, 224, 212, 0.05); z-index: 100; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .lang-toggle { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 3rem; cursor: pointer; }
+    .lang-toggle a { color: var(--muted); transition: color 0.3s; }
+    .lang-toggle a:hover { color: var(--orange-rope); }
+    .lang-toggle span.active { color: var(--orange-rope); font-weight: 600; }
+    .brand-jp { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 1.2rem; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 0.2rem; }
+    .brand-en { font-size: 2rem; font-weight: 400; line-height: 1.1; margin-bottom: 3rem; font-family: 'Cormorant Garamond', serif; }
+    .nav-links { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; flex-grow: 1; }
+    .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
+    .submenu { list-style: none; padding-left: 1rem; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.8rem; border-left: 1px solid rgba(232, 224, 212, 0.1); }
+    .submenu a { font-size: 0.9rem; text-transform: none; letter-spacing: 0.05em; color: rgba(232, 224, 212, 0.4); }
+    .submenu a:hover { color: var(--orange-rope); }
+    #mobile-menu-toggle { display: none; }
+    .mobile-header { display: none; }
+    .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: block; position: relative; min-height: 100vh; display: flex; flex-direction: column; }
+    .page-container { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1; }
+    .page-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 5rem; color: var(--off-white); line-height: 1.3; }
+    .content-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 7rem; }
+    .content-block.reverse { direction: rtl; }
+    .content-block.reverse > * { direction: ltr; }
+    .block-info h2 { font-size: 2rem; font-weight: 300; letter-spacing: 0.1em; color: var(--orange-rope); margin-bottom: 1.5rem; }
+    .block-info p { font-size: 1.1rem; line-height: 1.9; color: var(--muted); margin-bottom: 1.5rem; }
+    .block-list { list-style: none; padding-left: 1rem; margin-bottom: 1.5rem; }
+    .block-list li { position: relative; font-size: 1.1rem; line-height: 1.8; color: var(--muted); margin-bottom: 1rem; padding-left: 1.5rem; }
+    .block-list li::before { content: "•"; color: var(--orange-rope); position: absolute; left: 0; font-size: 1.2rem; }
+    .block-list strong { color: var(--off-white); font-weight: 600; }
+    .block-images { display: grid; gap: 1rem; width: 100%; justify-content: center;}
+    .block-img { width: 100%; height: 100%; min-height: 350px; object-fit: cover; object-position: center; border: 1px solid rgba(232, 224, 212, 0.1); background-color: var(--warm-dark); }
+    .square-img { aspect-ratio: 1 / 1; }
+    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .card-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.5rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope); font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; }
+    .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
+    
+    /* CV ACCORDION */
+    .cv-accordion { margin-top: 2rem; margin-bottom: 5rem; border-top: 1px solid rgba(232, 224, 212, 0.1); border-bottom: 1px solid rgba(232, 224, 212, 0.1); }
+    .cv-accordion details { padding: 2rem 0; }
+    .cv-accordion summary { font-size: 1.8rem; font-weight: 300; letter-spacing: 0.1em; color: var(--orange-rope); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .cv-accordion summary::-webkit-details-marker { display: none; }
+    .cv-accordion summary::after { content: '+'; font-size: 2.5rem; font-weight: 300; transition: transform 0.3s ease; color: var(--muted); }
+    .cv-accordion details[open] summary::after { transform: rotate(45deg); color: var(--orange-rope); }
+    .cv-content { margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px dashed rgba(232, 224, 212, 0.1); }
+    .cv-item { margin-bottom: 2.5rem; }
+    .cv-item:last-child { margin-bottom: 0; }
+    .cv-title { font-size: 1.3rem; color: var(--off-white); font-weight: 400; margin-bottom: 0.3rem; }
+    .cv-meta { font-size: 0.95rem; color: var(--orange-rope); letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .cv-desc { font-size: 1.05rem; color: var(--muted); line-height: 1.7; }
+    
+    .site-footer { background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center; border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-top: auto; }
+    .footer-calligraphy { height: 80px; width: auto; margin: 0 auto 1.5rem auto; display: block; opacity: 0.6; transition: opacity 0.3s; }
+    .footer-calligraphy:hover { opacity: 0.9; }
+    .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
+    .site-footer a:hover { color: var(--off-white); }
+    @media (max-width: 900px) { .content-block, .content-block.reverse { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 5rem; } .block-img { min-height: 250px; } }
+    @media (max-width: 768px) { .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; } #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); } .mobile-header { display: flex; justify-content: space-between; align-items: center; height: var(--header-height); background-color: var(--warm-dark); padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90; border-bottom: 1px solid rgba(232, 224, 212, 0.05); } .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; } .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); } .page-container { padding: 4rem 5%; } .page-title { font-size: 2rem; margin-bottom: 3rem; } .cv-accordion summary { font-size: 1.4rem; } }
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="mobile-menu-toggle">
+  <div class="mobile-header">
+    <div class="brand-jp" style="margin: 0;">望月武懇</div>
+    <label for="mobile-menu-toggle" class="hamburger-icon">☰</label>
+  </div>
+  <div class="layout-wrapper">
+    <nav class="sidebar">
+      <div class="lang-toggle">
+        <a href="lessons.html">EN</a> / <span class="active">JP</span>
+      </div>
+      <div class="brand">
+        <h2 class="brand-jp">望月武懇</h2>
+        <h1 class="brand-en">Mukon Mochizuki</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index-jp.html">ホーム</a></li>
+        <li><a href="profile-jp.html">プロフィール</a></li>
+        <li><a href="events-jp.html">公演情報</a></li>
+        <li>
+          <a href="projects-jp.html">活動実績</a>
+          <ul class="submenu">
+            <li><a href="projects-jp.html#hogaku-horizons">Hōgaku Horizons</a></li>
+            <li><a href="projects-jp.html#tsuzumiboshi">つゞみ星</a></li>
+            <li><a href="projects-jp.html#airbnb">Airbnb 体験</a></li>
+            <li><a href="projects-jp.html#kon-chan">歌舞伎♪こんちゃん</a></li>
+            <li><a href="projects-jp.html#research">幸宗能 研究</a></li>
+          </ul>
+        </li>
+        <li><a href="lessons-jp.html" class="active">稽古・ワークショップ</a></li>
+        <li><a href="media-jp.html">メディア</a></li>
+        <li><a href="contact-jp.html">お問い合わせ</a></li>
+      </ul>
+    </nav>
+    <main class="main-content">
+      <div class="page-container">
+        <h1 class="page-title">稽古・ワークショップ・<br>コラボレーション</h1>
+
+        <article class="content-block">
+          <div class="block-info">
+            <p>日本の伝統芸能の魅力をより多くの方に知っていただくため、様々な形での体験や指導を提供しています。日本での継続的なお稽古から、旅行や合宿中の短期集中ワークショップまで、一人ひとりの背景や目的に合わせた専門的な指導を行います。</p>
+            <div class="button-group">
+              <a href="contact-jp.html" class="card-btn">お稽古について問い合わせる</a>
+            </div>
+          </div>
+          <div class="block-images">
+            <img src="Workshop-TCP.jpg" alt="TCP Workshop 2025" class="block-img" />
+          </div>
+        </article>
+
+        <article class="content-block reverse">
+          <div class="block-info">
+            <h2>個人稽古 (Private Lessons)</h2>
+            <p>生徒それぞれの経験レベルや独自のニーズにきめ細かく合わせた個人レッスンを行っています。特に以下のような方に最適です：</p>
+            <ul class="block-list">
+              <li>日本に長期滞在している<strong>駐在員・在日外国人</strong>で、本格的な邦楽囃子（長唄・歌舞伎音楽など）を深く実践的に学びたい方。</li>
+              <li><strong>留学生や旅行者</strong>で、本物の日本の伝統音楽や文化体験をお探しの方。</li>
+            </ul>
+          </div>
+          <div class="block-images">
+            <img src="privatelesson.jpg" alt="Private taiko and ohayashi lesson" class="block-img" />
+          </div>
+        </article>
+
+        <article class="content-block">
+          <div class="block-info">
+            <h2>グループ向け集中講座 (Group Intensives)</h2>
+            <p>日本を訪れる海外の和太鼓グループや団体向けに、それぞれのニーズに合わせた集中講座やレジデンシー・プログラムを提供しています。コラボレーションのご依頼も大歓迎です！</p>
+            <p>実際の伝統楽器（小鼓や篠笛など）を使用した邦楽囃子の入門ワークショップや、邦楽囃子のエッセンスを学び、斜め打ちや組太鼓のパフォーマンスに効果的に融合させるための指導など、様々なテーマに対応可能です。</p>
+          </div>
+          <div class="block-images">
+            <img src="Workshop-Gendo.jpg" alt="Gendo Taiko Workshop 2018" class="block-img square-img" />
+          </div>
+        </article>
+
+        <div class="cv-accordion">
+          <details>
+            <summary>ワークショップ指導歴</summary>
+            <div class="cv-content">
+              <div class="cv-item">
+                <div class="cv-title">斜め打ちで打つ邦楽 I & II (Hōgaku on Naname I & II)</div>
+                <div class="cv-meta">Taiko Center of the Pacific 夏季集中講座 | 米国ハワイ州ホノルル | 2025年</div>
+                <div class="cv-desc">北米の和太鼓コミュニティ向けに、太鼓に応用できる伝統的な能のリズムに焦点を当てたワークショップ。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">斜め打ちで打つ邦楽 I & II</div>
+                <div class="cv-meta">アメリカンスクール・イン・ジャパン (ASIJ) | 東京 | 2025年</div>
+                <div class="cv-desc">高校の吹奏楽部員を対象とした、太鼓での伝統的な能のリズム入門ワークショップシリーズ。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">盆太鼓</div>
+                <div class="cv-meta">アメリカンスクール・イン・ジャパン (ASIJ) | 東京 | 2025年</div>
+                <div class="cv-desc">中学校の吹奏楽部員向けにデザインされた和太鼓ワークショップ。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">斜め打ちの基礎 (Naname-Uchi Basics)</div>
+                <div class="cv-meta">Ho Etsu Taiko | 米国イリノイ州シカゴ | 2023年</div>
+                <div class="cv-desc">斜め打ちスタイルにおける打法と腕の動かし方の基礎に特化したワークショップ。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">歌舞伎の音：大太鼓と掛け声</div>
+                <div class="cv-meta">東京 | 2023年</div>
+                <div class="cv-desc">歌舞伎の舞台で用いられる効果音や、声のパターン（掛け声）に関するワークショップ。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">邦楽囃子</div>
+                <div class="cv-meta">宮本卯之助商店・kaDON | 2022年</div>
+                <div class="cv-desc">歌舞伎の歴史と様々な楽器に関するオンライン講座シリーズにて、望月左武郎氏のアシスタントを務める。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">琉球節</div>
+                <div class="cv-meta">アメリカンスクール・イン・ジャパン (ASIJ) | 東京 | 2021年</div>
+                <div class="cv-desc">ASIJ中学校吹奏楽部とプロの邦楽囃子方によるコラボレーション企画。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">歌舞伎囃子</div>
+                <div class="cv-meta">テレビ東京 | 東京 | 2021年</div>
+                <div class="cv-desc">Tokyo Academicsの生徒を対象とした歌舞伎音楽のレクチャー・デモンストレーションおよびワークショップ。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">寿連獅子</div>
+                <div class="cv-meta">アメリカンスクール・イン・ジャパン (ASIJ) | 東京 | 2019年</div>
+                <div class="cv-desc">獅子の精霊にまつわる様々な音楽ジャンルについてのレクチャー・デモンストレーション。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">盆太鼓の基礎</div>
+                <div class="cv-meta">Genki Spark | 米国マサチューセッツ州ブルックライン | 2018年</div>
+                <div class="cv-desc">東京の伝統的なお盆祭りの音楽における太鼓のリズムに関するワークショップ。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">初心者向けのベタ打ち</div>
+                <div class="cv-meta">Genki Spark | 米国マサチューセッツ州ブルックライン | 2018年</div>
+                <div class="cv-desc">因陀羅の楽曲「Hyō」を題材にしたワークショップ。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">江戸囃子：東京の祭礼音楽</div>
+                <div class="cv-meta">Genki Spark | 米国マサチューセッツ州ブルックライン | 2018年</div>
+                <div class="cv-desc">古き良き東京の祭りのお囃子と太鼓に関する入門ワークショップ。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">乱序と掛け声</div>
+                <div class="cv-meta">幻道太鼓 | 米国ロードアイランド州プロビデンス（ブラウン大学） | 2018年</div>
+                <div class="cv-desc">歌舞伎演目「連獅子」の有名な合方（間奏部分）に関するワークショップ。</div>
+              </div>
+              <div class="cv-item">
+                <div class="cv-title">邦楽囃子入門</div>
+                <div class="cv-meta">アメリカンスクール・イン・ジャパン (ASIJ) | 東京 | 2015年</div>
+                <div class="cv-desc">歌舞伎の伝統楽器に関するレクチャー・デモンストレーション。</div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+      <footer class="site-footer">
+        <img src="calligraphy.png" alt="望月武懇 書" class="footer-calligraphy" />
+        <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
+        <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">三池克祐</a></p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
