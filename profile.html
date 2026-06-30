@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Profile | Mukon Mochizuki</title>
-  <link rel="icon" type="image/jpg" href="favicon.jpg" />
+  
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
   <link rel="apple-touch-icon" href="favicon.jpg" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
@@ -46,12 +48,13 @@
       position: fixed; top: 0; left: 0; height: 100%;
       padding: 3rem 2rem; display: flex; flex-direction: column;
       border-right: 1px solid rgba(232, 224, 212, 0.05); z-index: 100;
-      overflow-y: auto; 
-      -webkit-overflow-scrolling: touch;
+      overflow-y: auto; -webkit-overflow-scrolling: touch;
     }
 
     .lang-toggle { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 3rem; cursor: pointer; }
     .lang-toggle span.active { color: var(--orange-rope); font-weight: 600; }
+    .lang-toggle a { color: var(--muted); transition: color 0.3s; }
+    .lang-toggle a:hover { color: var(--orange-rope); }
 
     .brand-jp { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 1.2rem; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 0.2rem; }
     .brand-en { font-size: 2rem; font-weight: 400; line-height: 1.1; margin-bottom: 3rem; }
@@ -133,10 +136,7 @@
 
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
-      
-      /* THE FIXED MENU SELECTOR */
       #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); }
-      
       .mobile-header { display: flex; justify-content: space-between; align-items: center; height: var(--header-height); background-color: var(--warm-dark); padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90; border-bottom: 1px solid rgba(232, 224, 212, 0.05); }
       .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; }
       .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); }
@@ -156,7 +156,7 @@
   <div class="layout-wrapper">
     <nav class="sidebar">
       <div class="lang-toggle">
-        <span class="active">EN</span> / <span>JP</span>
+        <span class="active">EN</span> / <a href="profile-jp.html">JP</a>
       </div>
       <div class="brand">
         <h2 class="brand-jp">望月武懇</h2>
@@ -199,7 +199,7 @@
               <span class="hover-trigger">Gendo Taiko
                 <span class="hover-card">
                   <span class="card-title">Gendo Taiko</span>
-                  <span class="card-subtitle">Brown University | Providence, RI (U.S.A.)</span>
+                  <span class="card-subtitle">Providence, RI (U.S.A.)</span>
                   <span class="card-desc">Collegiate taiko group founded in 2005 by Raiki Machida and Joshua Goldner with roots in Miyagi prefecture’s Wadaiko Gensō.</span>
                   <a href="https://www.gendotaiko.com" target="_blank" rel="noopener" class="card-btn">Visit Website</a>
                 </span>
@@ -208,7 +208,7 @@
               <span class="hover-trigger">Kenny Endo
                 <span class="hover-card">
                   <span class="card-title">Kenny Endo</span>
-                  <span class="card-subtitle">Taiko Center of the Pacific | Honolulu, HI (U.S.A.)</span>
+                  <span class="card-subtitle">Honolulu, HI (U.S.A.)</span>
                   <span class="card-desc">Esteemed taiko artist and the first non-Japanese national to get a stage name in hōgaku bayashi.</span>
                   <a href="https://www.kennyendo.com" target="_blank" rel="noopener" class="card-btn">Visit Website</a>
                 </span>
@@ -224,11 +224,11 @@
               </span> 
               (TCP) Fellowship.</p>
 
-            <p>Upon moving to Japan in 2014, J.D. began playing taiko professionally with Taiko Project indra, where he began his journey into the traditional performing arts. In addition to taiko, J.D. studies matsuri-bayashi (festival music) under 
+            <p>Upon moving to Japan in 2014, J.D. began playing taiko professionally with Taiko Project Indra, where he began his journey into the traditional performing arts. In addition to taiko, J.D. studies matsuri-bayashi (festival music) under 
               <span class="hover-trigger">Kyosuke Suzuki
                 <span class="hover-card">
                   <span class="card-title">Kyosuke Suzuki</span>
-                  <span class="card-subtitle">Wakayama Shachū | Tokyo, Japan</span>
+                  <span class="card-subtitle">Tokyo, Japan</span>
                   <span class="card-desc">One of the leading practitioners of Tokyo festival music, Japanese lion dance, and kagura. Wakayama Shachū holds the 無形文化財 (Intangible Cultural Property) designation for Edo Sato Kagura.</span>
                   <a href="https://www.wakayamashachu.jp" target="_blank" rel="noopener" class="card-btn">Visit Website</a>
                 </span>
@@ -242,13 +242,15 @@
                 </span>
               </span>.</p>
 
-            <p>In 2019, J.D. became the second foreigner, after Kenny Endo, to be awarded a stage name, or <em>natori</em>, in kabuki-bayashi, granted by Sakichi Mochizuki IV, headmaster of the Mochizuki School’s Morishita division. His stage name is Mukon Mochizuki (望月武懇).</p>
+            <p>In 2019, J.D. became the second foreigner, after Kenny Endo, to be awarded a stage name, or natori, in kabuki-bayashi, granted by Sakichi Mochizuki IV, headmaster of the Mochizuki School’s Morishita division. His stage name is Mukon Mochizuki (望月武懇).</p>
 
             <p>In 2022, J.D. had the pleasure of being featured as a kabuki-bayashi artist on TV Tokyo’s “Sekai! Nippon ni ikitai hito ōendan.” This experience propelled him to begin sharing his passion for kabuki-bayashi with the expat community in Japan, as well as the rest of the world.</p>
 
+            <p>In 2023, he left Indra to focus his career entirely on classical music and ohayashi.</p>
+
             <p>In 2024, J.D. founded Taiko Unit Tsuzumiboshi, a Tokyo-based ensemble fusing taiko, hōgaku-bayashi, and matsuri-bayashi.</p>
 
-            <p>In August 2025, he participated in “Ma vs. Groove,” Kenny Endo’s 50th Anniversary Celebration in Honolulu as a performer, workshop leader, interpreter, and organizer, collaborating with artists such as 
+            <p>In August 2025, he participated in “Ma vs. Groove,” Kenny Endo’s 50th Anniversary Celebration in Honolulu, Hawai’i as a performer, workshop leader, interpreter, and organizer, collaborating with artists such as 
               <span class="hover-trigger">Sho’on Shibata
                 <span class="hover-card">
                   <span class="card-title">Sho’on Shibata</span>
@@ -278,7 +280,7 @@
               <span class="hover-trigger">Kiyora Okayasu
                 <span class="hover-card">
                   <span class="card-title">Kiyora Okayasu</span>
-                  <span class="card-subtitle">Tokyo | Nagauta & Nihon Buyō</span>
+                  <span class="card-subtitle">Tokyo, Japan</span>
                   <span class="card-desc">A nagauta vocalist of the Okayasu school and a natori in Hanayagi-style dance. She actively performs and promotes traditional arts internationally.</span>
                 </span>
               </span> 
@@ -321,22 +323,17 @@
       
       triggers.forEach(trigger => {
         trigger.addEventListener('click', function(e) {
-          // Allow clicks on links inside the card to work normally
           if(e.target.tagName === 'A') return;
+          e.stopPropagation(); 
           
-          e.stopPropagation(); // Stop the click from immediately triggering the document click listener
-          
-          // Close any other open cards
           triggers.forEach(t => {
             if(t !== this) t.classList.remove('touch-active');
           });
           
-          // Toggle the clicked card
           this.classList.toggle('touch-active');
         });
       });
 
-      // Tap anywhere else on the screen to safely dismiss the cards
       document.addEventListener('click', () => {
         triggers.forEach(t => t.classList.remove('touch-active'));
       });
