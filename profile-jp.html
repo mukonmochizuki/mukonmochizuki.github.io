@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>プロフィール | 望月武懇 Mukon Mochizuki</title>
+  
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+  <link rel="apple-touch-icon" href="favicon.jpg" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --deep-black: #0a0806;
+      --warm-dark: #110e0a;
+      --panel-bg: #1a1510;
+      --orange-rope: #c85a0a;
+      --off-white: #e8e0d4;
+      --muted: rgba(232, 224, 212, 0.6);
+      --sidebar-width: 280px;
+      --header-height: 70px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--deep-black);
+      font-family: 'Noto Serif JP', 'Cormorant Garamond', serif;
+      color: var(--off-white);
+      margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .layout-wrapper { width: 100%; position: relative; display: block; overflow-x: hidden; }
+
+    .sidebar {
+      width: var(--sidebar-width); background-color: var(--warm-dark);
+      position: fixed; top: 0; left: 0; height: 100%;
+      padding: 3rem 2rem; display: flex; flex-direction: column;
+      border-right: 1px solid rgba(232, 224, 212, 0.05); z-index: 100;
+      overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+
+    .lang-toggle { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 3rem; cursor: pointer; }
+    .lang-toggle a { color: var(--muted); }
+    .lang-toggle span.active { color: var(--orange-rope); font-weight: 600; }
+
+    .brand-jp { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 1.2rem; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 0.2rem; }
+    .brand-en { font-size: 2rem; font-weight: 400; line-height: 1.1; margin-bottom: 3rem; font-family: 'Cormorant Garamond', serif; }
+
+    .nav-links { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; flex-grow: 1; }
+    .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
+
+    .submenu { list-style: none; padding-left: 1rem; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.8rem; border-left: 1px solid rgba(232, 224, 212, 0.1); }
+    .submenu a { font-size: 0.9rem; text-transform: none; letter-spacing: 0.05em; color: rgba(232, 224, 212, 0.4); }
+    .submenu a:hover { color: var(--orange-rope); }
+
+    #mobile-menu-toggle { display: none; }
+    .mobile-header { display: none; }
+
+    .main-content {
+      margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: block; position: relative;
+    }
+
+    .profile-section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; display: block; min-height: 100vh; }
+    .section-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 3rem; color: var(--orange-rope); border-bottom: 1px solid var(--muted); padding-bottom: 1rem; }
+
+    .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
+    .profile-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 1px solid rgba(232, 224, 212, 0.1); position: sticky; top: 6rem; }
+    .bio-text p { font-size: 1.1rem; line-height: 1.9; color: var(--muted); margin-bottom: 1.8rem; letter-spacing: 0.03em; }
+    .bio-text h3 { font-size: 1.5rem; font-weight: 400; color: var(--off-white); margin-bottom: 1rem; }
+
+    /* HOVER CARDS */
+    .hover-trigger { position: relative; display: inline-block; color: var(--off-white); border-bottom: 1px dotted var(--orange-rope); cursor: pointer; transition: color 0.3s; -webkit-tap-highlight-color: transparent; }
+    .hover-trigger:focus { outline: none; }
+    
+    .hover-card {
+      visibility: hidden; opacity: 0; position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%) translateY(10px);
+      width: 320px; background-color: var(--panel-bg); border: 1px solid rgba(200, 90, 10, 0.3); padding: 1.5rem; border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8); z-index: 1000; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default; text-align: left; pointer-events: none;
+    }
+    
+    @media (hover: hover) {
+      .hover-trigger:hover { color: var(--orange-rope); }
+      .hover-trigger:hover .hover-card { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+    }
+
+    .hover-trigger.touch-active { color: var(--orange-rope); }
+    .hover-trigger.touch-active .hover-card { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+    
+    .card-title { font-size: 1.1rem; color: var(--off-white); font-weight: 600; margin-bottom: 0.2rem; display: block; line-height: 1.2; }
+    .card-subtitle { font-size: 0.85rem; color: var(--orange-rope); font-style: italic; margin-bottom: 0.8rem; display: block; line-height: 1.3; }
+    .card-desc { font-size: 0.9rem; line-height: 1.5; color: var(--muted); margin-bottom: 1.2rem; display: block; font-family: sans-serif; font-weight: 300; }
+    
+    .card-btn {
+      display: inline-block; padding: 0.5rem 1.2rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope);
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; text-align: center; cursor: pointer;
+    }
+    .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
+
+    /* SITE FOOTER */
+    .site-footer {
+      background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center;
+      border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8;
+    }
+    .footer-calligraphy { height: 80px; width: auto; margin: 0 auto 1.5rem auto; display: block; opacity: 0.6; transition: opacity 0.3s; }
+    .footer-calligraphy:hover { opacity: 0.9; }
+    .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
+    .site-footer a:hover { color: var(--off-white); }
+
+    @media (max-width: 900px) {
+      .profile-grid { grid-template-columns: 1fr; }
+      .profile-photo { position: static; max-width: 400px; margin: 0 auto; display: block; }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
+      #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); }
+      .mobile-header { display: flex; justify-content: space-between; align-items: center; height: var(--header-height); background-color: var(--warm-dark); padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90; border-bottom: 1px solid rgba(232, 224, 212, 0.05); }
+      .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; }
+      .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); }
+      .profile-section { padding: 4rem 5%; }
+      .hover-card { width: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+  <input type="checkbox" id="mobile-menu-toggle">
+  <div class="mobile-header">
+    <div class="brand-jp" style="margin: 0;">望月武懇</div>
+    <label for="mobile-menu-toggle" class="hamburger-icon">☰</label>
+  </div>
+
+  <div class="layout-wrapper">
+    <nav class="sidebar">
+      <div class="lang-toggle">
+        <a href="profile.html">EN</a> / <span class="active">JP</span>
+      </div>
+      <div class="brand">
+        <h2 class="brand-jp">望月武懇</h2>
+        <h1 class="brand-en">Mukon Mochizuki</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index-jp.html">ホーム</a></li>
+        <li><a href="profile-jp.html" class="active">プロフィール</a></li>
+        <li><a href="events-jp.html">公演情報</a></li>
+        <li>
+          <a href="projects-jp.html">活動実績</a>
+          <ul class="submenu">
+            <li><a href="projects-jp.html#hogaku-horizons">Hōgaku Horizons</a></li>
+            <li><a href="projects-jp.html#tsuzumiboshi">つゞみ星</a></li>
+            <li><a href="projects-jp.html#airbnb">Airbnb 体験</a></li>
+            <li><a href="projects-jp.html#kon-chan">歌舞伎♪こんちゃん</a></li>
+            <li><a href="projects-jp.html#research">幸宗能 研究</a></li>
+          </ul>
+        </li>
+        <li><a href="lessons-jp.html">稽古・ワークショップ</a></li>
+        <li><a href="media-jp.html">メディア</a></li>
+        <li><a href="contact-jp.html">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      
+      <section class="profile-section">
+        <h2 class="section-title">プロフィール</h2>
+        
+        <div class="profile-grid">
+          <div class="profile-image-container">
+            <img class="profile-photo" src="profile-kuromontsuki.JPG" alt="黒紋付姿の望月武懇" />
+          </div>
+
+          <div class="bio-text">
+            <h3>望月武懇・J.D. Andrade</h3>
+            
+            <p>アメリカのイリノイ州出身。9歳からクラシックヴァイオリンを弾き始め、高校・大学を通してカルテット（弦楽四重奏）などの室内楽を中心に活動を続ける。2006年、
+              <span class="hover-trigger">ブラウン大学
+                <span class="hover-card">
+                  <span class="card-title">幻道太鼓（Gendo Taiko）</span>
+                  <span class="card-subtitle">ブラウン大学 | 米国ロードアイランド州</span>
+                  <span class="card-desc">2005年に町田来稀氏とJoshua Goldner氏によって設立された、大学公認の和太鼓団体。宮城県の「和太鼓 幻創」にルーツを持つ。</span>
+                  <a href="https://www.gendotaiko.com" target="_blank" rel="noopener" class="card-btn">ウェブサイト</a>
+                </span>
+              </span> 
+              在学中に「幻道太鼓」のメンバーとして和太鼓に出会う。2012年には
+              <span class="hover-trigger">TCPフェローシップ
+                <span class="hover-card">
+                  <span class="card-title">Taiko Center of the Pacific</span>
+                  <span class="card-subtitle">米国ハワイ州ホノルル</span>
+                  <span class="card-desc">1994年、遠藤ケニー、遠藤千鶴子夫妻によって設立された和太鼓スクール。東京の「助六太鼓」の演奏スタイルに深くルーツを持つ。</span>
+                  <a href="https://taikoarts.com" target="_blank" rel="noopener" class="card-btn">ウェブサイト</a>
+                </span>
+              </span> 
+              に選ばれ、ホノルルへ移住。
+              <span class="hover-trigger">遠藤ケニー
+                <span class="hover-card">
+                  <span class="card-title">遠藤ケニー（Kenny Endo）</span>
+                  <span class="card-subtitle">Taiko Center of the Pacific</span>
+                  <span class="card-desc">国際的に活躍する高名な和太鼓パイオニア。邦楽囃子の世界において、外国人として初めて名取（芸名）を授与された人物。</span>
+                  <a href="https://www.kennyendo.com" target="_blank" rel="noopener" class="card-btn">ウェブサイト</a>
+                </span>
+              </span> 
+              氏のもとでさらに演奏技術を磨き、Kenny Endo Taiko Ensembleでプロとしてのキャリアをスタートさせた。</p>
+
+            <p>東京でさらに深く和楽器を学ぶことを志し、2014年に来日。プロの和太鼓集団「太鼓プロジェクト indra-因陀羅-」に加入し、本格的に伝統芸能の世界へ飛び込む。和太鼓演奏の芸の幅を広げるため、江戸祭囃子（東京の伝統的な祭り音楽や獅子舞、神楽）を代表する神楽集団・若山社中の
+              <span class="hover-trigger">鈴木恭介
+                <span class="hover-card">
+                  <span class="card-title">鈴木恭介（若山社中）</span>
+                  <span class="card-subtitle">東京 | 国指定重要無形民俗文化財</span>
+                  <span class="card-desc">江戸里神楽の伝統を今に伝える若山社中の主要メンバーであり、獅子舞や祭り囃子の第一人者。国内外で後進の指導にあたる。</span>
+                  <a href="https://www.wakayamashachu.jp" target="_blank" rel="noopener" class="card-btn">ウェブサイト</a>
+                </span>
+              </span> 
+              氏に師事。それと同時に、古典打楽器の真髄を学ぶため、歌舞伎の伝統音楽である邦楽囃子を
+              <span class="hover-trigger">望月左武郎
+                <span class="hover-card">
+                  <span class="card-title">望月左武郎</span>
+                  <span class="card-subtitle">東京 | 長唄囃子</span>
+                  <span class="card-desc">重要無形文化財「長唄」の保持者。人間国宝であった四代目望月朴清氏らに師事し、伝統的な歌舞伎・邦楽囃子のパフォーマー、指導者として一線を走る。</span>
+                </span>
+              </span> 
+              氏のもとで学び始める。</p>
+
+            <p>2019年、望月流森下派家元　四世望月左吉より、<strong>望月武懇</strong>（もちづきむこん）の名を許される。</p>
+
+            <p>2022年、テレビ東京の「世界！ニッポンに行きたい人応援団」に出演し、日本が誇る伝統楽器に命を吹き込む邦楽囃子方として紹介され反響を呼ぶ。これをきっかけに、日本に住む外国人コミュニティや世界に向けて、歌舞伎囃子の魅力をより広く発信したいという情熱を強く抱くようになる。</p>
+
+            <p>2023年、お囃子方（古典音楽）としての専門的な活動に完全に専念するため、長年籍を置いた「因陀羅」を惜しまれつつ退団。</p>
+
+            <p>2024年、これまでのキャリアを結集させ、伝統的な歌舞伎の「邦楽囃子」や「江戸祭囃子」のエッセンスを現代の「組太鼓」と融合させ、全曲オリジナル曲を演奏する東京拠点の5人組和太鼓ユニット「つゞみ星」を結成。現在も精力的に活動を展開している。</p>
+
+            <p>2025年8月、ハワイのホノルルで開催された遠藤ケニー氏の活動50周年記念公演「Ma vs. Groove」に、演奏者としてだけでなく、ワークショップ講師、通訳、運営の中心メンバーとして多角的に参加。
+              <span class="hover-trigger">柴田渚音
+                <span class="hover-card">
+                  <span class="card-title">柴田渚音（Sho'on Shibata）</span>
+                  <span class="card-subtitle">米国ハワイ州ホノルル</span>
+                  <span class="card-desc">TCPの主要メンバーであり、太鼓・篠笛奏者として独立して活躍する気鋭のアーティスト。</span>
+                  <a href="https://www.shoonshibata.com" target="_blank" rel="noopener" class="card-btn">ウェブサイト</a>
+                </span>
+              </span> 
+              （太鼓・笛）、
+              <span class="hover-trigger">藤間佐絵歌
+                <span class="hover-card">
+                  <span class="card-title">藤間佐絵歌</span>
+                  <span class="card-subtitle">米国ハワイ州ホノルル</span>
+                  <span class="card-desc">藤間流の日本舞踊家であり、TCPのメンバーとしても太鼓を叩く多才なパフォーマー。</span>
+                </span>
+              </span> 
+              （日本舞踊）、
+              <span class="hover-trigger">杵屋佐輝夫
+                <span class="hover-card">
+                  <span class="card-title">杵屋佐輝夫</span>
+                  <span class="card-subtitle">東京 / ハワイ</span>
+                  <span class="card-desc">ハワイ出身のプロ長唄三味線演奏家・指導者。若くして三味線の道を極め、現在は日本とハワイの双方で「左門会」を運営。</span>
+                  <a href="https://nichibu-nagauta.com/en" target="_blank" rel="noopener" class="card-btn">ウェブサイト</a>
+                </span>
+              </span> 
+              （長唄三味線）など、ハワイと日本を繋ぐ多彩な実力派演者たちと共演を果たした。</p>
+
+            <p>これまでに国立劇場やサントリーホールなど、日本国内の最高峰の舞台で演奏を重ねる。また、2017年にはKenny Endo Taiko Ensembleの一員としてトルコへ遠征し、現地の大規模病院の開設記念公演に出演。
+              <span class="hover-trigger">Abe Lagrimas, Jr.
+                <span class="hover-card">
+                  <span class="card-title">Abe Lagrimas, Jr.</span>
+                  <span class="card-subtitle">米国ロサンゼルス</span>
+                  <span class="card-desc">バークリー音楽大学出身の一流ジャズドラマー、ウクレレ奏者、作曲家。ケニー氏らと世界を跨ぎジャンルレスにコラボを行う。</span>
+                  <a href="https://www.abelagrimasjr.com" target="_blank" rel="noopener" class="card-btn">ウェブサイト</a>
+                </span>
+              </span> 
+              （ジャズドラム/ウクレレ）や、
+              <span class="hover-trigger">渡辺薫
+                <span class="hover-card">
+                  <span class="card-title">渡辺薫（Kaoru Watanabe）</span>
+                  <span class="card-subtitle">米国ニューヨーク</span>
+                  <span class="card-desc">元「鼓童」のプレイヤー・芸術監督を務めた篠笛・太鼓演奏家。ヨーヨー・マ氏や坂東玉三郎氏らとも共演する国際的音楽家。</span>
+                  <a href="https://www.watanabekaoru.com" target="_blank" rel="noopener" class="card-btn">ウェブサイト</a>
+                </span>
+              </span> 
+              （篠笛/太鼓）といった世界的なトップミュージシャンたちとの海外共演の実績を持つ。</p>
+
+            <p>現在は、日本に住む在留外国人のコミュニティや、海外からの旅行者、誠に世界に向けて「本物の日本の伝統の音」を繋ぎ、広めていく熱い志を持って、演奏・指導・国際コラボレーションなど多岐にわたる活動を精力的に続けている。</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <img src="calligraphy.png" alt="望月武懇 書" class="footer-calligraphy" />
+        <p>© 2026 Mukon Mochizuki. All Rights Reserved.</p>
+        <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">三池克祐</a></p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const triggers = document.querySelectorAll('.hover-trigger');
+      triggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+          if(e.target.tagName === 'A') return;
+          e.stopPropagation();
+          triggers.forEach(t => { if(t !== this) t.classList.remove('touch-active'); });
+          this.classList.toggle('touch-active');
+        });
+      });
+      document.addEventListener('click', () => {
+        triggers.forEach(t => t.classList.remove('touch-active'));
+      });
+    });
+  </script>
+
+</body>
+</html>
