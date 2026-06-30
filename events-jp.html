@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>公演情報 | 望月武懇 Mukon Mochizuki</title>
+  
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+  <link rel="apple-touch-icon" href="favicon.jpg" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --deep-black: #0a0806; --warm-dark: #110e0a; --panel-bg: #1a1510; --orange-rope: #c85a0a; --off-white: #e8e0d4; --muted: rgba(232, 224, 212, 0.6); --sidebar-width: 280px; --header-height: 70px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+    body { background-color: var(--deep-black); font-family: 'Noto Serif JP', 'Cormorant Garamond', serif; color: var(--off-white); margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    .layout-wrapper { width: 100%; position: relative; display: block; overflow-x: hidden; }
+    .sidebar { width: var(--sidebar-width); background-color: var(--warm-dark); position: fixed; top: 0; left: 0; height: 100%; padding: 3rem 2rem; display: flex; flex-direction: column; border-right: 1px solid rgba(232, 224, 212, 0.05); z-index: 100; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .lang-toggle { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 3rem; cursor: pointer; }
+    .lang-toggle a { color: var(--muted); transition: color 0.3s; }
+    .lang-toggle a:hover { color: var(--orange-rope); }
+    .lang-toggle span.active { color: var(--orange-rope); font-weight: 600; }
+    .brand-jp { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 1.2rem; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 0.2rem; }
+    .brand-en { font-size: 2rem; font-weight: 400; line-height: 1.1; margin-bottom: 3rem; font-family: 'Cormorant Garamond', serif; }
+    .nav-links { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; flex-grow: 1; }
+    .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
+    .submenu { list-style: none; padding-left: 1rem; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.8rem; border-left: 1px solid rgba(232, 224, 212, 0.1); }
+    .submenu a { font-size: 0.9rem; text-transform: none; letter-spacing: 0.05em; color: rgba(232, 224, 212, 0.4); }
+    .submenu a:hover { color: var(--orange-rope); }
+    #mobile-menu-toggle { display: none; }
+    .mobile-header { display: none; }
+    .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: block; position: relative; min-height: 100vh; display: flex; flex-direction: column; }
+    .page-container { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1; }
+    .page-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 5rem; color: var(--off-white); }
+    
+    .event-section { margin-bottom: 6rem; }
+    .section-label { font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid rgba(232, 224, 212, 0.1); padding-bottom: 1rem; margin-bottom: 3rem; }
+    .event-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: flex-start; margin-bottom: 5rem; }
+    .event-chirashi { width: 100%; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    .event-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border: 1px solid rgba(232, 224, 212, 0.1); }
+    .event-details { display: flex; flex-direction: column; gap: 1rem; }
+    .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
+    .event-title { font-size: 2rem; font-weight: 300; color: var(--off-white); line-height: 1.2; font-family: 'Cormorant Garamond', serif; }
+    .event-info { font-size: 1.1rem; line-height: 1.8; color: var(--muted); }
+    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .card-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.5rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; }
+    .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
+    
+    .site-footer { background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center; border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-top: auto; }
+    .footer-calligraphy { height: 80px; width: auto; margin: 0 auto 1.5rem auto; display: block; opacity: 0.6; transition: opacity 0.3s; }
+    .footer-calligraphy:hover { opacity: 0.9; }
+    .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
+    .site-footer a:hover { color: var(--off-white); }
+    
+    @media (max-width: 900px) { .event-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    @media (max-width: 768px) { .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; } #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); } .mobile-header { display: flex; justify-content: space-between; align-items: center; height: var(--header-height); background-color: var(--warm-dark); padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90; border-bottom: 1px solid rgba(232, 224, 212, 0.05); } .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; } .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); } .page-container { padding: 4rem 5%; } .page-title { font-size: 2rem; margin-bottom: 3rem; } }
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="mobile-menu-toggle">
+  <div class="mobile-header">
+    <div class="brand-jp" style="margin: 0;">望月武懇</div>
+    <label for="mobile-menu-toggle" class="hamburger-icon">☰</label>
+  </div>
+  <div class="layout-wrapper">
+    <nav class="sidebar">
+      <div class="lang-toggle">
+        <a href="events.html">EN</a> / <span class="active">JP</span>
+      </div>
+      <div class="brand">
+        <h2 class="brand-jp">望月武懇</h2>
+        <h1 class="brand-en">Mukon Mochizuki</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index-jp.html">ホーム</a></li>
+        <li><a href="profile-jp.html">プロフィール</a></li>
+        <li><a href="events-jp.html" class="active">公演情報</a></li>
+        <li>
+          <a href="projects-jp.html">活動実績</a>
+          <ul class="submenu">
+            <li><a href="projects-jp.html#hogaku-horizons">Hōgaku Horizons</a></li>
+            <li><a href="projects-jp.html#tsuzumiboshi">つゞみ星</a></li>
+            <li><a href="projects-jp.html#airbnb">Airbnb 体験</a></li>
+            <li><a href="projects-jp.html#kon-chan">歌舞伎♪こんちゃん</a></li>
+            <li><a href="projects-jp.html#research">幸宗能 研究</a></li>
+          </ul>
+        </li>
+        <li><a href="lessons-jp.html">稽古・ワークショップ</a></li>
+        <li><a href="media-jp.html">メディア</a></li>
+        <li><a href="contact-jp.html">お問い合わせ</a></li>
+      </ul>
+    </nav>
+    <main class="main-content">
+      <div class="page-container">
+        <h1 class="page-title">公演情報</h1>
+
+        <div class="event-section">
+          <h2 class="section-label">今後の公演</h2>
+          
+          <div class="event-grid">
+            <img class="event-chirashi" src="Chirashi-20260803soundsofkabuki.jpg" alt="Sounds of Kabuki 2026年8月3日" />
+            <div class="event-details">
+              <span class="event-date">2026年8月3日</span>
+              <h3 class="event-title">Sounds of Kabuki</h3>
+              <div class="event-info">
+                <p><strong>時間:</strong> 15:30 開演（15:00 開場）</p>
+                <p><strong>場所:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Asakusa+Culture+Tourist+Information+Center" target="_blank" rel="noopener" style="color: var(--orange-rope); text-decoration: underline; text-underline-offset: 4px;">浅草文化観光センター</a></p>
+                <br>
+                <p>望月武懇がお届けする、歌舞伎囃子の伝統的なリズムと伴奏の世界に深く浸る午後のひととき。</p>
+              </div>
+              <div class="button-group">
+                <a href="https://soundsofkabuki1.peatix.com/" target="_blank" rel="noopener" class="card-btn">チケットを購入</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-section">
+          <h2 class="section-label">過去の公演・メディア出演</h2>
+
+          <div class="event-grid">
+            <img class="event-img" src="kenny-endo-50.jpg" alt="Ma vs Groove Hawaii" />
+            <div class="event-details">
+              <span class="event-date">2025年8月</span>
+              <h3 class="event-title">Ma vs. Groove</h3>
+              <div class="event-info">
+                <p><strong>場所:</strong> ハワイ・シアター（米国ハワイ州ホノルル）</p>
+                <br>
+                <p>和太鼓アーティスト、遠藤ケニー活動50周年記念公演。ホノルルで開催された和太鼓と伝統芸能の祭典にて、出演およびワークショップを担当。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-grid">
+            <img class="event-img" src="tv-tokyo.jpg" alt="TV Tokyo Broadcast" />
+            <div class="event-details">
+              <span class="event-date">2022年</span>
+              <h3 class="event-title">Kabuki Bayashi - TV Tokyo</h3>
+              <div class="event-info">
+                <p><strong>場所:</strong> 東京</p>
+                <br>
+                <p>テレビ東京「世界！ニッポンに行きたい人応援団」に出演。日本の誇る伝統楽器に命を吹き込む邦楽囃子方として全国放送で紹介されました。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <footer class="site-footer">
+        <img src="calligraphy.png" alt="望月武懇 書" class="footer-calligraphy" />
+        <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
+        <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">三池克祐</a></p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
