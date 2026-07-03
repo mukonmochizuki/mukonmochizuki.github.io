@@ -340,7 +340,7 @@
           mTitle.textContent = thumb.getAttribute('data-title');
           mDate.textContent = thumb.getAttribute('data-date');
           mVenue.textContent = thumb.getAttribute('data-venue');
-          mRole.textContent = thumb.getAttribute('data-role');
+          mRole.innerHTML = thumb.getAttribute('data-role');
           mDesc.textContent = thumb.getAttribute('data-desc');
           
           modal.classList.add('active');
