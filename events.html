@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Events | Mukon Mochizuki</title>
-  <link rel="icon" type="image/jpg" href="favicon.jpg" />
+  
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
   <link rel="apple-touch-icon" href="favicon.jpg" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
@@ -25,7 +27,7 @@
       --header-height: 70px;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
 
     body {
       background-color: var(--deep-black);
@@ -46,12 +48,13 @@
       position: fixed; top: 0; left: 0; height: 100%;
       padding: 3rem 2rem; display: flex; flex-direction: column;
       border-right: 1px solid rgba(232, 224, 212, 0.05); z-index: 100;
-      overflow-y: auto; 
-      -webkit-overflow-scrolling: touch;
+      overflow-y: auto; -webkit-overflow-scrolling: touch;
     }
 
     .lang-toggle { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 3rem; cursor: pointer; }
     .lang-toggle span.active { color: var(--orange-rope); font-weight: 600; }
+    .lang-toggle a { color: var(--muted); transition: color 0.3s; }
+    .lang-toggle a:hover { color: var(--orange-rope); }
 
     .brand-jp { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 1.2rem; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 0.2rem; }
     .brand-en { font-size: 2rem; font-weight: 400; line-height: 1.1; margin-bottom: 3rem; }
@@ -59,23 +62,9 @@
     .nav-links { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; flex-grow: 1; }
     .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
     .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
-    
-    /* SUBMENU STYLING */
-    .submenu {
-      list-style: none;
-      padding-left: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 0.8rem;
-      border-left: 1px solid rgba(232, 224, 212, 0.1);
-    }
-    .submenu a {
-      font-size: 0.9rem;
-      text-transform: none;
-      letter-spacing: 0.05em;
-      color: rgba(232, 224, 212, 0.4);
-    }
+
+    .submenu { list-style: none; padding-left: 1rem; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.8rem; border-left: 1px solid rgba(232, 224, 212, 0.1); }
+    .submenu a { font-size: 0.9rem; text-transform: none; letter-spacing: 0.05em; color: rgba(232, 224, 212, 0.4); }
     .submenu a:hover { color: var(--orange-rope); }
 
     #mobile-menu-toggle { display: none; }
@@ -83,100 +72,105 @@
 
     /* --- MAIN CONTENT AREA --- */
     .main-content {
-      margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width));
-      display: block; position: relative; min-height: 100vh;
-      display: flex; flex-direction: column;
+      margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: block; position: relative; min-height: 100vh; display: flex; flex-direction: column;
     }
 
-    /* --- PAGE SECTIONS --- */
-    .page-container {
-      padding: 6rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1;
-    }
-
-    .page-title {
-      font-size: 3rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 4rem; color: var(--off-white);
-    }
-
-    .section-title { 
-      font-size: 2rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 3rem; color: var(--orange-rope); 
-      border-bottom: 1px solid rgba(232, 224, 212, 0.1); padding-bottom: 1rem; 
-    }
-
-    /* --- EVENTS STYLING --- */
-    .event-list { display: flex; flex-direction: column; gap: 5rem; margin-bottom: 6rem; }
-
-    .event-card {
-      display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: flex-start;
-    }
-
-    .event-chirashi { 
-      width: 100%; 
-      height: auto; /* Allows the image to dictate its own A4 height */
-      display: block;
-      border: 1px solid rgba(232, 224, 212, 0.1); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
-    }
-
-    .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
+    .page-container { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1; }
+    .page-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 5rem; color: var(--off-white); }
     
-    .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.15em; }
+    .event-section { margin-bottom: 6rem; }
+    .section-label { font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid rgba(232, 224, 212, 0.1); padding-bottom: 1rem; margin-bottom: 3rem; }
     
-    .event-title { font-size: 2rem; color: var(--off-white); font-weight: 400; line-height: 1.2; }
-    
+    /* UPCOMING EVENT STYLES */
+    .event-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: flex-start; margin-bottom: 5rem; }
+    .event-chirashi { width: 100%; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    .event-details { display: flex; flex-direction: column; gap: 1rem; }
+    .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
+    .event-title { font-size: 2rem; font-weight: 300; color: var(--off-white); line-height: 1.2; }
     .event-info { font-size: 1.1rem; line-height: 1.8; color: var(--muted); }
-
-    /* BUTTONS */
     .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-    .card-btn {
-      display: inline-block; padding: 0.6rem 1.5rem; background: transparent;
-      color: var(--off-white); border: 1px solid var(--orange-rope);
-      font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
-      transition: all 0.3s; cursor: pointer; text-align: center;
-    }
+    .card-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.5rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; }
     .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
-
-    /* PAST EVENTS PLACEHOLDER */
-    .archive-placeholder {
-      border: 1px dashed rgba(232, 224, 212, 0.2);
-      padding: 5rem 2rem;
+    
+    /* --- PAST EVENTS THUMBNAIL GRID --- */
+    .past-events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .past-event-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+      overflow: hidden;
+      border: 1px solid rgba(232, 224, 212, 0.1);
+      background-color: var(--warm-dark);
+    }
+    .past-event-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .thumb-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(10, 8, 6, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 1.5rem;
       text-align: center;
-      border-radius: 4px;
-      background-color: rgba(17, 14, 10, 0.3);
     }
+    .past-event-thumb:hover img { transform: scale(1.05); }
+    .past-event-thumb:hover .thumb-overlay { opacity: 1; }
+    
+    .thumb-overlay span { color: var(--orange-rope); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .thumb-overlay h4 { color: var(--off-white); font-size: 1.1rem; font-weight: 400; font-family: 'Noto Serif JP', serif; line-height: 1.4; }
 
-    .archive-placeholder p {
-      color: var(--muted);
-      font-size: 1.2rem;
-      font-style: italic;
-      letter-spacing: 0.05em;
+    /* --- LIGHTBOX MODAL --- */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.92); z-index: 1000;
+      display: flex; justify-content: center; align-items: center;
+      opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 2rem;
     }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    
+    .modal-content {
+      display: flex; background: var(--panel-bg); border: 1px solid rgba(232, 224, 212, 0.1);
+      max-width: 900px; width: 100%; max-height: 85vh; position: relative; overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem; font-size: 2rem; color: var(--muted);
+      cursor: pointer; background: none; border: none; z-index: 10; transition: color 0.3s;
+    }
+    .modal-close:hover { color: var(--orange-rope); }
+    
+    .modal-img-container {
+      flex: 1.1; padding: 2rem; display: flex; justify-content: center; align-items: center; background: var(--deep-black);
+    }
+    .modal-img-container img { max-width: 100%; max-height: 70vh; object-fit: contain; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    
+    .modal-info { flex: 1; padding: 3rem 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .modal-info h3 { font-size: 1.8rem; font-weight: 400; margin-bottom: 1.5rem; color: var(--off-white); font-family: 'Noto Serif JP', serif; line-height: 1.4; }
+    .modal-info p { font-size: 1.05rem; line-height: 1.7; color: var(--muted); margin-bottom: 0.6rem; }
+    .modal-info strong { color: var(--off-white); font-weight: 600; font-family: sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; width: 70px; }
+    .modal-desc-block { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed rgba(232, 224, 212, 0.1); color: var(--muted); line-height: 1.7; font-size: 1.05rem; }
 
-/* --- SITE FOOTER --- */
-    .site-footer {
-      background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center;
-      border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8;
-      margin-top: auto;
-    }
-    .footer-calligraphy {
-      height: 80px; /* Keeps it tasteful and small */
-      width: auto;
-      margin: 0 auto 1.5rem auto;
-      display: block;
-      opacity: 0.6; /* Gives it a beautiful watermark effect */
-      transition: opacity 0.3s;
-    }
-    .footer-calligraphy:hover {
-      opacity: 0.9;
-    }
+    /* --- SITE FOOTER --- */
+    .site-footer { background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center; border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-top: auto; }
+    .footer-calligraphy { height: 80px; width: auto; margin: 0 auto 1.5rem auto; display: block; opacity: 0.6; transition: opacity 0.3s; }
+    .footer-calligraphy:hover { opacity: 0.9; }
     .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
     .site-footer a:hover { color: var(--off-white); }
-
-    /* --- MOBILE RESPONSIVENESS --- */
-    @media (max-width: 900px) {
-      .event-card { grid-template-columns: 1fr; }
-      .event-chirashi { max-width: 400px; margin: 0 auto; display: block; }
-    }
-
+    
+    @media (max-width: 900px) { .event-grid { grid-template-columns: 1fr; gap: 2rem; } }
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
       #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); }
@@ -184,7 +178,12 @@
       .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; }
       .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); }
       .page-container { padding: 4rem 5%; }
-      .page-title { font-size: 2.5rem; margin-bottom: 3rem; }
+      .page-title { font-size: 2rem; margin-bottom: 3rem; }
+      .modal-content { flex-direction: column; max-height: 90vh; }
+      .modal-img-container { padding: 1.5rem; }
+      .modal-img-container img { max-height: 45vh; }
+      .modal-info { padding: 2rem 1.5rem; }
+      .modal-info h3 { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -197,7 +196,6 @@
   </div>
 
   <div class="layout-wrapper">
-    
     <nav class="sidebar">
       <div class="lang-toggle">
         <span class="active">EN</span> / <a href="events-jp.html">JP</a>
@@ -206,7 +204,7 @@
         <h2 class="brand-jp">望月武懇</h2>
         <h1 class="brand-en">Mukon Mochizuki</h1>
       </div>
-<ul class="nav-links">
+      <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="profile.html">Profile</a></li>
         <li><a href="events.html" class="active">Events</a></li>
@@ -214,7 +212,7 @@
           <a href="projects.html">Projects</a>
           <ul class="submenu">
             <li><a href="projects.html#hogaku-horizons">Hōgaku Horizons</a></li>
-            <li><a href="projects.html#tsuzumiboshi">Tsuzumiboshi</a></li>
+            <li><a href="projects-jp.html#tsuzumiboshi">Tsuzumiboshi</a></li>
             <li><a href="projects.html#airbnb">Airbnb Experience</a></li>
             <li><a href="projects.html#kon-chan">Kabuki Kon-chan</a></li>
             <li><a href="projects.html#research">Kō Muneyoshi</a></li>
@@ -227,54 +225,121 @@
     </nav>
 
     <main class="main-content">
-      
       <div class="page-container">
         <h1 class="page-title">Events</h1>
 
-        <h2 class="section-title">Upcoming</h2>
-        
-        <div class="event-list">
+        <div class="event-section">
+          <h2 class="section-label">Upcoming Performances</h2>
           
-          <article class="event-card">
-            <div class="event-image-wrapper">
-              <img class="event-chirashi" src="Chirashi-20260803soundsofkabuki.jpg" alt="Sounds of Kabuki, August 3, 2026" />
-            </div>
-            
-           <div class="event-details">
+          <div class="event-grid">
+            <img class="event-chirashi" src="Chirashi-20260803soundsofkabuki.jpg" alt="Sounds of Kabuki Flyer" />
+            <div class="event-details">
               <span class="event-date">August 3, 2026</span>
               <h3 class="event-title">Sounds of Kabuki</h3>
-              
               <div class="event-info">
                 <p><strong>Time:</strong> 3:30 PM (Doors open at 3:00 PM)</p>
                 <p><strong>Location:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Asakusa+Culture+Tourist+Information+Center" target="_blank" rel="noopener" style="color: var(--orange-rope); text-decoration: underline; text-underline-offset: 4px;">Asakusa Culture Tourist Information Center</a></p>
                 <br>
                 <p>Join Mukon Mochizuki for an afternoon diving into the traditional rhythms and accompaniment of Kabuki theatre.</p>
               </div>
-
               <div class="button-group">
                 <a href="https://soundsofkabuki1.peatix.com/" target="_blank" rel="noopener" class="card-btn">Get Tickets</a>
               </div>
             </div>
-          </article>
-          
           </div>
+        </div>
 
-        <h2 class="section-title">Past Performances</h2>
-        
-        <div class="archive-placeholder">
-          <p>Visual performance archive coming soon...</p>
+        <div class="event-section">
+          <h2 class="section-label">Past Performances</h2>
+
+          <div class="past-events-grid">
+            
+            <div class="past-event-thumb" 
+                 data-img="20251208第15回伝統長唄伝承の会.jpg" 
+                 data-title="第15回伝統長唄伝承の会" 
+                 data-date="December 8, 2025" 
+                 data-venue="Nihonbashi Kokaido, Tokyo" 
+                 data-role="Otsuzumi on 'Kurozuka'" 
+                 data-desc="Performed the otsuzumi (large hourglass drum) part for the classical nagauta masterpiece 'Kurozuka' at the 15th Traditional Nagauta Transmission Concert.">
+              <img src="20251208第15回伝統長唄伝承の会.jpg" alt="第15回伝統長唄伝承の会 Flyer Thumbnail" />
+              <div class="thumb-overlay">
+                <span>2025</span>
+                <h4>第15回伝統長唄<br>伝承の会</h4>
+              </div>
+            </div>
+
+            <div class="past-event-thumb" style="border: 1px dashed rgba(232,224,212,0.2); background: rgba(17,14,10,0.4); display: flex; align-items: center; justify-content: center; cursor: default;">
+              <span style="color: var(--muted); font-style: italic; letter-spacing: 0.05em; font-size: 0.9rem;">More coming soon...</span>
+            </div>
+
+          </div>
         </div>
 
       </div>
 
-<footer class="site-footer">
+      <div class="modal-overlay" id="eventModal">
+        <div class="modal-content">
+          <button class="modal-close" id="modalClose">&times;</button>
+          <div class="modal-img-container">
+            <img src="" id="modalImg" alt="Expanded Flyer" />
+          </div>
+          <div class="modal-info">
+            <h3 id="modalTitle">Title</h3>
+            <p><strong>Date:</strong> <span id="modalDate"></span></p>
+            <p><strong>Venue:</strong> <span id="modalVenue"></span></p>
+            <p><strong>Role:</strong> <span id="modalRole"></span></p>
+            <div class="modal-desc-block" id="modalDesc"></div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
         <img src="calligraphy.png" alt="Mukon Mochizuki Calligraphy" class="footer-calligraphy" />
         <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
         <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">Katsuhiro Miike</a></p>
       </footer>
-
     </main>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('eventModal');
+      const closeBtn = document.getElementById('modalClose');
+      const thumbs = document.querySelectorAll('.past-event-thumb[data-img]');
+      
+      const mImg = document.getElementById('modalImg');
+      const mTitle = document.getElementById('modalTitle');
+      const mDate = document.getElementById('modalDate');
+      const mVenue = document.getElementById('modalVenue');
+      const mRole = document.getElementById('modalRole');
+      const mDesc = document.getElementById('modalDesc');
+
+      thumbs.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          mImg.src = thumb.getAttribute('data-img');
+          mTitle.textContent = thumb.getAttribute('data-title');
+          mDate.textContent = thumb.getAttribute('data-date');
+          mVenue.textContent = thumb.getAttribute('data-venue');
+          mRole.textContent = thumb.getAttribute('data-role');
+          mDesc.textContent = thumb.getAttribute('data-desc');
+          
+          modal.classList.add('active');
+        });
+      });
+
+      const closeModal = () => modal.classList.remove('active');
+      
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if(e.target === modal) closeModal();
+      });
+      
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+      });
+    });
+  </script>
 
 </body>
 </html>
