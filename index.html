@@ -62,145 +62,6 @@
     .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
     .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
 
-    /* SUBMENU STYLING */
-    .submenu {
-      list-style: none;
-      padding-left: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 0.8rem;
-      border-left: 1px solid rgba(232, 224, 212, 0.1);
-    }
-    .submenu a {
-      font-size: 0.9rem;
-      text-transform: none;
-      letter-spacing: 0.05em;
-      color: rgba(232, 224, 212, 0.4);
-    }
-    .submenu a:hover { color: var(--orange-rope); }
-
-    #mobile-menu-toggle { display: none; }
-    .mobile-header { display: none; }
-
-    /* --- MAIN CONTENT AREA --- */
-    .main-content {
-      margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width));
-      display: block; position: relative;
-    }
-
-    /* --- HOMEPAGE HERO --- */
-    .hero {
-      position: relative; min-height: 100vh; min-height: 100dvh;
-      width: 100%; overflow: hidden;
-    }
-
-    .hero-photo { position: absolute; right: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: brightness(0.4) contrast(1.1); z-index: 1; }
-    .hero-calligraphy { position: absolute; left: 5%; bottom: 5%; height: 90%; opacity: 0.8; z-index: 2; }
-
-    /* --- PAGE SECTIONS --- */
-    .content-section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; display: block; }
-    .section-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 3rem; color: var(--orange-rope); border-bottom: 1px solid var(--muted); padding-bottom: 1rem; }
-
-    /* PROFILE OVERVIEW */
-    .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; margin-bottom: 4rem; }
-    .profile-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 1px solid rgba(232, 224, 212, 0.1); }
-    .bio-text p { font-size: 1.15rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.5rem; }
-
-    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-    .card-btn {
-      display: inline-block; padding: 0.5rem 1.2rem; background: transparent;
-      color: var(--off-white); border: 1px solid var(--orange-rope);
-      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
-      transition: all 0.3s; cursor: pointer; text-align: center;
-    }
-    .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
-    .card-btn.secondary { border-color: var(--muted); color: var(--muted); }
-    .card-btn.secondary:hover { background: var(--muted); color: var(--deep-black); }
-
-    /* --- UPCOMING EVENTS SECTION --- */
-    .featured-event-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: flex-start; margin-bottom: 4rem; }
-    .event-chirashi { 
-      width: 100%; 
-      height: auto; /* Allows the image to dictate its own A4 height */
-      display: block;
-      border: 1px solid rgba(232, 224, 212, 0.1); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
-    }
-    .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
-    .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
-    .event-info { font-size: 1.1rem; line-height: 1.6; color: var(--muted); }
-
-    /* --- INTEGRATED EDUCATIONAL & GALLERY SECTION --- */
-    .dark-integrated-section { background-color: var(--warm-dark); border-top: 1px solid rgba(232,224,212,0.05); max-width: 100%; padding: 6rem 5%; display: block; }
-    .integrated-wrapper { max-width: 1200px; margin: 0 auto; }
-
-    .edu-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 4rem; }
-    .edu-block.reverse { direction: rtl; }
-    .edu-block.reverse > * { direction: ltr; }
-    .edu-text p { font-size: 1.15rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.5rem; }
-    .edu-text em { color: var(--off-white); font-style: italic; }
-    .edu-list { list-style: none; padding-left: 1rem; }
-    .edu-list li { position: relative; font-size: 1.1rem; line-height: 1.7; color: var(--muted); margin-bottom: 1rem; padding-left: 1.5rem; }
-    .edu-list li::before { content: "•"; color: var(--orange-rope); position: absolute; left: 0; font-size: 1.2rem; }
-    .edu-list strong { color: var(--off-white); font-weight: 600; }
-    
-    .edu-images { display: grid; gap: 1rem; width: 100%; }
-    .edu-images.double { grid-template-columns: 1fr 1fr; }
-    .edu-img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; object-position: center 15%; border: 1px solid rgba(232, 224, 212, 0.1); display: block; }
-    
-    .naname-img { object-position: 75% 15%; }
-    .odaiko-img-container { overflow: hidden; width: 100%; height: 100%; min-height: 300px; border: 1px solid rgba(232, 224, 212, 0.1); }
-    .odaiko-zoom-fix { transform: scale(1.35); transform-origin: center 20%; border: none; }
-
-    .instrument-intro { font-size: 1.15rem; line-height: 1.8; color: var(--muted); margin-bottom: 3rem; text-align: center; }
-    .instrument-intro em { color: var(--off-white); font-style: italic; }
-    .instrument-grid { display: grid; gap: 2rem; margin-bottom: 2rem; }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 800px; margin-left: auto; margin-right: auto; }
-    .instrument-card { text-align: center; }
-    .instrument-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; object-position: center 2%; border: 1px solid rgba(232, 224, 212, 0.1); margin-bottom: 1rem; background-color: var(--warm-dark); display: block; }
-    .instrument-card span { display: block; color: var(--muted); font-size: 1.1rem; letter-spacing: 0.05em; }
-    .instrument-card span.jp { font-family: 'Noto Serif JP', serif; font-size: 0.9rem; margin-top: 0.2rem; color: rgba(232, 224, 212, 0.4); }
-
-/* --- SITE FOOTER --- */
-    .site-footer {
-      background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center;
-      border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8;
-      margin-top: auto;
-    }
-    .footer-calligraphy {
-      height: 80px; /* Keeps it tasteful and small */
-      width: auto;
-      margin: 0 auto 1.5rem auto;
-      display: block;
-      opacity: 0.6; /* Gives it a beautiful watermark effect */
-      transition: opacity 0.3s;
-    }
-    .footer-calligraphy:hover {
-      opacity: 0.9;
-    }
-    .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
-    .site-footer a:hover { color: var(--off-white); }
-    
-    /* --- MOBILE RESPONSIVENESS --- */
-    @media (max-width: 900px) {
-      .profile-grid, .featured-event-grid, .edu-block, .edu-block.reverse { grid-template-columns: 1fr; }
-      .profile-photo, .event-chirashi { max-width: 400px; margin: 0 auto; display: block; }
-      .edu-images.double { grid-template-columns: 1fr; }
-      .grid-3, .grid-2 { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
-    }
-
-    @media (max-width: 768px) {
-      .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
-      #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); }
-      .mobile-header { display: flex; justify-content: space-between; align-items: center; height: var(--header-height); background-color: var(--warm-dark); padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90; border-bottom: 1px solid rgba(232, 224, 212, 0.05); }
-      .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; }
-      .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); }
-      .hero { min-height: calc(100vh - var(--header-height)); }
-      .content-section { padding: 4rem 5%; }
-      .dark-integrated-section { padding: 4rem 5%; }
-    }
     /* --- SIDEBAR DROPDOWN STYLES --- */
     .dropdown-wrapper {
       display: flex;
@@ -219,20 +80,175 @@
       color: var(--orange-rope);
     }
     .dropdown-toggle.active {
-      transform: rotate(45deg); /* Turns the + into an x when open */
+      transform: rotate(45deg); 
       color: var(--orange-rope);
     }
     .submenu {
       list-style: none;
       padding-left: 1rem;
-      display: none; /* HIDDEN BY DEFAULT */
+      display: none;
       flex-direction: column;
       gap: 0.8rem;
       margin-top: 0.8rem;
       border-left: 1px solid rgba(232, 224, 212, 0.1);
     }
     .submenu.open {
-      display: flex; /* SHOW WHEN ACTIVE */
+      display: flex;
+    }
+    .submenu a {
+      font-size: 0.9rem;
+      text-transform: none;
+      letter-spacing: 0.05em;
+      color: rgba(232, 224, 212, 0.4);
+    }
+    .submenu a:hover { color: var(--orange-rope); }
+
+    #mobile-menu-toggle { display: none; }
+    .mobile-header { display: none; }
+
+    /* --- MAIN CONTENT AREA --- */
+    .main-content {
+      margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width));
+      display: flex; flex-direction: column; min-height: 100vh;
+      position: relative;
+    }
+
+    /* --- HOMEPAGE HERO --- */
+    .hero {
+      position: relative; min-height: 100vh; min-height: 100dvh;
+      width: 100%; overflow: hidden;
+    }
+
+    .hero-photo { position: absolute; right: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: brightness(0.4) contrast(1.1); z-index: 1; }
+    .hero-calligraphy { position: absolute; left: 5%; bottom: 5%; height: 90%; opacity: 0.8; z-index: 2; }
+
+    /* --- PAGE SECTIONS --- */
+    .content-section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; display: block; flex: 1; }
+    .section-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 3rem; color: var(--orange-rope); border-bottom: 1px solid var(--muted); padding-bottom: 1rem; }
+
+    /* --- PROFILE OVERVIEW & HOVER CARDS --- */
+    .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; margin-bottom: 4rem; }
+    .profile-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 1px solid rgba(232, 224, 212, 0.1); }
+    .bio-text p { font-size: 1.15rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.5rem; }
+
+    /* TOOLTIP CSS */
+    .tooltip-container {
+      position: relative;
+      display: inline-block;
+      cursor: help;
+      border-bottom: 1px dotted var(--muted);
+      transition: border-color 0.3s;
+    }
+    .tooltip-container:hover {
+      border-bottom-color: var(--orange-rope);
+    }
+    .tooltip-text {
+      visibility: hidden;
+      width: 280px;
+      background-color: var(--panel-bg);
+      color: var(--muted);
+      text-align: left;
+      padding: 1.2rem;
+      border-radius: 4px;
+      border: 1px solid rgba(232, 224, 212, 0.2);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+      position: absolute;
+      z-index: 10;
+      bottom: 130%; 
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s, bottom 0.3s;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      font-style: normal; /* Removes italics from main text */
+    }
+    .tooltip-text strong {
+      color: var(--off-white);
+      font-size: 1.05rem;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: rgba(232, 224, 212, 0.2) transparent transparent transparent;
+    }
+    .tooltip-container:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+      bottom: 140%;
+    }
+    .tooltip-link {
+      display: inline-block;
+      margin-top: 0.8rem;
+      color: var(--orange-rope);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    .tooltip-link:hover { color: var(--off-white); }
+
+    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .card-btn {
+      display: inline-block; padding: 0.5rem 1.2rem; background: transparent;
+      color: var(--off-white); border: 1px solid var(--orange-rope);
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      transition: all 0.3s; cursor: pointer; text-align: center;
+    }
+    .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
+    .card-btn.secondary { border-color: var(--muted); color: var(--muted); }
+    .card-btn.secondary:hover { background: var(--muted); color: var(--deep-black); }
+
+    /* --- UPCOMING EVENTS SECTION --- */
+    .featured-event-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: flex-start; margin-bottom: 4rem; }
+    .event-chirashi { 
+      width: 100%; 
+      height: auto; 
+      display: block;
+      border: 1px solid rgba(232, 224, 212, 0.1); 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
+    }
+    .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
+    .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
+    .event-info { font-size: 1.1rem; line-height: 1.6; color: var(--muted); }
+
+    /* --- SITE FOOTER --- */
+    .site-footer {
+      background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center;
+      border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8;
+      margin-top: auto;
+    }
+    .footer-calligraphy {
+      height: 80px; width: auto; margin: 0 auto 1.5rem auto; display: block;
+      opacity: 0.6; transition: opacity 0.3s;
+    }
+    .footer-calligraphy:hover { opacity: 0.9; }
+    .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
+    .site-footer a:hover { color: var(--off-white); }
+    
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (max-width: 900px) {
+      .profile-grid, .featured-event-grid { grid-template-columns: 1fr; }
+      .profile-photo, .event-chirashi { max-width: 400px; margin: 0 auto; display: block; }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
+      #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); }
+      .mobile-header { display: flex; justify-content: space-between; align-items: center; height: var(--header-height); background-color: var(--warm-dark); padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90; border-bottom: 1px solid rgba(232, 224, 212, 0.05); }
+      .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; }
+      .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); }
+      .hero { min-height: calc(100vh - var(--header-height)); }
+      .content-section { padding: 4rem 5%; }
+      .tooltip-text { width: 220px; } /* Slightly smaller for narrow mobile screens */
     }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HNMC244P5"></script>
@@ -240,7 +256,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-6HNMC244P5');
   </script>
 </head>
@@ -299,9 +314,26 @@
             <img class="profile-photo" src="profile-kuromontsuki.JPG" alt="Mukon Mochizuki in Kuro Montsuki" />
           </div>
           <div class="bio-text">
-            <p><strong>Mukon Mochizuki・J.D. Andrade</strong></p>
-            <p>Tokyo-based performer and educator J.D. Andrade began his musical journey in classical violin before discovering taiko at Brown University. After studying under Kenny Endo in Honolulu, he moved to Japan in 2014 and immersed himself in the traditional performing arts, studying matsuri-bayashi under Kyosuke Suzuki and kabuki-bayashi under Saburo Mochizuki.</p>
-            <p>In 2019, he was awarded the stage name <strong>Mukon Mochizuki (望月武懇)</strong> — a <em>natori</em> in kabuki-bayashi. He has since performed at venues such as the National Theatre of Japan and Suntory Hall, and is dedicated to bringing traditional Japanese performing arts to audiences in Japan and around the world.</p>
+            
+            <p>Mukon Mochizuki (望月武懇) is the stage name of J.D. Andrade, a Tokyo-based performer and educator specializing in both 
+              <span class="tooltip-container"><em>taiko</em>
+                <span class="tooltip-text">
+                  <strong>Taiko:</strong>
+                  Taiko (和太鼓) refers to Japanese drumming — an art form encompassing a wide variety of drums, percussion, and movement.
+                  <a href="taiko-ohayashi.html" class="tooltip-link">Learn more &rarr;</a>
+                </span>
+              </span> 
+              and 
+              <span class="tooltip-container"><em>hōgaku bayashi</em>
+                <span class="tooltip-text">
+                  <strong>Ohayashi:</strong>
+                  Ohayashi (お囃子) is the ensemble of drums, percussion, and flutes that accompanies Japanese classical and festival performing arts, including kabuki, noh, nihon buyō, and nagauta.
+                  <a href="taiko-ohayashi.html" class="tooltip-link">Learn more &rarr;</a>
+                </span>
+              </span>. 
+              Awarded his <em>natori</em> in 2019, he has studied classical Japanese drumming under Saburo Mochizuki and Tokyo festival music under Kyosuke Suzuki, and has performed at venues including the National Theatre of Japan and Suntory Hall.</p>
+
+            <p>Originally from Illinois and a graduate of Brown University, J.D. has called Tokyo home since 2014. Through performances, workshops, and collaborations in Japan and abroad, he is dedicated to making the Japanese traditional performing arts accessible to new and international audiences.</p>
             
             <div class="button-group">
               <a href="profile.html" class="card-btn">Read Full Bio</a>
@@ -327,58 +359,7 @@
         </div>
       </section>
 
-      <section class="dark-integrated-section">
-        <div class="integrated-wrapper">
-          <h2 class="section-title">What are <em>taiko</em> and <em>ohayashi</em>?</h2>
-
-          <div class="edu-block">
-            <div class="edu-text">
-              <p><em>Wadaiko</em>, commonly known around the world simply as <em>taiko</em>, refers to Japanese drumming, an art form consisting of drums, percussion, and movement. When most people think of <em>wadaiko</em>, they envision three main types of drums, <em>nagadō daiko</em>, <em>okedō daiko</em>, and <em>shime daiko</em>, each of which comes in a variety of sizes.</p>
-            </div>
-            <div class="edu-images double">
-              <div class="odaiko-img-container">
-                <img src="Wadaiko-odaiko.JPG" alt="Odaiko Performance" class="edu-img odaiko-zoom-fix" />
-              </div>
-              <img src="Wadaiko-nanameindra.JPG" alt="Naname Style Drumming" class="edu-img naname-img" />
-            </div>
-          </div>
-
-          <div class="edu-block reverse" style="margin-bottom: 2rem;">
-            <div class="edu-text">
-              <p><em>Ohayashi</em> generally refers to musical accompaniment in Japanese performing arts associated with festival traditions, <em>matsuri bayashi</em>, and classical or traditional arts, <em>hōgaku bayashi</em>. These instruments, mainly specialized drums, percussion, and various flutes, support the main performers of different genres including, but not limited to, the following:</p>
-              <ul class="edu-list">
-                <li><strong>Noh Theatre:</strong> actors wearing intricate masks perform <em>mai</em> in very reserved, precise movements.</li>
-                <li><strong>Nagauta:</strong> shamisen players and singers tell stories rooted in Japanese mythology and history.</li>
-                <li><strong>Nihon Buyo:</strong> dancers dressed in simple kimonos or elaborate costumes perform against a backdrop of melodic instruments and <em>ohayashi</em>.</li>
-                <li><strong>Kabuki Theatre:</strong> a “new” art form that fuses music, acting, and dance from all of the above genres.</li>
-              </ul>
-            </div>
-            <div class="edu-images">
-              <img src="Fukei-Matsuribayashi.jpg" alt="Matsuri Bayashi Festival Music" class="edu-img" />
-            </div>
-          </div>
-
-          <p class="instrument-intro">There are a plethora of instruments that are a part of <em>hōgaku bayashi</em> including the following:</p>
-
-          <div class="instrument-grid grid-3">
-            <div class="instrument-card"><img src="instrument-kotsuzumi.jpg" alt="Kotsuzumi" /><span>kotsuzumi</span><span class="jp">小鼓</span></div>
-            <div class="instrument-card"><img src="instrument-otsuzumi.jpg" alt="Ōtsuzumi" /><span>ōtsuzumi</span><span class="jp">大鼓</span></div>
-            <div class="instrument-card"><img src="instrument-taiko.jpg" alt="Taiko" /><span>taiko</span><span class="jp">太鼓</span></div>
-          </div>
-
-          <div class="instrument-grid grid-2">
-            <div class="instrument-card"><img src="instrument-nohkan.jpg" alt="Noh-kan" /><span>noh-kan</span><span class="jp">能管</span></div>
-            <div class="instrument-card"><img src="instrument-takebue.jpg" alt="Shinobue" /><span>shinobue</span><span class="jp">篠笛</span></div>
-          </div>
-
-          <div class="instrument-grid grid-2">
-            <div class="instrument-card"><img src="Kagebayashi-odaiko.jpg" alt="Ōdaiko" /><span>ōdaiko</span><span class="jp">大太鼓</span></div>
-            <div class="instrument-card"><img src="Kagebayashi-gong.JPG" alt="Gong" /><span>gong</span><span class="jp">ドラ</span></div>
-          </div>
-        </div>
-      </section>
-
-<footer class="site-footer">
+      <footer class="site-footer">
         <img src="calligraphy.png" alt="Mukon Mochizuki Calligraphy" class="footer-calligraphy" />
         <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
         <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">Katsuhiro Miike</a></p>
