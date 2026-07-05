@@ -208,13 +208,25 @@
         max-width: 320px;
       }
       .tooltip-text::after {
-        display: none; /* Hides the little arrow pointer */
+        display: none; 
       }
       .tooltip-container:hover .tooltip-text {
         bottom: auto; 
       }
     }
-    
+
+    /* --- RE-ADDED BUTTON CSS --- */
+    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .card-btn {
+      display: inline-block; padding: 0.5rem 1.2rem; background: transparent;
+      color: var(--off-white); border: 1px solid var(--orange-rope);
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      transition: all 0.3s; cursor: pointer; text-align: center;
+    }
+    .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
+    .card-btn.secondary { border-color: var(--muted); color: var(--muted); }
+    .card-btn.secondary:hover { background: var(--muted); color: var(--deep-black); }
+
     /* --- UPCOMING EVENTS SECTION --- */
     .featured-event-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: flex-start; margin-bottom: 4rem; }
     .event-chirashi { 
@@ -256,7 +268,6 @@
       .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); }
       .hero { min-height: calc(100vh - var(--header-height)); }
       .content-section { padding: 4rem 5%; }
-      .tooltip-text { width: 250px; } /* 👈 FIX 3: Prevents edge-clipping on phones */
     }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HNMC244P5"></script>
