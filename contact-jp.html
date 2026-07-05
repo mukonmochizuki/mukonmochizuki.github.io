@@ -96,6 +96,22 @@
     .submenu.open {
       display: flex; /* SHOW WHEN ACTIVE */
     }
+    /* --- CONTACT PAGE IG LINK --- */
+    .social-contact {
+      margin-bottom: 2rem;
+    }
+    .ig-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--orange-rope); /* Or var(--gold) depending on your setup! */
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.3s ease;
+    }
+    .ig-link:hover {
+      opacity: 0.7;
+    }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HNMC244P5"></script>
 <script>
@@ -148,18 +164,24 @@
         <h1 class="page-title">お問い合わせ</h1>
 
         <div class="contact-grid">
+          
           <div class="contact-info">
+            
             <div class="info-block">
-              <p>出演のご依頼、個人稽古のご相談、またはプロジェクトでのコラボレーションのご提案など、お気軽にお問い合わせください。下記のフォームよりお問い合わせ項目を選択いただくか、直接メールにてご連絡ください。</p>
+              <p>出演のご依頼、個人稽古のご相談、またはプロジェクトでのコラボレーションのご提案など、お気軽にお問い合わせください。下記のフォームよりお問い合わせ項目を選択の上、ご送信ください。</p>
             </div>
-            <div class="contact-method">
-              <h3>Email</h3>
-              <a href="mailto:mukon.mochizuki@gmail.com">mukon.mochizuki@gmail.com</a>
+
+            <div class="social-contact">
+              <a href="https://instagram.com/jd_mukon" target="_blank" rel="noopener" class="ig-link">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span>Instagramで @jd_mukon をフォロー</span>
+              </a>
             </div>
-            <div class="contact-method">
-              <h3>Instagram</h3>
-              <a href="https://instagram.com/jd_mukon" target="_blank" rel="noopener">@jd_mukon</a>
-            </div>
+
           </div>
 
           <form action="YOUR_FORMSPREE_LINK_HERE" method="POST" class="contact-form">
