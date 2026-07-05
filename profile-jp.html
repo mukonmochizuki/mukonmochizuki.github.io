@@ -132,6 +132,39 @@
       .profile-section { padding: 4rem 5%; }
       .hover-card { width: 260px; }
     }
+    /* --- SIDEBAR DROPDOWN STYLES --- */
+    .dropdown-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dropdown-toggle {
+      color: var(--muted);
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 0.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .dropdown-toggle:hover {
+      color: var(--orange-rope);
+    }
+    .dropdown-toggle.active {
+      transform: rotate(45deg); /* Turns the + into an x when open */
+      color: var(--orange-rope);
+    }
+    .submenu {
+      list-style: none;
+      padding-left: 1rem;
+      display: none; /* HIDDEN BY DEFAULT */
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+      border-left: 1px solid rgba(232, 224, 212, 0.1);
+    }
+    .submenu.open {
+      display: flex; /* SHOW WHEN ACTIVE */
+    }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HNMC244P5"></script>
   <script>
