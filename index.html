@@ -201,6 +201,39 @@
       .content-section { padding: 4rem 5%; }
       .dark-integrated-section { padding: 4rem 5%; }
     }
+    /* --- SIDEBAR DROPDOWN STYLES --- */
+    .dropdown-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dropdown-toggle {
+      color: var(--muted);
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 0.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .dropdown-toggle:hover {
+      color: var(--orange-rope);
+    }
+    .dropdown-toggle.active {
+      transform: rotate(45deg); /* Turns the + into an x when open */
+      color: var(--orange-rope);
+    }
+    .submenu {
+      list-style: none;
+      padding-left: 1rem;
+      display: none; /* HIDDEN BY DEFAULT */
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+      border-left: 1px solid rgba(232, 224, 212, 0.1);
+    }
+    .submenu.open {
+      display: flex; /* SHOW WHEN ACTIVE */
+    }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HNMC244P5"></script>
   <script>
@@ -234,8 +267,11 @@
         <li><a href="profile.html">Profile</a></li>
         <li><a href="events.html">Events</a></li>
         <li>
-          <a href="projects.html">Projects</a>
-          <ul class="submenu">
+          <div class="dropdown-wrapper">
+            <a href="projects.html">Projects</a>
+            <span class="dropdown-toggle" id="projectsToggle">+</span>
+          </div>
+          <ul class="submenu" id="projectsSubmenu">
             <li><a href="projects.html#hogaku-horizons">Hōgaku Horizons</a></li>
             <li><a href="projects.html#tsuzumiboshi">Tsuzumiboshi</a></li>
             <li><a href="projects.html#airbnb">Airbnb Experience</a></li>
@@ -350,5 +386,18 @@
 
     </main>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleBtn = document.getElementById('projectsToggle');
+      const submenu = document.getElementById('projectsSubmenu');
+
+      if (toggleBtn && submenu) {
+        toggleBtn.addEventListener('click', () => {
+          submenu.classList.toggle('open');
+          toggleBtn.classList.toggle('active');
+        });
+      }
+    });
+  </script>
 </body>
 </html>
