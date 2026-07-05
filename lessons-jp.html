@@ -196,7 +196,7 @@
         </article>
 
         <div class="cv-accordion">
-          <details>
+          <details id="workshop-history">
             <summary>ワークショップ指導歴</summary>
             <div class="cv-content">
               <div class="cv-item">
@@ -290,6 +290,16 @@
           submenu.classList.toggle('open');
           toggleBtn.classList.toggle('active');
         });
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        const targetElement = document.querySelector(window.location.hash);
+        if (targetElement && targetElement.tagName === 'DETAILS') {
+          targetElement.open = true;
+        }
       }
     });
   </script>
