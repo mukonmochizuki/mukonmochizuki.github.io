@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>和太鼓とお囃子とは？ | 望月武懇 Mukon Mochizuki</title>
+  
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+  <link rel="apple-touch-icon" href="favicon.jpg" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* --- GLOBAL VARIABLES & RESET --- */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --deep-black: #0a0806;
+      --warm-dark: #110e0a;
+      --panel-bg: #1a1510;
+      --orange-rope: #c85a0a;
+      --off-white: #e8e0d4;
+      --muted: rgba(232, 224, 212, 0.6);
+      --sidebar-width: 280px;
+      --header-height: 70px;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+
+    body {
+      background-color: var(--deep-black);
+      font-family: 'Noto Serif JP', 'Cormorant Garamond', serif;
+      color: var(--off-white);
+      margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* --- LAYOUT ARCHITECTURE --- */
+    .layout-wrapper { width: 100%; position: relative; display: block; overflow-x: hidden; }
+
+    /* --- DESKTOP SIDEBAR --- */
+    .sidebar {
+      width: var(--sidebar-width); background-color: var(--warm-dark);
+      position: fixed; top: 0; left: 0; height: 100%;
+      padding: 3rem 2rem; display: flex; flex-direction: column;
+      border-right: 1px solid rgba(232, 224, 212, 0.05); z-index: 100;
+      overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+
+    .lang-toggle { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 3rem; cursor: pointer; }
+    .lang-toggle a { color: var(--muted); transition: color 0.3s; }
+    .lang-toggle a:hover { color: var(--orange-rope); }
+    .lang-toggle span.active { color: var(--orange-rope); font-weight: 600; }
+
+    .brand-jp { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 1.2rem; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 0.2rem; }
+    .brand-en { font-size: 2rem; font-weight: 400; line-height: 1.1; margin-bottom: 3rem; font-family: 'Cormorant Garamond', serif; }
+
+    .nav-links { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; flex-grow: 1; }
+    .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
+
+    /* SUBMENU STYLING */
+    .dropdown-wrapper { display: flex; align-items: center; justify-content: space-between; }
+    .dropdown-toggle { color: var(--muted); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0 0.5rem; transition: color 0.3s ease, transform 0.3s ease; }
+    .dropdown-toggle:hover { color: var(--orange-rope); }
+    .dropdown-toggle.active { transform: rotate(45deg); color: var(--orange-rope); }
+    
+    .submenu { list-style: none; padding-left: 1rem; display: none; flex-direction: column; gap: 0.8rem; margin-top: 0.8rem; border-left: 1px solid rgba(232, 224, 212, 0.1); }
+    .submenu.open { display: flex; }
+    .submenu a { font-size: 0.9rem; text-transform: none; letter-spacing: 0.05em; color: rgba(232, 224, 212, 0.4); }
+    .submenu a:hover { color: var(--orange-rope); }
+
+    #mobile-menu-toggle { display: none; }
+    .mobile-header { display: none; }
+
+    /* --- MAIN CONTENT AREA --- */
+    .main-content {
+      margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; flex-direction: column; min-height: 100vh; position: relative;
+    }
+
+    /* --- PAGE SECTIONS --- */
+    .page-container { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; flex: 1; }
+    .page-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 4rem; color: var(--orange-rope); border-bottom: 1px solid var(--muted); padding-bottom: 1rem; }
+
+    /* --- INTEGRATED EDUCATIONAL SECTION --- */
+    .edu-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 5rem; }
+    .edu-block.reverse { direction: rtl; }
+    .edu-block.reverse > * { direction: ltr; }
+    .edu-text p { font-size: 1.1rem; line-height: 1.9; color: var(--muted); margin-bottom: 1.5rem; letter-spacing: 0.05em; }
+    .edu-text em { color: var(--off-white); font-style: normal; font-weight: 600; }
+    .edu-list { list-style: none; padding-left: 1rem; }
+    .edu-list li { position: relative; font-size: 1.1rem; line-height: 1.8; color: var(--muted); margin-bottom: 1rem; padding-left: 1.5rem; }
+    .edu-list li::before { content: "•"; color: var(--orange-rope); position: absolute; left: 0; font-size: 1.2rem; }
+    .edu-list strong { color: var(--off-white); font-weight: 600; }
+    
+    .edu-images { display: grid; gap: 1rem; width: 100%; }
+    .edu-images.double { grid-template-columns: 1fr 1fr; }
+    .edu-img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; object-position: center 15%; border: 1px solid rgba(232, 224, 212, 0.1); display: block; }
+    
+    .naname-img { object-position: 75% 15%; }
+    .odaiko-img-container { overflow: hidden; width: 100%; height: 100%; min-height: 300px; border: 1px solid rgba(232, 224, 212, 0.1); }
+    .odaiko-zoom-fix { transform: scale(1.35); transform-origin: center 20%; border: none; }
+
+    .instrument-intro { font-size: 1.1rem; line-height: 1.8; color: var(--muted); margin-bottom: 3rem; text-align: center; }
+    .instrument-intro em { color: var(--off-white); font-style: normal; font-weight: 600; }
+    .instrument-grid { display: grid; gap: 2rem; margin-bottom: 2rem; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 800px; margin-left: auto; margin-right: auto; }
+    .instrument-card { text-align: center; }
+    .instrument-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; object-position: center 2%; border: 1px solid rgba(232, 224, 212, 0.1); margin-bottom: 1rem; background-color: var(--warm-dark); display: block; }
+    .instrument-card span { display: block; color: var(--muted); font-size: 1.1rem; letter-spacing: 0.05em; }
+    .instrument-card span.jp { font-family: 'Noto Serif JP', serif; font-size: 0.9rem; margin-top: 0.2rem; color: rgba(232, 224, 212, 0.4); }
+
+    /* --- SITE FOOTER --- */
+    .site-footer {
+      background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center;
+      border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8;
+      margin-top: auto; width: 100%;
+    }
+    .footer-calligraphy { height: 80px; width: auto; margin: 0 auto 1.5rem auto; display: block; opacity: 0.6; transition: opacity 0.3s; }
+    .footer-calligraphy:hover { opacity: 0.9; }
+    .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
+    .site-footer a:hover { color: var(--off-white); }
+
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (max-width: 900px) {
+      .edu-block, .edu-block.reverse { grid-template-columns: 1fr; }
+      .edu-images.double { grid-template-columns: 1fr; }
+      .grid-3, .grid-2 { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
+      #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); }
+      .mobile-header { display: flex; justify-content: space-between; align-items: center; height: var(--header-height); background-color: var(--warm-dark); padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90; border-bottom: 1px solid rgba(232, 224, 212, 0.05); }
+      .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; }
+      .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); }
+      .page-container { padding: 4rem 5%; }
+    }
+  </style>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HNMC244P5"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6HNMC244P5');
+  </script>
+</head>
+<body>
+
+  <input type="checkbox" id="mobile-menu-toggle">
+  <div class="mobile-header">
+    <div class="brand-jp" style="margin: 0;">望月武懇</div>
+    <label for="mobile-menu-toggle" class="hamburger-icon">☰</label>
+  </div>
+
+  <div class="layout-wrapper">
+    
+    <nav class="sidebar">
+      <div class="lang-toggle">
+        <a href="index.html">EN</a> / <span class="active">JP</span>
+      </div>
+      <div class="brand">
+        <h2 class="brand-jp">望月武懇</h2>
+        <h1 class="brand-en">Mukon Mochizuki</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index-jp.html">ホーム</a></li>
+        <li><a href="profile-jp.html">プロフィール</a></li>
+        <li><a href="events-jp.html">公演情報</a></li>
+        <li>
+          <div class="dropdown-wrapper">
+            <a href="projects-jp.html">活動実績</a>
+            <span class="dropdown-toggle" id="projectsToggle">+</span>
+          </div>
+          <ul class="submenu" id="projectsSubmenu">
+            <li><a href="projects-jp.html#hogaku-horizons">Hōgaku Horizons</a></li>
+            <li><a href="projects-jp.html#tsuzumiboshi">つゞみ星</a></li>
+            <li><a href="projects-jp.html#airbnb">Airbnb 体験</a></li>
+            <li><a href="projects-jp.html#kon-chan">歌舞伎♪こんちゃん</a></li>
+            <li><a href="projects-jp.html#research">幸宗能 研究</a></li>
+          </ul>
+        </li>
+        <li><a href="lessons-jp.html">稽古・ワークショップ</a></li>
+        <li><a href="media-jp.html">メディア</a></li>
+        <li><a href="contact-jp.html">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      
+      <div class="page-container">
+        <h1 class="page-title">和太鼓とお囃子とは？</h1>
+
+        <div class="edu-block">
+          <div class="edu-text">
+            <p>世界中で単に「太鼓」としても親しまれている<em>和太鼓</em>は、日本の伝統的な打楽器演奏であり、太鼓の響き、打楽器のアンサンブル、そしてダイナミックな身体の動きから成る芸術です。一般的に和太鼓と聞いて思い浮かべるのは、長胴太鼓、桶胴太鼓、締太鼓の3種類で、それぞれ様々な大きさのものがあります。</p>
+          </div>
+          <div class="edu-images double">
+            <div class="odaiko-img-container">
+              <img src="Wadaiko-odaiko.JPG" alt="大太鼓 演奏" class="edu-img odaiko-zoom-fix" />
+            </div>
+            <img src="Wadaiko-nanameindra.JPG" alt="斜め打ち スタイル" class="edu-img naname-img" />
+          </div>
+        </div>
+
+        <div class="edu-block reverse" style="margin-bottom: 2rem;">
+          <div class="edu-text">
+            <p><em>お囃子</em>は一般的に、祭礼に付随する「祭囃子」や、古典・伝統芸能に付随する「邦楽囃子」など、日本の芸能における音楽伴奏を指します。主に専門的な打楽器、そして様々な笛が用いられ、以下をはじめとする様々なジャンルの演者を支えています。</p>
+            <ul class="edu-list">
+              <li><strong>能楽：</strong> 精緻な面（おもて）をつけた演者が、極めて静謐で緻密な動きの「舞」を披露します。</li>
+              <li><strong>長唄：</strong> 三味線方と唄方が、日本神話や歴史に根ざした物語を紡ぎます。</li>
+              <li><strong>日本舞踊：</strong> 着物や華やかな衣装をまとった踊り子が、旋律楽器やお囃子の背景に乗せて舞い踊ります。</li>
+              <li><strong>歌舞伎：</strong> 上記のすべてのジャンルの音楽、演技、踊りを融合させた、独自の演劇芸術です。</li>
+            </ul>
+          </div>
+          <div class="edu-images">
+            <img src="Fukei-Matsuribayashi.jpg" alt="祭り囃子 祭礼音楽" class="edu-img" />
+          </div>
+        </div>
+
+        <p class="instrument-intro" style="margin-top: 4rem;">邦楽囃子（歌舞伎音楽など）には、以下をはじめとする実に多彩な楽器が使われています。</p>
+
+        <div class="instrument-grid grid-3">
+          <div class="instrument-card"><img src="instrument-kotsuzumi.jpg" alt="小鼓" /><span>kotsuzumi</span><span class="jp">小鼓</span></div>
+          <div class="instrument-card"><img src="instrument-otsuzumi.jpg" alt="大鼓" /><span>ōtsuzumi</span><span class="jp">大鼓</span></div>
+          <div class="instrument-card"><img src="instrument-taiko.jpg" alt="太鼓" /><span>taiko</span><span class="jp">太鼓</span></div>
+        </div>
+
+        <div class="instrument-grid grid-2">
+          <div class="instrument-card"><img src="instrument-nohkan.jpg" alt="能管" /><span>noh-kan</span><span class="jp">能管</span></div>
+          <div class="instrument-card"><img src="instrument-takebue.jpg" alt="篠笛" /><span>shinobue</span><span class="jp">篠笛</span></div>
+        </div>
+
+        <div class="instrument-grid grid-2">
+          <div class="instrument-card"><img src="Kagebayashi-odaiko.jpg" alt="大太鼓" /><span>ōdaiko</span><span class="jp">大太鼓</span></div>
+          <div class="instrument-card"><img src="Kagebayashi-gong.JPG" alt="ドラ" /><span>gong</span><span class="jp">ドラ</span></div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <img src="calligraphy.png" alt="望月武懇 書" class="footer-calligraphy" />
+        <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
+        <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">三池克祐</a></p>
+      </footer>
+
+    </main>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleBtn = document.getElementById('projectsToggle');
+      const submenu = document.getElementById('projectsSubmenu');
+
+      if (toggleBtn && submenu) {
+        toggleBtn.addEventListener('click', () => {
+          submenu.classList.toggle('open');
+          toggleBtn.classList.toggle('active');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
