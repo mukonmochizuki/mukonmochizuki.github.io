@@ -207,6 +207,25 @@
     .card-btn.secondary { border-color: var(--muted); color: var(--muted); }
     .card-btn.secondary:hover { background: var(--muted); color: var(--deep-black); }
 
+    /* TOOLTIP HELPER CLASSES FOR SCREEN EDGES */
+    .tooltip-container.shift-right .tooltip-text {
+      left: 0;
+      transform: translateX(-15px);
+    }
+    .tooltip-container.shift-right .tooltip-text::after {
+      left: 25px; /* Shifts the little arrow pointer to match the word */
+    }
+    
+    .tooltip-container.shift-left .tooltip-text {
+      left: auto;
+      right: 0;
+      transform: translateX(15px);
+    }
+    .tooltip-container.shift-left .tooltip-text::after {
+      left: auto;
+      right: 25px; /* Shifts the little arrow pointer to match the word */
+    }
+    
     /* --- UPCOMING EVENTS SECTION --- */
     .featured-event-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: flex-start; margin-bottom: 4rem; }
     .event-chirashi { 
@@ -316,7 +335,7 @@
           <div class="bio-text">
             
             <p>Mukon Mochizuki (望月武懇) is the stage name of J.D. Andrade, a Tokyo-based performer and educator specializing in both 
-              <span class="tooltip-container"><em>taiko</em>
+              <span class="tooltip-container shift-right"><em>taiko</em>
                 <span class="tooltip-text">
                   <strong>Taiko:</strong>
                   Taiko (和太鼓) refers to Japanese drumming — an art form encompassing a wide variety of drums, percussion, and movement.
