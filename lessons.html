@@ -427,5 +427,17 @@
       }
     });
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check if the user arrived via a link with a # tag
+      if (window.location.hash) {
+        const targetElement = document.querySelector(window.location.hash);
+        // If the target is a <details> accordion, force it open!
+        if (targetElement && targetElement.tagName === 'DETAILS') {
+          targetElement.open = true;
+        }
+      }
+    });
+  </script>
 </body>
 </html>
