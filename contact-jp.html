@@ -19,6 +19,7 @@
     body { background-color: var(--deep-black); font-family: 'Noto Serif JP', 'Cormorant Garamond', serif; color: var(--off-white); margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
     a { text-decoration: none; color: inherit; }
     .layout-wrapper { width: 100%; position: relative; display: block; overflow-x: hidden; }
+    
     .sidebar { width: var(--sidebar-width); background-color: var(--warm-dark); position: fixed; top: 0; left: 0; height: 100%; padding: 3rem 2rem; display: flex; flex-direction: column; border-right: 1px solid rgba(232, 224, 212, 0.05); z-index: 100; overflow-y: auto; -webkit-overflow-scrolling: touch; }
     .lang-toggle { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 3rem; cursor: pointer; }
     .lang-toggle a { color: var(--muted); transition: color 0.3s; }
@@ -26,14 +27,18 @@
     .lang-toggle span.active { color: var(--orange-rope); font-weight: 600; }
     .brand-jp { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 1.2rem; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 0.2rem; }
     .brand-en { font-size: 2rem; font-weight: 400; line-height: 1.1; margin-bottom: 3rem; font-family: 'Cormorant Garamond', serif; }
+    
     .nav-links { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; flex-grow: 1; }
     .nav-links a { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s ease; text-transform: uppercase; }
     .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
+    
     .submenu { list-style: none; padding-left: 1rem; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.8rem; border-left: 1px solid rgba(232, 224, 212, 0.1); }
     .submenu a { font-size: 0.9rem; text-transform: none; letter-spacing: 0.05em; color: rgba(232, 224, 212, 0.4); }
     .submenu a:hover { color: var(--orange-rope); }
+    
     #mobile-menu-toggle { display: none; }
     .mobile-header { display: none; }
+    
     .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: block; position: relative; min-height: 100vh; display: flex; flex-direction: column; }
     .page-container { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1; }
     .page-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 5rem; color: var(--off-white); }
@@ -49,10 +54,13 @@
     .contact-form { display: flex; flex-direction: column; gap: 2rem; background-color: var(--panel-bg); padding: 3rem; border: 1px solid rgba(232, 224, 212, 0.05); }
     .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
     .form-group label { font-size: 0.9rem; letter-spacing: 0.05em; color: var(--off-white); }
-    .form-control { background-color: var(--deep-black); border: 1px solid rgba(232, 224, 212, 0.1); color: var(--off-white); padding: 1rem; font-family: 'Noto Serif JP', serif; font-size: 1rem; outline: none; transition: border-color 0.3s; }
+    
+    /* ADDED width: 100%; TO FIX MOBILE OVERFLOW */
+    .form-control { width: 100%; background-color: var(--deep-black); border: 1px solid rgba(232, 224, 212, 0.1); color: var(--off-white); padding: 1rem; font-family: 'Noto Serif JP', serif; font-size: 1rem; outline: none; transition: border-color 0.3s; }
     .form-control:focus { border-color: var(--orange-rope); }
     select.form-control { appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c85a0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; cursor: pointer; }
     textarea.form-control { resize: vertical; min-height: 150px; }
+    
     .submit-btn { align-self: flex-start; padding: 0.8rem 2rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope); font-size: 0.9rem; letter-spacing: 0.1em; transition: all 0.3s; cursor: pointer; }
     .submit-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
     
@@ -61,66 +69,31 @@
     .footer-calligraphy:hover { opacity: 0.9; }
     .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
     .site-footer a:hover { color: var(--off-white); }
+    
     @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } .contact-form { padding: 2rem 1.5rem; } }
     @media (max-width: 768px) { .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; } #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); } .mobile-header { display: flex; justify-content: space-between; align-items: center; height: var(--header-height); background-color: var(--warm-dark); padding: 0 1.5rem; position: fixed; width: 100%; top: 0; z-index: 90; border-bottom: 1px solid rgba(232, 224, 212, 0.05); } .hamburger-icon { color: var(--off-white); font-size: 1.5rem; cursor: pointer; } .main-content { margin-left: 0; width: 100%; padding-top: var(--header-height); } .page-container { padding: 4rem 5%; } .page-title { font-size: 2rem; margin-bottom: 3rem; } }
+    
     /* --- SIDEBAR DROPDOWN STYLES --- */
-    .dropdown-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .dropdown-toggle {
-      color: var(--muted);
-      font-size: 1.5rem;
-      line-height: 1;
-      cursor: pointer;
-      padding: 0 0.5rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .dropdown-toggle:hover {
-      color: var(--orange-rope);
-    }
-    .dropdown-toggle.active {
-      transform: rotate(45deg); /* Turns the + into an x when open */
-      color: var(--orange-rope);
-    }
-    .submenu {
-      list-style: none;
-      padding-left: 1rem;
-      display: none; /* HIDDEN BY DEFAULT */
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 0.8rem;
-      border-left: 1px solid rgba(232, 224, 212, 0.1);
-    }
-    .submenu.open {
-      display: flex; /* SHOW WHEN ACTIVE */
-    }
+    .dropdown-wrapper { display: flex; align-items: center; justify-content: space-between; }
+    .dropdown-toggle { color: var(--muted); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0 0.5rem; transition: color 0.3s ease, transform 0.3s ease; }
+    .dropdown-toggle:hover { color: var(--orange-rope); }
+    .dropdown-toggle.active { transform: rotate(45deg); color: var(--orange-rope); }
+    .submenu { list-style: none; padding-left: 1rem; display: none; flex-direction: column; gap: 0.8rem; margin-top: 0.8rem; border-left: 1px solid rgba(232, 224, 212, 0.1); }
+    .submenu.open { display: flex; }
+    
     /* --- CONTACT PAGE IG LINK --- */
-    .social-contact {
-      margin-bottom: 2rem;
-    }
-    .ig-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      color: var(--orange-rope); /* Or var(--gold) depending on your setup! */
-      text-decoration: none;
-      font-weight: 600;
-      transition: opacity 0.3s ease;
-    }
-    .ig-link:hover {
-      opacity: 0.7;
-    }
+    .social-contact { margin-bottom: 2rem; }
+    .ig-link { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--orange-rope); text-decoration: none; font-weight: 600; transition: opacity 0.3s ease; }
+    .ig-link:hover { opacity: 0.7; }
   </style>
+  
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HNMC244P5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6HNMC244P5');
-</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6HNMC244P5');
+  </script>
 </head>
 <body>
   <input type="checkbox" id="mobile-menu-toggle">
@@ -128,6 +101,7 @@
     <div class="brand-jp" style="margin: 0;">望月武懇</div>
     <label for="mobile-menu-toggle" class="hamburger-icon">☰</label>
   </div>
+  
   <div class="layout-wrapper">
     <nav class="sidebar">
       <div class="lang-toggle">
@@ -159,6 +133,7 @@
         <li><a href="contact-jp.html" class="active">お問い合わせ</a></li>
       </ul>
     </nav>
+    
     <main class="main-content">
       <div class="page-container">
         <h1 class="page-title">お問い合わせ</h1>
@@ -212,6 +187,7 @@
           </form>
         </div>
       </div>
+      
       <footer class="site-footer">
         <img src="calligraphy.png" alt="望月武懇 書" class="footer-calligraphy" />
         <p>© 2026 Mukon Mochizuki. All Rights Reserved.</p>
@@ -219,6 +195,7 @@
       </footer>
     </main>
   </div>
+  
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const toggleBtn = document.getElementById('projectsToggle');
