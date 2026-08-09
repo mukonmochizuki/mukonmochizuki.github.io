@@ -81,7 +81,7 @@
     .event-section { margin-bottom: 6rem; }
     .section-label { font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid rgba(232, 224, 212, 0.1); padding-bottom: 1rem; margin-bottom: 3rem; }
     
-    /* UPCOMING EVENT STYLES */
+    /* UPCOMING EVENT STYLES (Kept for future use) */
     .event-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: flex-start; margin-bottom: 5rem; }
     .event-chirashi { width: 100%; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
     .event-details { display: flex; flex-direction: column; gap: 1rem; }
@@ -190,38 +190,12 @@
       .modal-info h3 { font-size: 1.5rem; }
     }
     /* --- SIDEBAR DROPDOWN STYLES --- */
-    .dropdown-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .dropdown-toggle {
-      color: var(--muted);
-      font-size: 1.5rem;
-      line-height: 1;
-      cursor: pointer;
-      padding: 0 0.5rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .dropdown-toggle:hover {
-      color: var(--orange-rope);
-    }
-    .dropdown-toggle.active {
-      transform: rotate(45deg); /* Turns the + into an x when open */
-      color: var(--orange-rope);
-    }
-    .submenu {
-      list-style: none;
-      padding-left: 1rem;
-      display: none; /* HIDDEN BY DEFAULT */
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 0.8rem;
-      border-left: 1px solid rgba(232, 224, 212, 0.1);
-    }
-    .submenu.open {
-      display: flex; /* SHOW WHEN ACTIVE */
-    }
+    .dropdown-wrapper { display: flex; align-items: center; justify-content: space-between; }
+    .dropdown-toggle { color: var(--muted); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0 0.5rem; transition: color 0.3s ease, transform 0.3s ease; }
+    .dropdown-toggle:hover { color: var(--orange-rope); }
+    .dropdown-toggle.active { transform: rotate(45deg); color: var(--orange-rope); }
+    .submenu { list-style: none; padding-left: 1rem; display: none; flex-direction: column; gap: 0.8rem; margin-top: 0.8rem; border-left: 1px solid rgba(232, 224, 212, 0.1); }
+    .submenu.open { display: flex; }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HNMC244P5"></script>
   <script>
@@ -276,29 +250,25 @@
         <h1 class="page-title">Events</h1>
 
         <div class="event-section">
-          <div class="event-grid">
-            <img class="event-chirashi" src="Chirashi-20260803soundsofkabuki.jpg" alt="Sounds of Kabuki Flyer" />
-            <div class="event-details">
-              <span class="event-date">August 3, 2026</span>
-              <h3 class="event-title">Sounds of Kabuki</h3>
-              <div class="event-info">
-                <p><strong>Time:</strong> 3:30 PM (Doors open at 3:00 PM)</p>
-                <p><strong>Location:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Asakusa+Culture+Tourist+Information+Center" target="_blank" rel="noopener" style="color: var(--orange-rope); text-decoration: underline; text-underline-offset: 4px;">Asakusa Culture Tourist Information Center</a></p>
-                <br>
-                <p>Join percussionists Mukon Mochizuki and Takemasa Mochizuki and shamisen player Sakio Kineya for an afternoon diving into the music of Kabuki theatre. The event will include explanations in <strong>English</strong> and performances.</p>
-              </div>
-              <div class="button-group">
-                <a href="https://soundsofkabuki1.peatix.com/" target="_blank" rel="noopener" class="card-btn">Get Tickets</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-section">
           <h2 class="section-label" id="past-performances">Past Performances</h2>
 
           <div class="past-events-grid">
             
+            <!-- NEW EVENT: Sounds of Kabuki -->
+            <div class="past-event-thumb" 
+                 data-img="Chirashi-20260803soundsofkabuki.jpg" 
+                 data-title="Sounds of Kabuki" 
+                 data-date="August 3, 2026" 
+                 data-venue="Asakusa Culture Tourist Information Center" 
+                 data-role="performer" 
+                 data-desc="Mukon Mochizuki, Takemasa Mochizuki, and Sakio Kineya presented an afternoon diving into the music of Kabuki theatre with live performances and English explanations.">
+              <img src="Chirashi-20260803soundsofkabuki.jpg" alt="Sounds of Kabuki Flyer Thumbnail" />
+              <div class="thumb-overlay">
+                <span>2026</span>
+                <h4>Sounds of<br>Kabuki</h4>
+              </div>
+            </div>
+
             <!-- EVENT 1 -->
             <div class="past-event-thumb" 
                  data-img="flyer/20251208第15回伝統長唄伝承の会.jpg" 
