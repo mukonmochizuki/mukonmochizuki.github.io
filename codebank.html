@@ -25,6 +25,8 @@
     .delete-warning { border-left-color: #ff4444; }
     pre { background: #0a0806; padding: 1.5rem; border-radius: 4px; overflow-x: auto; border: 1px solid rgba(232, 224, 212, 0.1); }
     code { font-family: monospace; color: #a2db95; }
+    .appendix { border: 1px solid rgba(200, 90, 10, 0.3); padding: 2rem; background: rgba(200, 90, 10, 0.05); margin-top: 4rem; border-radius: 8px; }
+    .appendix h2 { margin-top: 0; background: transparent; padding: 0; border: none; color: #c85a0a; }
   </style>
 </head>
 <body>
@@ -154,6 +156,30 @@
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
+
+  <!-- APPENDIX: ROLE FORMATTING -->
+  <div class="appendix">
+    <h2>Appendix: Formatting the "Role" Field</h2>
+    <p>Your lightbox modal was custom-built to read HTML! When filling out the <code>data-role="..."</code> attribute for past events, you can use these formatting tricks so your multiple roles and pieces look beautiful.</p>
+    
+    <div class="instruction">
+      <strong>Option 1: Single Role</strong><br>
+      Just write it normally.<br>
+      <code>data-role="Performer"</code>
+    </div>
+    
+    <div class="instruction">
+      <strong>Option 2: Multiple Roles (Line Breaks)</strong><br>
+      Use the <code>&lt;br&gt;</code> tag to force a clean line break.<br>
+      <code>data-role="Planner &lt;br&gt; Performer"</code>
+    </div>
+
+    <div class="instruction">
+      <strong>Option 3: Multiple Pieces & Instruments (Bulleted List)</strong><br>
+      Use the <code>&lt;ul&gt;</code> and <code>&lt;li&gt;</code> tags to create a perfect bulleted list for concerts where you played many different pieces.<br>
+      <code>data-role="&lt;ul&gt;&lt;li&gt;Kurozuka - Ōtsuzumi&lt;/li&gt;&lt;li&gt;Edo Bayashi - Fue&lt;/li&gt;&lt;li&gt;Shiraume Taiko - Taiko&lt;/li&gt;&lt;/ul&gt;"</code>
+    </div>
+  </div>
 
 </body>
 </html>
