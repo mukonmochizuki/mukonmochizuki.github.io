@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Codebank | Mukon Mochizuki</title>
+  
+  <!-- IMPORTANT: This tells Google to NEVER show this page in search results -->
+  <meta name="robots" content="noindex, nofollow">
+  
+  <style>
+    body {
+      background-color: #1a1510;
+      color: #e8e0d4;
+      font-family: sans-serif;
+      padding: 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    h1 { color: #c85a0a; border-bottom: 1px solid rgba(232, 224, 212, 0.2); padding-bottom: 1rem; }
+    h2 { margin-top: 3rem; color: #fff; }
+    .instruction { background: rgba(232, 224, 212, 0.05); padding: 1rem; border-left: 4px solid #c85a0a; margin-bottom: 1rem; }
+    pre { background: #0a0806; padding: 1.5rem; border-radius: 4px; overflow-x: auto; border: 1px solid rgba(232, 224, 212, 0.1); }
+    code { font-family: monospace; color: #a2db95; }
+  </style>
+</head>
+<body>
+
+  <h1>Website Codebank (English)</h1>
+  <p>Use these code snippets to update your live website when new events occur.</p>
+
+  <h2>1. HOMEPAGE: Upcoming Event Block</h2>
+  <div class="instruction">
+    <strong>Where to paste:</strong> In <code>index.html</code>, find the <code>&lt;h2 class="section-title"&gt;Upcoming Events&lt;/h2&gt;</code> tag. Replace the "Coming Soon" box with this code.
+  </div>
+<pre><code>
+&lt;div class="featured-event-grid"&gt;
+  &lt;img class="event-chirashi" src="YOUR_FLYER_IMAGE.jpg" alt="Event Title" /&gt;
+  &lt;div class="event-details"&gt;
+    &lt;span class="event-date"&gt;Date Here&lt;/span&gt;
+    &lt;p class="event-info"&gt;&lt;strong&gt;Event Title Here&lt;/strong&gt;&lt;br&gt;Time Here&lt;br&gt;Location Here&lt;/p&gt;
+    &lt;div class="button-group"&gt;
+      &lt;a href="YOUR_TICKET_LINK" target="_blank" rel="noopener" class="card-btn"&gt;Get Tickets&lt;/a&gt;
+      &lt;a href="events.html" class="card-btn secondary"&gt;See All Events&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+  <h2>2. EVENTS PAGE: Upcoming Event Block</h2>
+  <div class="instruction">
+    <strong>Where to paste:</strong> In <code>events.html</code>, paste this code directly above the <code>&lt;h2 class="section-label" id="past-performances"&gt;</code> tag.
+  </div>
+<pre><code>
+&lt;div class="event-section"&gt;
+  &lt;div class="event-grid"&gt;
+    &lt;img class="event-chirashi" src="YOUR_FLYER_IMAGE.jpg" alt="Event Flyer" /&gt;
+    &lt;div class="event-details"&gt;
+      &lt;span class="event-date"&gt;Date Here&lt;/span&gt;
+      &lt;h3 class="event-title"&gt;Event Title Here&lt;/h3&gt;
+      &lt;div class="event-info"&gt;
+        &lt;p&gt;&lt;strong&gt;Time:&lt;/strong&gt; Time Here&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; &lt;a href="MAP_LINK" target="_blank" rel="noopener" style="color: var(--orange-rope); text-decoration: underline; text-underline-offset: 4px;"&gt;Location Name&lt;/a&gt;&lt;/p&gt;
+        &lt;br&gt;
+        &lt;p&gt;Full event description goes here.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="button-group"&gt;
+        &lt;a href="YOUR_TICKET_LINK" target="_blank" rel="noopener" class="card-btn"&gt;Get Tickets&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+  <h2>3. EVENTS PAGE: Past Event Thumbnail</h2>
+  <div class="instruction">
+    <strong>Where to paste:</strong> In <code>events.html</code>, find the <code>&lt;div class="past-events-grid"&gt;</code> tag. Paste this code directly below it to make it the newest entry.
+  </div>
+<pre><code>
+&lt;div class="past-event-thumb" 
+     data-img="YOUR_FLYER_IMAGE.jpg" 
+     data-title="Full Title Here" 
+     data-date="Date Here" 
+     data-venue="Venue Name, City" 
+     data-role="Your Role Here" 
+     data-desc="Description of the event goes here."&gt;
+  &lt;img src="YOUR_FLYER_IMAGE.jpg" alt="Thumbnail Alt Text" /&gt;
+  &lt;div class="thumb-overlay"&gt;
+    &lt;span&gt;YEAR&lt;/span&gt;
+    &lt;h4&gt;Short&lt;br&gt;Title&lt;/h4&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+</body>
+</html>
