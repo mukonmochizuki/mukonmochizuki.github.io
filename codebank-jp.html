@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,8 @@
     .delete-warning { border-left-color: #ff4444; }
     pre { background: #0a0806; padding: 1.5rem; border-radius: 4px; overflow-x: auto; border: 1px solid rgba(232, 224, 212, 0.1); }
     code { font-family: monospace; color: #a2db95; }
+    .appendix { border: 1px solid rgba(200, 90, 10, 0.3); padding: 2rem; background: rgba(200, 90, 10, 0.05); margin-top: 4rem; border-radius: 8px; }
+    .appendix h2 { margin-top: 0; background: transparent; padding: 0; border: none; color: #c85a0a; }
   </style>
 </head>
 <body>
@@ -154,6 +156,30 @@
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
+
+  <!-- APPENDIX: ROLE FORMATTING -->
+  <div class="appendix">
+    <h2>Appendix: Formatting the "Role" Field (役割の書き方)</h2>
+    <p>Your lightbox modal was custom-built to read HTML! When filling out the <code>data-role="..."</code> attribute for past events, use these formatting tricks to keep your roles and pieces looking clean in Japanese.</p>
+    
+    <div class="instruction">
+      <strong>Option 1: Single Role (単一の役割)</strong><br>
+      Just write it normally.<br>
+      <code>data-role="出演"</code>
+    </div>
+    
+    <div class="instruction">
+      <strong>Option 2: Multiple Roles (複数の役割・改行)</strong><br>
+      Use the <code>&lt;br&gt;</code> tag to force a clean line break.<br>
+      <code>data-role="企画・演出 &lt;br&gt; 出演"</code>
+    </div>
+
+    <div class="instruction">
+      <strong>Option 3: Multiple Pieces & Instruments (複数の演目・箇条書き)</strong><br>
+      Use the <code>&lt;ul&gt;</code> and <code>&lt;li&gt;</code> tags to create a perfect bulleted list for concerts where you played many different pieces.<br>
+      <code>data-role="&lt;ul&gt;&lt;li&gt;「黒塚」大鼓&lt;/li&gt;&lt;li&gt;「江戸囃子」笛&lt;/li&gt;&lt;li&gt;「白梅太鼓」太鼓&lt;/li&gt;&lt;/ul&gt;"</code>
+    </div>
+  </div>
 
 </body>
 </html>
