@@ -13,26 +13,82 @@
       background-color: #1a1510;
       color: #e8e0d4;
       font-family: sans-serif;
-      padding: 3rem;
-      max-width: 900px;
+      padding: 3rem 5%;
+      max-width: 1000px;
       margin: 0 auto;
       line-height: 1.6;
     }
-    h1 { color: #c85a0a; border-bottom: 1px solid rgba(232, 224, 212, 0.2); padding-bottom: 1rem; }
-    h2 { margin-top: 3rem; color: #fff; }
-    .instruction { background: rgba(232, 224, 212, 0.05); padding: 1rem; border-left: 4px solid #c85a0a; margin-bottom: 1rem; }
+    h1 { color: #c85a0a; border-bottom: 1px solid rgba(232, 224, 212, 0.2); padding-bottom: 1rem; margin-bottom: 3rem; }
+    h2 { margin-top: 4rem; color: #fff; background: #0a0806; padding: 1rem; border-left: 5px solid #c85a0a; }
+    h3 { color: #c85a0a; margin-top: 2rem; }
+    .instruction { background: rgba(232, 224, 212, 0.05); padding: 1rem; border-left: 4px solid #fff; margin-bottom: 1rem; font-size: 0.95rem; }
+    .delete-warning { border-left-color: #ff4444; }
     pre { background: #0a0806; padding: 1.5rem; border-radius: 4px; overflow-x: auto; border: 1px solid rgba(232, 224, 212, 0.1); }
     code { font-family: monospace; color: #a2db95; }
   </style>
 </head>
 <body>
 
-  <h1>Website Codebank (English)</h1>
-  <p>Use these code snippets to update your live website when new events occur.</p>
+  <h1>Website Standard Operating Procedures (English)</h1>
+  <p>Follow these step-by-step workflows to update your live website.</p>
 
-  <h2>1. HOMEPAGE: Upcoming Event Block</h2>
+  <!-- SCENARIO 1 -->
+  <h2>SCENARIO A: Finished an event (and nothing new to announce yet)</h2>
+  
+  <h3>Step 1: Update the Homepage (index.html)</h3>
+  <div class="instruction delete-warning">
+    <strong>Action:</strong> In <code>index.html</code>, scroll down to <code>&lt;h2 class="section-title"&gt;Upcoming Events&lt;/h2&gt;</code>.<br>
+    <strong>Delete</strong> the entire <code>&lt;div class="featured-event-grid"&gt; ... &lt;/div&gt;</code> block.<br>
+    <strong>Paste</strong> the "Coming Soon" code below in its place.
+  </div>
+<pre><code>
+&lt;!-- COMING SOON PLACEHOLDER --&gt;
+&lt;div style="border: 1px dashed rgba(232, 224, 212, 0.2); background-color: var(--warm-dark); padding: 5rem 2rem; text-align: center; margin-bottom: 2rem;"&gt;
+  &lt;h3 style="font-size: 1.6rem; font-weight: 300; letter-spacing: 0.1em; color: var(--off-white); margin-bottom: 1rem;"&gt;New Performances Coming Soon&lt;/h3&gt;
+  &lt;p style="color: var(--muted); margin-bottom: 2.5rem; font-size: 1.1rem;"&gt;Stay tuned for upcoming event announcements.&lt;/p&gt;
+  &lt;div class="button-group"&gt;
+    &lt;a href="events.html" class="card-btn secondary"&gt;View Past Events&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+  <h3>Step 2: Clean up the Events Page (events.html)</h3>
+  <div class="instruction delete-warning">
+    <strong>Action:</strong> In <code>events.html</code>, look above the "Past Performances" header.<br>
+    <strong>Delete</strong> the entire <code>&lt;div class="event-section"&gt; ... &lt;/div&gt;</code> that holds the old upcoming event. Leave nothing above the Past Performances header.
+  </div>
+
+  <h3>Step 3: Add to Past Archive (events.html)</h3>
   <div class="instruction">
-    <strong>Where to paste:</strong> In <code>index.html</code>, find the <code>&lt;h2 class="section-title"&gt;Upcoming Events&lt;/h2&gt;</code> tag. Replace the "Coming Soon" box with this code.
+    <strong>Action:</strong> In <code>events.html</code>, find <code>&lt;div class="past-events-grid"&gt;</code>.<br>
+    <strong>Paste</strong> this thumbnail code right underneath it, so it becomes the newest item in the grid.
+  </div>
+<pre><code>
+&lt;div class="past-event-thumb" 
+     data-img="YOUR_FLYER_IMAGE.jpg" 
+     data-title="Full Title Here" 
+     data-date="Date Here" 
+     data-venue="Venue Name, City" 
+     data-role="Your Role Here" 
+     data-desc="Description of the event goes here."&gt;
+  &lt;img src="YOUR_FLYER_IMAGE.jpg" alt="Thumbnail Alt Text" /&gt;
+  &lt;div class="thumb-overlay"&gt;
+    &lt;span&gt;YEAR&lt;/span&gt;
+    &lt;h4&gt;Short&lt;br&gt;Title&lt;/h4&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+  <hr style="margin: 4rem 0; border: 1px solid #333;">
+
+  <!-- SCENARIO 2 -->
+  <h2>SCENARIO B: Have a NEW upcoming performance to publicize?</h2>
+
+  <h3>Step 1: Update the Homepage (index.html)</h3>
+  <div class="instruction delete-warning">
+    <strong>Action:</strong> In <code>index.html</code>, scroll down to <code>&lt;h2 class="section-title"&gt;Upcoming Events&lt;/h2&gt;</code>.<br>
+    <strong>Delete</strong> the "Coming Soon" placeholder block.<br>
+    <strong>Paste</strong> this Event Grid code in its place and fill in the details.
   </div>
 <pre><code>
 &lt;div class="featured-event-grid"&gt;
@@ -48,9 +104,9 @@
 &lt;/div&gt;
 </code></pre>
 
-  <h2>2. EVENTS PAGE: Upcoming Event Block</h2>
+  <h3>Step 2: Update the Events Page (events.html)</h3>
   <div class="instruction">
-    <strong>Where to paste:</strong> In <code>events.html</code>, paste this code directly above the <code>&lt;h2 class="section-label" id="past-performances"&gt;</code> tag.
+    <strong>Action:</strong> In <code>events.html</code>, paste this full event section <strong>directly above</strong> the <code>&lt;h2 class="section-label" id="past-performances"&gt;Past Performances&lt;/h2&gt;</code> tag.
   </div>
 <pre><code>
 &lt;div class="event-section"&gt;
@@ -73,9 +129,15 @@
 &lt;/div&gt;
 </code></pre>
 
-  <h2>3. EVENTS PAGE: Past Event Thumbnail</h2>
+  <hr style="margin: 4rem 0; border: 1px solid #333;">
+
+  <!-- SCENARIO 3 -->
+  <h2>SCENARIO C: Just adding old chirashi to the archive?</h2>
+
+  <h3>Step 1: Add to Past Archive (events.html)</h3>
   <div class="instruction">
-    <strong>Where to paste:</strong> In <code>events.html</code>, find the <code>&lt;div class="past-events-grid"&gt;</code> tag. Paste this code directly below it to make it the newest entry.
+    <strong>Action:</strong> In <code>events.html</code>, find <code>&lt;div class="past-events-grid"&gt;</code>.<br>
+    <strong>Paste</strong> this thumbnail code right underneath it (or wherever chronologically appropriate).
   </div>
 <pre><code>
 &lt;div class="past-event-thumb" 
