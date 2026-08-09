@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Codebank (JP) | Mukon Mochizuki</title>
+  
+  <!-- IMPORTANT: This tells Google to NEVER show this page in search results -->
+  <meta name="robots" content="noindex, nofollow">
+  
+  <style>
+    body {
+      background-color: #1a1510;
+      color: #e8e0d4;
+      font-family: sans-serif;
+      padding: 3rem 5%;
+      max-width: 1000px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    h1 { color: #c85a0a; border-bottom: 1px solid rgba(232, 224, 212, 0.2); padding-bottom: 1rem; margin-bottom: 3rem; }
+    h2 { margin-top: 4rem; color: #fff; background: #0a0806; padding: 1rem; border-left: 5px solid #c85a0a; }
+    h3 { color: #c85a0a; margin-top: 2rem; }
+    .instruction { background: rgba(232, 224, 212, 0.05); padding: 1rem; border-left: 4px solid #fff; margin-bottom: 1rem; font-size: 0.95rem; }
+    .delete-warning { border-left-color: #ff4444; }
+    pre { background: #0a0806; padding: 1.5rem; border-radius: 4px; overflow-x: auto; border: 1px solid rgba(232, 224, 212, 0.1); }
+    code { font-family: monospace; color: #a2db95; }
+  </style>
+</head>
+<body>
+
+  <h1>Website Standard Operating Procedures (Japanese Site)</h1>
+  <p>Follow these step-by-step workflows to update the Japanese side of your live website.</p>
+
+  <!-- SCENARIO 1 -->
+  <h2>SCENARIO A: Finished an event (and nothing new to announce yet)</h2>
+  
+  <h3>Step 1: Update the Homepage (index-jp.html)</h3>
+  <div class="instruction delete-warning">
+    <strong>Action:</strong> In <code>index-jp.html</code>, scroll down to <code>&lt;h2 class="section-title"&gt;次回の公演&lt;/h2&gt;</code>.<br>
+    <strong>Delete</strong> the entire <code>&lt;div class="featured-event-grid"&gt; ... &lt;/div&gt;</code> block.<br>
+    <strong>Paste</strong> the "Coming Soon" code below in its place.
+  </div>
+<pre><code>
+&lt;!-- COMING SOON PLACEHOLDER (JAPANESE) --&gt;
+&lt;div style="border: 1px dashed rgba(232, 224, 212, 0.2); background-color: var(--warm-dark); padding: 5rem 2rem; text-align: center; margin-bottom: 2rem;"&gt;
+  &lt;h3 style="font-size: 1.6rem; font-weight: 300; letter-spacing: 0.1em; color: var(--off-white); margin-bottom: 1rem; font-family: 'Noto Serif JP', serif;"&gt;次回の公演をお楽しみに&lt;/h3&gt;
+  &lt;p style="color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem;"&gt;新しい公演情報が決定次第、こちらでお知らせいたします。&lt;/p&gt;
+  &lt;div class="button-group"&gt;
+    &lt;a href="events-jp.html" class="card-btn secondary"&gt;過去の公演情報を見る&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+  <h3>Step 2: Clean up the Events Page (events-jp.html)</h3>
+  <div class="instruction delete-warning">
+    <strong>Action:</strong> In <code>events-jp.html</code>, look above the <code>&lt;h2 class="section-label" id="past-performances"&gt;過去の公演実績&lt;/h2&gt;</code> header.<br>
+    <strong>Delete</strong> the entire <code>&lt;div class="event-section"&gt; ... &lt;/div&gt;</code> that holds the old upcoming event. Leave nothing above the Past Performances header.
+  </div>
+
+  <h3>Step 3: Add to Past Archive (events-jp.html)</h3>
+  <div class="instruction">
+    <strong>Action:</strong> In <code>events-jp.html</code>, find <code>&lt;div class="past-events-grid"&gt;</code>.<br>
+    <strong>Paste</strong> this thumbnail code right underneath it, so it becomes the newest item in the grid.
+  </div>
+<pre><code>
+&lt;div class="past-event-thumb" 
+     data-img="YOUR_FLYER_IMAGE.jpg" 
+     data-title="公演名（フルタイトル）" 
+     data-date="公演日" 
+     data-venue="会場名" 
+     data-role="役割（出演、大鼓など）" 
+     data-desc="公演の概要や説明をここに記載します。"&gt;
+  &lt;img src="YOUR_FLYER_IMAGE.jpg" alt="チラシ画像の代替テキスト" /&gt;
+  &lt;div class="thumb-overlay"&gt;
+    &lt;span&gt;YEAR&lt;/span&gt;
+    &lt;h4&gt;短い&lt;br&gt;タイトル&lt;/h4&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+  <hr style="margin: 4rem 0; border: 1px solid #333;">
+
+  <!-- SCENARIO 2 -->
+  <h2>SCENARIO B: Have a NEW upcoming performance to publicize?</h2>
+
+  <h3>Step 1: Update the Homepage (index-jp.html)</h3>
+  <div class="instruction delete-warning">
+    <strong>Action:</strong> In <code>index-jp.html</code>, scroll down to <code>&lt;h2 class="section-title"&gt;次回の公演&lt;/h2&gt;</code>.<br>
+    <strong>Delete</strong> the "Coming Soon" placeholder block.<br>
+    <strong>Paste</strong> this Event Grid code in its place and fill in the details.
+  </div>
+<pre><code>
+&lt;div class="featured-event-grid"&gt;
+  &lt;img class="event-chirashi" src="YOUR_FLYER_IMAGE.jpg" alt="公演名" /&gt;
+  &lt;div class="event-details"&gt;
+    &lt;span class="event-date"&gt;公演日&lt;/span&gt;
+    &lt;p class="event-info"&gt;&lt;strong&gt;公演名&lt;/strong&gt;&lt;br&gt;時間&lt;br&gt;&lt;a href="MAP_LINK" target="_blank" rel="noopener" style="color: var(--orange-rope); text-decoration: underline; text-underline-offset: 4px;"&gt;会場名&lt;/a&gt;&lt;/p&gt;
+    &lt;div class="button-group"&gt;
+      &lt;a href="YOUR_TICKET_LINK" target="_blank" rel="noopener" class="card-btn"&gt;チケットを購入&lt;/a&gt;
+      &lt;a href="events-jp.html" class="card-btn secondary"&gt;すべての公演を見る&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+  <h3>Step 2: Update the Events Page (events-jp.html)</h3>
+  <div class="instruction">
+    <strong>Action:</strong> In <code>events-jp.html</code>, paste this full event section <strong>directly above</strong> the <code>&lt;h2 class="section-label" id="past-performances"&gt;過去の公演実績&lt;/h2&gt;</code> tag.
+  </div>
+<pre><code>
+&lt;div class="event-section"&gt;
+  &lt;div class="event-grid"&gt;
+    &lt;img class="event-chirashi" src="YOUR_FLYER_IMAGE.jpg" alt="公演チラシ" /&gt;
+    &lt;div class="event-details"&gt;
+      &lt;span class="event-date"&gt;公演日&lt;/span&gt;
+      &lt;h3 class="event-title"&gt;公演名&lt;/h3&gt;
+      &lt;div class="event-info"&gt;
+        &lt;p&gt;&lt;strong&gt;時間:&lt;/strong&gt; 時間をここに記載&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;場所:&lt;/strong&gt; &lt;a href="MAP_LINK" target="_blank" rel="noopener" style="color: var(--orange-rope); text-decoration: underline; text-underline-offset: 4px;"&gt;会場名&lt;/a&gt;&lt;/p&gt;
+        &lt;br&gt;
+        &lt;p&gt;公演の概要や説明をここに記載します。&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="button-group"&gt;
+        &lt;a href="YOUR_TICKET_LINK" target="_blank" rel="noopener" class="card-btn"&gt;チケットを購入&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+  <hr style="margin: 4rem 0; border: 1px solid #333;">
+
+  <!-- SCENARIO 3 -->
+  <h2>SCENARIO C: Just adding old chirashi to the archive?</h2>
+
+  <h3>Step 1: Add to Past Archive (events-jp.html)</h3>
+  <div class="instruction">
+    <strong>Action:</strong> In <code>events-jp.html</code>, find <code>&lt;div class="past-events-grid"&gt;</code>.<br>
+    <strong>Paste</strong> this thumbnail code right underneath it (or wherever chronologically appropriate).
+  </div>
+<pre><code>
+&lt;div class="past-event-thumb" 
+     data-img="YOUR_FLYER_IMAGE.jpg" 
+     data-title="公演名（フルタイトル）" 
+     data-date="公演日" 
+     data-venue="会場名" 
+     data-role="役割（出演、大鼓など）" 
+     data-desc="公演の概要や説明をここに記載します。"&gt;
+  &lt;img src="YOUR_FLYER_IMAGE.jpg" alt="チラシ画像の代替テキスト" /&gt;
+  &lt;div class="thumb-overlay"&gt;
+    &lt;span&gt;YEAR&lt;/span&gt;
+    &lt;h4&gt;短い&lt;br&gt;タイトル&lt;/h4&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+</body>
+</html>
