@@ -11,7 +11,6 @@
   <meta property="og:url" content="https://mukonmochizuki.com" />
   <meta property="og:type" content="website" />
 
-
   <link rel="icon" type="image/jpg" href="favicon.jpg" />
   <link rel="apple-touch-icon" href="favicon.jpg" />
   
@@ -70,62 +69,23 @@
     .nav-links a:hover, .nav-links a.active { color: var(--orange-rope); }
 
     /* --- SIDEBAR DROPDOWN STYLES --- */
-    .dropdown-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .dropdown-toggle {
-      color: var(--muted);
-      font-size: 1.5rem;
-      line-height: 1;
-      cursor: pointer;
-      padding: 0 0.5rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .dropdown-toggle:hover {
-      color: var(--orange-rope);
-    }
-    .dropdown-toggle.active {
-      transform: rotate(45deg); 
-      color: var(--orange-rope);
-    }
-    .submenu {
-      list-style: none;
-      padding-left: 1rem;
-      display: none;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 0.8rem;
-      border-left: 1px solid rgba(232, 224, 212, 0.1);
-    }
-    .submenu.open {
-      display: flex;
-    }
-    .submenu a {
-      font-size: 0.9rem;
-      text-transform: none;
-      letter-spacing: 0.05em;
-      color: rgba(232, 224, 212, 0.4);
-    }
+    .dropdown-wrapper { display: flex; align-items: center; justify-content: space-between; }
+    .dropdown-toggle { color: var(--muted); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0 0.5rem; transition: color 0.3s ease, transform 0.3s ease; }
+    .dropdown-toggle:hover { color: var(--orange-rope); }
+    .dropdown-toggle.active { transform: rotate(45deg); color: var(--orange-rope); }
+    .submenu { list-style: none; padding-left: 1rem; display: none; flex-direction: column; gap: 0.8rem; margin-top: 0.8rem; border-left: 1px solid rgba(232, 224, 212, 0.1); }
+    .submenu.open { display: flex; }
+    .submenu a { font-size: 0.9rem; text-transform: none; letter-spacing: 0.05em; color: rgba(232, 224, 212, 0.4); }
     .submenu a:hover { color: var(--orange-rope); }
 
     #mobile-menu-toggle { display: none; }
     .mobile-header { display: none; }
 
     /* --- MAIN CONTENT AREA --- */
-    .main-content {
-      margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width));
-      display: flex; flex-direction: column; min-height: 100vh;
-      position: relative;
-    }
+    .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; flex-direction: column; min-height: 100vh; position: relative; }
 
     /* --- HOMEPAGE HERO --- */
-    .hero {
-      position: relative; min-height: 100vh; min-height: 100dvh;
-      width: 100%; overflow: hidden;
-    }
-
+    .hero { position: relative; min-height: 100vh; min-height: 100dvh; width: 100%; overflow: hidden; }
     .hero-photo { position: absolute; right: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: brightness(0.4) contrast(1.1); z-index: 1; }
     .hero-calligraphy { position: absolute; left: 5%; bottom: 5%; height: 90%; opacity: 0.8; z-index: 2; }
 
@@ -138,135 +98,39 @@
     .profile-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 1px solid rgba(232, 224, 212, 0.1); }
     .bio-text p { font-size: 1.15rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.5rem; }
 
-    /* --- TOOLTIP CSS (BULLETPROOF VERSION) --- */
-    .tooltip-container {
-      position: relative;
-      display: inline-block;
-      cursor: help;
-      border-bottom: 1px dotted var(--muted);
-      transition: border-color 0.3s;
-    }
-    .tooltip-container:hover {
-      border-bottom-color: var(--orange-rope);
-    }
-    .tooltip-text {
-      visibility: hidden;
-      width: 280px;
-      background-color: var(--panel-bg);
-      color: var(--muted);
-      text-align: left;
-      padding: 1.2rem;
-      border-radius: 4px;
-      border: 1px solid rgba(232, 224, 212, 0.2);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.9);
-      position: absolute;
-      z-index: 9999; 
-      bottom: 130%; 
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 0.3s, bottom 0.3s;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      font-style: normal; 
-    }
-    .tooltip-text strong {
-      color: var(--off-white);
-      font-size: 1.05rem;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-    .tooltip-text::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -6px;
-      border-width: 6px;
-      border-style: solid;
-      border-color: rgba(232, 224, 212, 0.2) transparent transparent transparent;
-    }
-    .tooltip-container:hover .tooltip-text {
-      visibility: visible;
-      opacity: 1;
-      bottom: 140%;
-    }
-    .tooltip-link {
-      display: block; 
-      margin-top: 0.8rem;
-      color: var(--orange-rope);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.85rem;
-      transition: color 0.3s;
-    }
+    /* --- TOOLTIP CSS --- */
+    .tooltip-container { position: relative; display: inline-block; cursor: help; border-bottom: 1px dotted var(--muted); transition: border-color 0.3s; }
+    .tooltip-container:hover { border-bottom-color: var(--orange-rope); }
+    .tooltip-text { visibility: hidden; width: 280px; background-color: var(--panel-bg); color: var(--muted); text-align: left; padding: 1.2rem; border-radius: 4px; border: 1px solid rgba(232, 224, 212, 0.2); box-shadow: 0 10px 40px rgba(0,0,0,0.9); position: absolute; z-index: 9999; bottom: 130%; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s, bottom 0.3s; font-size: 0.95rem; line-height: 1.6; font-style: normal; }
+    .tooltip-text strong { color: var(--off-white); font-size: 1.05rem; display: block; margin-bottom: 0.3rem; }
+    .tooltip-text::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: rgba(232, 224, 212, 0.2) transparent transparent transparent; }
+    .tooltip-container:hover .tooltip-text { visibility: visible; opacity: 1; bottom: 140%; }
+    .tooltip-link { display: block; margin-top: 0.8rem; color: var(--orange-rope); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; transition: color 0.3s; }
     .tooltip-link:hover { color: var(--off-white); }
 
-    /* MOBILE & IPAD OVERRIDE: Center Screen Pop-up */
+    /* MOBILE & IPAD OVERRIDE */
     @media (max-width: 1024px) {
-      .tooltip-text {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        bottom: auto !important;
-        width: 85vw;
-        max-width: 320px;
-      }
-      .tooltip-text::after {
-        display: none; 
-      }
-      .tooltip-container:hover .tooltip-text {
-        bottom: auto; 
-      }
+      .tooltip-text { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); bottom: auto !important; width: 85vw; max-width: 320px; }
+      .tooltip-text::after { display: none; }
+      .tooltip-container:hover .tooltip-text { bottom: auto; }
     }
 
-    /* --- RE-ADDED BUTTON CSS --- */
-    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-    .card-btn {
-      display: inline-block; padding: 0.5rem 1.2rem; background: transparent;
-      color: var(--off-white); border: 1px solid var(--orange-rope);
-      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
-      transition: all 0.3s; cursor: pointer; text-align: center;
-    }
+    /* --- BUTTON CSS --- */
+    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; justify-content: center; }
+    .card-btn { display: inline-block; padding: 0.5rem 1.2rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; text-align: center; }
     .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
     .card-btn.secondary { border-color: var(--muted); color: var(--muted); }
     .card-btn.secondary:hover { background: var(--muted); color: var(--deep-black); }
 
-    /* --- UPCOMING EVENTS SECTION --- */
-    .featured-event-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: flex-start; margin-bottom: 4rem; }
-    .event-chirashi { 
-      width: 100%; 
-      height: auto; 
-      display: block;
-      border: 1px solid rgba(232, 224, 212, 0.1); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
-    }
-    .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
-    .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
-    .event-info { font-size: 1.1rem; line-height: 1.6; color: var(--muted); }
-
     /* --- SITE FOOTER --- */
-    .site-footer {
-      background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center;
-      border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8;
-      margin-top: auto;
-    }
-    .footer-calligraphy {
-      height: 80px; width: auto; margin: 0 auto 1.5rem auto; display: block;
-      opacity: 0.6; transition: opacity 0.3s;
-    }
+    .site-footer { background-color: var(--warm-dark); padding: 4rem 5% 3rem; text-align: center; border-top: 1px solid rgba(232, 224, 212, 0.05); color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-top: auto; }
+    .footer-calligraphy { height: 80px; width: auto; margin: 0 auto 1.5rem auto; display: block; opacity: 0.6; transition: opacity 0.3s; }
     .footer-calligraphy:hover { opacity: 0.9; }
     .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
     .site-footer a:hover { color: var(--off-white); }
     
     /* --- MOBILE RESPONSIVENESS --- */
-    @media (max-width: 900px) {
-      .profile-grid, .featured-event-grid { grid-template-columns: 1fr; }
-      .profile-photo, .event-chirashi { max-width: 400px; margin: 0 auto; display: block; }
-    }
-
+    @media (max-width: 900px) { .profile-grid { grid-template-columns: 1fr; } .profile-photo { max-width: 400px; margin: 0 auto; display: block; } }
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
       #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); }
@@ -361,7 +225,7 @@
 
             <p>Originally from Illinois and a graduate of Brown University, J.D. has called Tokyo home since 2014. Through performances, workshops, and collaborations in Japan and abroad, he is dedicated to making the Japanese traditional performing arts accessible to new and international audiences.</p>
             
-            <div class="button-group">
+            <div class="button-group" style="justify-content: flex-start;">
               <a href="profile.html" class="card-btn">Read Full Bio</a>
             </div>
           </div>
@@ -371,17 +235,16 @@
       <section class="content-section" style="background-color: var(--deep-black); max-width: 100%;">
         <div style="max-width: 1200px; margin: 0 auto;">
           <h2 class="section-title">Upcoming Events</h2>
-          <div class="featured-event-grid">
-            <img class="event-chirashi" src="Chirashi-20260803soundsofkabuki.jpg" alt="Sounds of Kabuki, 8/3/2026" />
-            <div class="event-details">
-              <span class="event-date">August 3, 2026</span>
-              <p class="event-info"><strong>Sounds of Kabuki</strong><br>3:30pm (doors open 3:00)<br>Asakusa Culture Tourist Information Center</p>
-              <div class="button-group">
-                <a href="https://soundsofkabuki1.peatix.com/" target="_blank" rel="noopener" class="card-btn">Get Tickets</a>
-                <a href="events.html" class="card-btn secondary">See All Events</a>
-              </div>
+          
+          <!-- COMING SOON PLACEHOLDER -->
+          <div style="border: 1px dashed rgba(232, 224, 212, 0.2); background-color: var(--warm-dark); padding: 5rem 2rem; text-align: center; margin-bottom: 2rem;">
+            <h3 style="font-size: 1.6rem; font-weight: 300; letter-spacing: 0.1em; color: var(--off-white); margin-bottom: 1rem;">New Performances Coming Soon</h3>
+            <p style="color: var(--muted); margin-bottom: 2.5rem; font-size: 1.1rem;">Stay tuned for upcoming event announcements.</p>
+            <div class="button-group">
+              <a href="events.html" class="card-btn secondary">View Past Events</a>
             </div>
           </div>
+
         </div>
       </section>
 
