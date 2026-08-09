@@ -131,7 +131,7 @@
     .past-event-thumb:hover .thumb-overlay { opacity: 1; }
     
     .thumb-overlay span { color: var(--orange-rope); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-    .thumb-overlay h4 { color: var(--off-white); font-size: 1.1rem; font-weight: 400; line-height: 1.4; }
+    .thumb-overlay h4 { color: var(--off-white); font-size: 1.1rem; font-weight: 400; font-family: 'Noto Serif JP', serif; line-height: 1.4; }
 
     /* --- LIGHTBOX MODAL --- */
     .modal-overlay {
@@ -158,9 +158,9 @@
     .modal-img-container img { max-width: 100%; max-height: 70vh; object-fit: contain; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
     
     .modal-info { flex: 1; padding: 3rem 2.5rem; display: flex; flex-direction: column; justify-content: center; }
-    .modal-info h3 { font-size: 1.8rem; font-weight: 400; margin-bottom: 1.5rem; color: var(--off-white); line-height: 1.4; }
+    .modal-info h3 { font-size: 1.8rem; font-weight: 400; margin-bottom: 1.5rem; color: var(--off-white); font-family: 'Noto Serif JP', serif; line-height: 1.4; }
     .modal-info p { font-size: 1.05rem; line-height: 1.7; color: var(--muted); margin-bottom: 0.6rem; }
-    .modal-info strong { color: var(--off-white); font-weight: 600; font-size: 0.9rem; display: inline-block; width: 80px; letter-spacing: 0.05em; }
+    .modal-info strong { color: var(--off-white); font-weight: 600; font-family: sans-serif; font-size: 0.9rem; letter-spacing: 0.05em; display: inline-block; width: 70px; }
     .role-container { display: flex; margin-bottom: 0.6rem; align-items: flex-start; }
     .role-list { font-size: 0.9rem; color: var(--muted); line-height: 1.6; flex: 1; }
     .role-list ul { margin: 0; padding-left: 1.2rem; }
@@ -228,7 +228,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-6HNMC244P5');
   </script>
 </head>
@@ -277,29 +276,26 @@
         <h1 class="page-title">公演情報</h1>
 
         <div class="event-section">
-          <div class="event-grid">
-            <img class="event-chirashi" src="Chirashi-20260803soundsofkabuki.jpg" alt="Sounds of Kabuki 2026年8月3日" />
-            <div class="event-details">
-              <span class="event-date">2026年8月3日</span>
-              <h3 class="event-title">Sounds of Kabuki</h3>
-              <div class="event-info">
-                <p><strong>時間:</strong> 15:30 開演（15:00 開場）</p>
-                <p><strong>場所:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Asakusa+Culture+Tourist+Information+Center" target="_blank" rel="noopener" style="color: var(--orange-rope); text-decoration: underline; text-underline-offset: 4px;">浅草文化観光センター</a></p>
-                <br>
-                <p>望月武懇がお届けする、歌舞伎囃子の伝統的なリズムと伴奏の世界に深く浸る午後のひととき。※解説は英語で行います。</p>
-              </div>
-              <div class="button-group">
-                <a href="https://soundsofkabuki1.peatix.com/" target="_blank" rel="noopener" class="card-btn">チケットを購入</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-section">
           <h2 class="section-label" id="past-performances">過去の公演実績</h2>
 
           <div class="past-events-grid">
             
+            <!-- NEW EVENT: Sounds of Kabuki -->
+            <div class="past-event-thumb" 
+                 data-img="Chirashi-20260803soundsofkabuki.jpg" 
+                 data-title="Sounds of Kabuki" 
+                 data-date="2026年8月3日" 
+                 data-venue="浅草文化観光センター" 
+                 data-role="出演" 
+                 data-desc="囃子方の望月武懇、望月武政、長唄三味線方の杵屋佐輝夫による、歌舞伎音楽の魅力に迫る公演です。英語での解説と実演を交え、日本の伝統芸能の世界を深くお楽しみいただきました。">
+              <img src="Chirashi-20260803soundsofkabuki.jpg" alt="Sounds of Kabuki Flyer Thumbnail" />
+              <div class="thumb-overlay">
+                <span>2026</span>
+                <h4>Sounds of<br>Kabuki</h4>
+              </div>
+            </div>
+
+            <!-- EVENT 1 -->
             <div class="past-event-thumb" 
                  data-img="flyer/20251208第15回伝統長唄伝承の会.jpg" 
                  data-title="第15回伝統長唄伝承の会" 
@@ -314,6 +310,7 @@
               </div>
             </div>
 
+            <!-- EVENT 2 -->
             <div class="past-event-thumb" 
                  data-img="flyer/20250809 Ma vs Groove.png" 
                  data-title="Kenny Endo ５０周年記念 | MA vs. Groove" 
@@ -328,6 +325,7 @@
               </div>
             </div>
 
+            <!-- EVENT 3 -->
             <div class="past-event-thumb" 
                  data-img="flyer/202507 オリオンの夏休み.png" 
                  data-title="和太鼓ユニット「つゞみ星」 | オリオンの夏休み" 
@@ -342,6 +340,7 @@
               </div>
             </div>
 
+            <!-- PLACEHOLDER -->
             <div class="past-event-thumb" style="border: 1px dashed rgba(232,224,212,0.2); background: rgba(17,14,10,0.4); display: flex; align-items: center; justify-content: center; cursor: default;">
               <span style="color: var(--muted); font-style: normal; letter-spacing: 0.05em; font-size: 0.9rem;">アーカイブ順次追加中...</span>
             </div>
@@ -349,15 +348,17 @@
           </div>
         </div>
 
+      </div>
+
       <div class="modal-overlay" id="eventModal">
         <div class="modal-content">
           <button class="modal-close" id="modalClose">&times;</button>
           <div class="modal-img-container">
-            <img src="" id="modalImg" alt="拡大チラシ" />
+            <img src="" id="modalImg" alt="Expanded Flyer" />
           </div>
           <div class="modal-info">
-            <h3 id="modalTitle">公演名</h3>
-            <p><strong>日時:</strong> <span id="modalDate"></span></p>
+            <h3 id="modalTitle">Title</h3>
+            <p><strong>日付:</strong> <span id="modalDate"></span></p>
             <p><strong>会場:</strong> <span id="modalVenue"></span></p>
             <div class="role-container">
               <strong>役割:</strong> 
@@ -370,7 +371,7 @@
 
       <footer class="site-footer">
         <img src="calligraphy.png" alt="望月武懇 書" class="footer-calligraphy" />
-        <p>© 2026 Mukon Mochizuki. All Rights Reserved.</p>
+        <p>&copy; 2026 Mukon Mochizuki. All Rights Reserved.</p>
         <p>Calligraphy by <a href="https://www.instagram.com/katsuhiromiike?igsh=amVjNGk1ZDV4cTFp" target="_blank" rel="noopener">三池克祐</a></p>
       </footer>
     </main>
@@ -409,7 +410,6 @@
         if(e.target === modal) closeModal();
       });
       
-      // Escapeキーで閉じる
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
       });
