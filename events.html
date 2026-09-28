@@ -81,13 +81,15 @@
     .event-section { margin-bottom: 6rem; }
     .section-label { font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid rgba(232, 224, 212, 0.1); padding-bottom: 1rem; margin-bottom: 3rem; }
     
-    /* UPCOMING EVENT STYLES (Kept for future use) */
-    .event-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: flex-start; margin-bottom: 5rem; }
-    .event-chirashi { width: 100%; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
-    .event-details { display: flex; flex-direction: column; gap: 1rem; }
+    /* --- BULLETPROOF UPCOMING EVENT CSS --- */
+    .event-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center; margin-bottom: 5rem; }
+    .event-chirashi { width: 100%; max-width: 450px; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
     .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
     .event-title { font-size: 2rem; font-weight: 300; color: var(--off-white); line-height: 1.2; }
-    .event-info { font-size: 1.1rem; line-height: 1.8; color: var(--muted); }
+    .event-info { font-size: 1.15rem; line-height: 1.8; color: var(--muted); }
+
+    /* --- BUTTONS --- */
     .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
     .card-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.5rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; }
     .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
@@ -174,7 +176,11 @@
     .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
     .site-footer a:hover { color: var(--off-white); }
     
-    @media (max-width: 900px) { .event-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    @media (max-width: 900px) { 
+      .event-grid { grid-template-columns: 1fr; gap: 3rem; } 
+      .event-chirashi { max-width: 400px; margin: 0 auto; display: block; }
+    }
+
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
       #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); }
@@ -249,18 +255,38 @@
       <div class="page-container">
         <h1 class="page-title">Events</h1>
 
+        <!-- UPCOMING EVENT: RAN NO KAI -->
+        <div class="event-section">
+          <div class="event-grid">
+            <img class="event-chirashi" src="flyer/IMG_8276.jpeg" alt="Ran no kai Shamisen Recital Flyer" />
+            <div class="event-details">
+              <span class="event-date">Sunday, October 4, 2026</span>
+              <h3 class="event-title">"Ran no kai" Shamisen Recital</h3>
+              <div class="event-info">
+                <p><strong>Time:</strong> 1:00 PM (Doors open 12:30 PM)</p>
+                <p><strong>Location:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Shinjuku+Hanazono+Shrine" target="_blank" rel="noopener" style="color: var(--orange-rope); text-decoration: underline; text-underline-offset: 4px;">Shinjuku Hanazono Shrine (Office 2nd Floor)</a></p>
+                <br>
+                <p>Hosted by Ryoko Narita. Mukon Mochizuki will be making a guest appearance as a hayashi accompanist.</p>
+              </div>
+              <div class="button-group">
+                <a href="contact.html" class="card-btn">Inquiries</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="event-section">
           <h2 class="section-label" id="past-performances">Past Performances</h2>
 
           <div class="past-events-grid">
             
-            <!-- NEW EVENT: Sounds of Kabuki -->
+            <!-- PAST EVENT: Sounds of Kabuki -->
             <div class="past-event-thumb" 
                  data-img="Chirashi-20260803soundsofkabuki.jpg" 
                  data-title="Sounds of Kabuki" 
                  data-date="August 3, 2026" 
                  data-venue="Asakusa Culture Tourist Information Center" 
-                 data-role="Lecturer <br> Performer <br> Producer" 
+                 data-role="Performer" 
                  data-desc="Mukon Mochizuki, Takemasa Mochizuki, and Sakio Kineya presented an afternoon diving into the music of Kabuki theatre with live performances and English explanations.">
               <img src="Chirashi-20260803soundsofkabuki.jpg" alt="Sounds of Kabuki Flyer Thumbnail" />
               <div class="thumb-overlay">
@@ -290,7 +316,7 @@
                  data-title="Kenny Endo's 50th Anniversary Celebration | MA vs. Groove" 
                  data-date="August 9, 2025" 
                  data-venue="Kennedy Theater, Honolulu, HI" 
-                 data-role="Edo Bayashi - fue<br>Kyōen Suite - ōtsuzumi<br>Oimatsu - taiko<br>Shiraume Taiko - taiko<br>Edo Kotobuki Jishi - fue"
+                 data-role="<ul><li>Edo Bayashi - fue</li><li>Kyōen Suite - ōtsuzumi</li><li>Oimatsu - taiko</li><li>Shiraume Taiko - taiko</li><li>Edo Kotobuki Jishi - fue</li></ul>"
                  data-desc="Hosted by Taiko Arts Center, this concert celebrated Kenny Endo's original music and his roots in tradition. Collaborators: Kyosuke Suzuki, Saburo Mochizuki, Kiyora Okayasu, and more...">
               <img src="flyer/20250809 Ma vs Groove.png" alt="Ma vs Groove Flyer Thumbnail" />
               <div class="thumb-overlay">
@@ -305,7 +331,7 @@
                  data-title="Wadaiko Unit Tsuzumiboshi | Orion's Summer Vacation" 
                  data-date="July 5 & 13, 2025" 
                  data-venue="Ekoda, Tokyo | Yokohama, Kanagawa" 
-                 data-role="performer"
+                 data-role="Performer"
                  data-desc="Produced by Wadaiko Unit Tsuzumiboshi, this pair of concerts were jam-packed with summer fun including original compositions and a Bon Daiko mini-game!">
               <img src="flyer/202507 オリオンの夏休み.png" alt="オリオンの夏休み Flyer Thumbnail" />
               <div class="thumb-overlay">
