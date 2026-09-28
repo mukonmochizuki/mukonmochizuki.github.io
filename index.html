@@ -94,7 +94,7 @@
     .section-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 3rem; color: var(--orange-rope); border-bottom: 1px solid var(--muted); padding-bottom: 1rem; }
 
     /* --- PROFILE OVERVIEW & HOVER CARDS --- */
-    .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; margin-bottom: 4rem; }
+    .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; margin-bottom: 4rem; align-items: center; }
     .profile-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 1px solid rgba(232, 224, 212, 0.1); }
     .bio-text p { font-size: 1.15rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.5rem; }
 
@@ -108,19 +108,18 @@
     .tooltip-link { display: block; margin-top: 0.8rem; color: var(--orange-rope); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; transition: color 0.3s; }
     .tooltip-link:hover { color: var(--off-white); }
 
-    /* MOBILE & IPAD OVERRIDE */
     @media (max-width: 1024px) {
       .tooltip-text { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); bottom: auto !important; width: 85vw; max-width: 320px; }
       .tooltip-text::after { display: none; }
       .tooltip-container:hover .tooltip-text { bottom: auto; }
     }
 
-    /* --- UPCOMING EVENTS SECTION (RESTORED!) --- */
-    .featured-event-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: flex-start; margin-bottom: 4rem; }
-    .event-chirashi { width: 100%; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    /* --- BULLETPROOF EVENT GRID CSS --- */
+    .featured-event-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center; margin-bottom: 4rem; }
+    .event-chirashi { width: 100%; max-width: 450px; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
     .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
     .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
-    .event-info { font-size: 1.1rem; line-height: 1.8; color: var(--muted); }
+    .event-info { font-size: 1.15rem; line-height: 1.8; color: var(--muted); }
 
     /* --- BUTTON CSS --- */
     .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
@@ -138,7 +137,7 @@
     
     /* --- MOBILE RESPONSIVENESS --- */
     @media (max-width: 900px) { 
-      .profile-grid, .featured-event-grid { grid-template-columns: 1fr; } 
+      .profile-grid, .featured-event-grid { grid-template-columns: 1fr; gap: 3rem; } 
       .profile-photo, .event-chirashi { max-width: 400px; margin: 0 auto; display: block; } 
     }
 
@@ -253,7 +252,7 @@
               <span class="event-date">Sunday, October 4, 2026</span>
               <p class="event-info"><strong>"Ran no kai" Shamisen Recital</strong><br>1:00 PM<br>Shinjuku Hanazono Shrine</p>
               <div class="button-group">
-                <a href="contact.html" target="_blank" rel="noopener" class="card-btn">Inquiries</a>
+                <a href="contact.html" class="card-btn">Inquiries</a>
                 <a href="events.html" class="card-btn secondary">See All Events</a>
               </div>
             </div>
