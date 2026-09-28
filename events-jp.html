@@ -81,13 +81,15 @@
     .event-section { margin-bottom: 6rem; }
     .section-label { font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid rgba(232, 224, 212, 0.1); padding-bottom: 1rem; margin-bottom: 3rem; }
     
-    /* UPCOMING EVENT STYLES */
-    .event-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: flex-start; margin-bottom: 5rem; }
-    .event-chirashi { width: 100%; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
-    .event-details { display: flex; flex-direction: column; gap: 1rem; }
+    /* --- BULLETPROOF UPCOMING EVENT CSS --- */
+    .event-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center; margin-bottom: 5rem; }
+    .event-chirashi { width: 100%; max-width: 450px; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
     .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
     .event-title { font-size: 2rem; font-weight: 300; color: var(--off-white); line-height: 1.2; }
-    .event-info { font-size: 1.1rem; line-height: 1.8; color: var(--muted); }
+    .event-info { font-size: 1.15rem; line-height: 1.8; color: var(--muted); }
+
+    /* --- BUTTONS --- */
     .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
     .card-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.5rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; }
     .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
@@ -174,7 +176,11 @@
     .site-footer a { color: var(--orange-rope); transition: color 0.3s; }
     .site-footer a:hover { color: var(--off-white); }
     
-    @media (max-width: 900px) { .event-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    @media (max-width: 900px) { 
+      .event-grid { grid-template-columns: 1fr; gap: 3rem; } 
+      .event-chirashi { max-width: 400px; margin: 0 auto; display: block; }
+    }
+
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
       #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); }
@@ -275,18 +281,38 @@
       <div class="page-container">
         <h1 class="page-title">公演情報</h1>
 
+        <!-- UPCOMING EVENT: RAN NO KAI -->
+        <div class="event-section">
+          <div class="event-grid">
+            <img class="event-chirashi" src="flyer/IMG_8276.jpeg" alt="第十二回 藍の会" />
+            <div class="event-details">
+              <span class="event-date">2026年10月4日（日）</span>
+              <h3 class="event-title">第十二回 藍の会</h3>
+              <div class="event-info">
+                <p><strong>時間:</strong> 13:00 開演（12:30 開場）</p>
+                <p><strong>場所:</strong> <a href="https://www.google.com/maps/search/?api=1&query=新宿花園神社" target="_blank" rel="noopener" style="color: var(--orange-rope); text-decoration: underline; text-underline-offset: 4px;">新宿花園神社 社務所２階舞台</a></p>
+                <br>
+                <p>会主：成田涼子<br>助演（囃子）として出演いたします。</p>
+              </div>
+              <div class="button-group">
+                <a href="contact-jp.html" class="card-btn">お問い合わせ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="event-section">
           <h2 class="section-label" id="past-performances">過去の公演実績</h2>
 
           <div class="past-events-grid">
             
-            <!-- NEW EVENT: Sounds of Kabuki -->
+            <!-- PAST EVENT: Sounds of Kabuki -->
             <div class="past-event-thumb" 
                  data-img="Chirashi-20260803soundsofkabuki.jpg" 
-                 data-title="Sounds of Kabuki-歌舞伎の響-" 
+                 data-title="Sounds of Kabuki" 
                  data-date="2026年8月3日" 
                  data-venue="浅草文化観光センター" 
-                 data-role="解説 <br> 出演 <br> 企画・演出 " 
+                 data-role="出演" 
                  data-desc="囃子方の望月武懇、望月武政、長唄三味線方の杵屋佐輝夫による、歌舞伎音楽の魅力に迫る公演です。英語での解説と実演を交え、日本の伝統芸能の世界を深くお楽しみいただきました。">
               <img src="Chirashi-20260803soundsofkabuki.jpg" alt="Sounds of Kabuki Flyer Thumbnail" />
               <div class="thumb-overlay">
@@ -316,7 +342,7 @@
                  data-title="Kenny Endo ５０周年記念 | MA vs. Groove" 
                  data-date="2025年8月9日" 
                  data-venue="ケネディ・シアター, ホノルル" 
-                 data-role="「江戸囃子」笛<br>「響演」大鼓<br>「老松」太鼓<br>「白梅太鼓」太鼓<br>「江戸寿獅子」笛"
+                 data-role="<ul><li>「江戸囃子」笛</li><li>「響演」大鼓</li><li>「老松」太鼓</li><li>「白梅太鼓」太鼓</li><li>「江戸寿獅子」笛</li></ul>"
                  data-desc="Taiko Arts Center主催による本公演は、遠藤ケニー氏のオリジナル楽曲と、そのルーツである伝統音楽を祝した記念コンサートです。共演：鈴木恭介、望月左武郎、岡安喜代蘭、ほか。">
               <img src="flyer/20250809 Ma vs Groove.png" alt="Ma vs Groove Flyer Thumbnail" />
               <div class="thumb-overlay">
