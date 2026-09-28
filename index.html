@@ -115,8 +115,15 @@
       .tooltip-container:hover .tooltip-text { bottom: auto; }
     }
 
+    /* --- UPCOMING EVENTS SECTION (RESTORED!) --- */
+    .featured-event-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: flex-start; margin-bottom: 4rem; }
+    .event-chirashi { width: 100%; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
+    .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
+    .event-info { font-size: 1.1rem; line-height: 1.8; color: var(--muted); }
+
     /* --- BUTTON CSS --- */
-    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; justify-content: center; }
+    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
     .card-btn { display: inline-block; padding: 0.5rem 1.2rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; text-align: center; }
     .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
     .card-btn.secondary { border-color: var(--muted); color: var(--muted); }
@@ -130,7 +137,11 @@
     .site-footer a:hover { color: var(--off-white); }
     
     /* --- MOBILE RESPONSIVENESS --- */
-    @media (max-width: 900px) { .profile-grid { grid-template-columns: 1fr; } .profile-photo { max-width: 400px; margin: 0 auto; display: block; } }
+    @media (max-width: 900px) { 
+      .profile-grid, .featured-event-grid { grid-template-columns: 1fr; } 
+      .profile-photo, .event-chirashi { max-width: 400px; margin: 0 auto; display: block; } 
+    }
+
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
       #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); }
@@ -235,17 +246,18 @@
       <section class="content-section" style="background-color: var(--deep-black); max-width: 100%;">
         <div style="max-width: 1200px; margin: 0 auto;">
           <h2 class="section-title">Upcoming Events</h2>
+          
           <div class="featured-event-grid">
-  <img class="event-chirashi" src="flyer/IMG_8276.jpeg" alt="第12回藍の会" />
-  <div class="event-details">
-    <span class="event-date">Sunday, October 4, 2026</span>
-    <p class="event-info"><strong>"Ran no kai" Shamusen Recital</strong><br>1:00 PM<br>Shinjuku Hanazono Shrine</p>
-    <div class="button-group">
-      <a href="contact.html" target="_blank" rel="noopener" class="card-btn">Inquiries</a>
-      <a href="events.html" class="card-btn secondary">See All Events</a>
-    </div>
-  </div>
-</div>
+            <img class="event-chirashi" src="flyer/IMG_8276.jpeg" alt="第12回藍の会" />
+            <div class="event-details">
+              <span class="event-date">Sunday, October 4, 2026</span>
+              <p class="event-info"><strong>"Ran no kai" Shamisen Recital</strong><br>1:00 PM<br>Shinjuku Hanazono Shrine</p>
+              <div class="button-group">
+                <a href="contact.html" target="_blank" rel="noopener" class="card-btn">Inquiries</a>
+                <a href="events.html" class="card-btn secondary">See All Events</a>
+              </div>
+            </div>
+          </div>
 
         </div>
       </section>
