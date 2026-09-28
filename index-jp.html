@@ -90,7 +90,7 @@
     .section-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 3rem; color: var(--orange-rope); border-bottom: 1px solid var(--muted); padding-bottom: 1rem; }
 
     /* PROFILE OVERVIEW & HOVER CARDS */
-    .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; margin-bottom: 4rem; }
+    .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; margin-bottom: 4rem; align-items: center; }
     .profile-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 1px solid rgba(232, 224, 212, 0.1); }
     .bio-text p { font-size: 1.1rem; line-height: 1.9; color: var(--muted); margin-bottom: 1.5rem; letter-spacing: 0.05em; }
 
@@ -104,15 +104,21 @@
     .tooltip-link { display: block; margin-top: 0.8rem; color: var(--orange-rope); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; transition: color 0.3s; }
     .tooltip-link:hover { color: var(--off-white); }
 
-    /* MOBILE & IPAD OVERRIDE */
     @media (max-width: 1024px) {
       .tooltip-text { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); bottom: auto !important; width: 85vw; max-width: 320px; }
       .tooltip-text::after { display: none; }
       .tooltip-container:hover .tooltip-text { bottom: auto; }
     }
 
+    /* --- BULLETPROOF EVENT GRID CSS --- */
+    .featured-event-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center; margin-bottom: 4rem; }
+    .event-chirashi { width: 100%; max-width: 450px; height: auto; display: block; border: 1px solid rgba(232, 224, 212, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    .event-details { display: flex; flex-direction: column; gap: 1.5rem; }
+    .event-date { color: var(--orange-rope); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; }
+    .event-info { font-size: 1.15rem; line-height: 1.8; color: var(--muted); }
+
     /* --- BUTTON CSS --- */
-    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; justify-content: center; }
+    .button-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
     .card-btn { display: inline-block; padding: 0.5rem 1.2rem; background: transparent; color: var(--off-white); border: 1px solid var(--orange-rope); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; text-align: center; }
     .card-btn:hover { background: var(--orange-rope); color: var(--deep-black); }
     .card-btn.secondary { border-color: var(--muted); color: var(--muted); }
@@ -126,7 +132,11 @@
     .site-footer a:hover { color: var(--off-white); }
 
     /* --- MOBILE RESPONSIVENESS --- */
-    @media (max-width: 900px) { .profile-grid { grid-template-columns: 1fr; } .profile-photo { max-width: 400px; margin: 0 auto; display: block; } }
+    @media (max-width: 900px) { 
+      .profile-grid, .featured-event-grid { grid-template-columns: 1fr; gap: 3rem; } 
+      .profile-photo, .event-chirashi { max-width: 400px; margin: 0 auto; display: block; } 
+    }
+
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); transition: transform 0.4s ease; }
       #mobile-menu-toggle:checked ~ .layout-wrapper .sidebar { transform: translateX(0); }
@@ -232,12 +242,15 @@
         <div style="max-width: 1200px; margin: 0 auto;">
           <h2 class="section-title">次回の公演</h2>
           
-          <!-- COMING SOON PLACEHOLDER (JAPANESE) -->
-          <div style="border: 1px dashed rgba(232, 224, 212, 0.2); background-color: var(--warm-dark); padding: 5rem 2rem; text-align: center; margin-bottom: 2rem;">
-            <h3 style="font-size: 1.6rem; font-weight: 300; letter-spacing: 0.1em; color: var(--off-white); margin-bottom: 1rem; font-family: 'Noto Serif JP', serif;">次回の公演をお楽しみに</h3>
-            <p style="color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem;">新しい公演情報が決定次第、こちらでお知らせいたします。</p>
-            <div class="button-group">
-              <a href="events-jp.html" class="card-btn secondary">過去の公演情報を見る</a>
+          <div class="featured-event-grid">
+            <img class="event-chirashi" src="flyer/IMG_8276.jpeg" alt="第12回藍の会" />
+            <div class="event-details">
+              <span class="event-date">2026年10月4日（日）</span>
+              <p class="event-info"><strong>第十二回 藍の会</strong><br>13:00開演（12:30開場）<br>新宿花園神社 社務所２階舞台</p>
+              <div class="button-group">
+                <a href="contact-jp.html" class="card-btn">お問い合わせ</a>
+                <a href="events-jp.html" class="card-btn secondary">すべての公演を見る</a>
+              </div>
             </div>
           </div>
 
